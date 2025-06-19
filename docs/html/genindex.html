@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; tensormesh  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/mytheme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_started/installation.html#installatoion-via-pypi">Installatoion via PyPi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/benchmark.html">Benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_started/benchmark.html#m2-pro-cpu">M2 Pro CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/benchmark.html#assemble-speed">Assemble Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/benchmark.html#pipeline-speed">Pipeline Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="get_started/element.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_started/element.html#line">Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/element.html#triangle">Triangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/element.html#quadrilateral">Quadrilateral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/element.html#tetrahedron">Tetrahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/element.html#hexahedron">Hexahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/element.html#pyramid">Pyramid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_started/element.html#prism">Prism</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/mesh_gen.html">Mesh Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/mesh_gen.html#d-high-order-mesh">2D high order mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/mesh_gen.html#d-high-circle-mesh">2D high circle mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/mesh_gen.html#d-hybrid-mesh">2D hybrid mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/mesh_gen.html#id1">3D high order mesh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/adjacency.html">Adjacency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/adjacency.html#d-node-adjacency">2D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/adjacency.html#d-element-adjacency">2D Element Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/adjacency.html#id1">3D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/adjacency.html#id2">3D Element Adjacency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/basis.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/basis.html#d-line-basis">1D Line Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/basis.html#d-triangle-basis">2D Triangle Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/basis.html#d-quadrilateral-basis">2D Quadrilateral Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/basis.html#d-tetrahedron-basis">3D Tetrahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/basis.html#d-hexahedron-basis">3D Hexahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/basis.html#d-pyramid-basis">3D Pyramid Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/basis.html#d-prism-basis">3D Prism Basis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/values.html">Plot values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/values.html#d-point-value">2D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/values.html#d-element-value">2D Element Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/values.html#id1">3D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/values.html#id2">3D Element Value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/poisson.html">Poisson Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/poisson.html#adaptive-mesh-refinement">Adaptive Mesh Refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/wave.html">Wave Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/wave.html#multi-frequency-dataset">multi frequency dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/linear_elasticity.html">Linear Elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/linear_elasticity.html#pressed-hollow-rectangle">Pressed Hollow Rectangle</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/dataset.html">tensormesh.dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/dataset.html#mesh">mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/dataset.html#equation">equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/mesh.html">tensormesh.mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/element.html">tensormesh.element</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/element.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/element.html#transformation">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/element.html#polynomial">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/element.html#module-tensormesh.element.basis">Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/element.html#module-tensormesh.element.quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/element.html#module-tensormesh.element.normal">Normal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/assemble.html">tensormesh.assemble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/assemble.html#element-assembler">Element Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/assemble.html#facet-assembler">Facet Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/assemble.html#node-assembler">Node Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/assemble.html#built-in-assemblers">Built-in Assemblers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/sparse.html">tensormesh.sparse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/sparse.html#sparsematirx">SparseMatirx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/operator.html">tensormesh.operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/operator.html#condenser">Condenser</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/ode.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/ode.html#runge-kutta-methods">Runge-Kutta methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/ode.html#built-in-methods">Built-in Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/functional.html">tensormesh.functional</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/functional.html#module-tensormesh.functional.ops">ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/functional.html#module-tensormesh.functional.elasticity">elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/functional.html#module-tensormesh.functional.plastic">plastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/nn.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/nn.html#bufferutils">BufferUtils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/visualization.html">tensormesh.visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/visualization.html#module-tensormesh.visualization.draw_graph">Draw Facet</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tensormesh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.__init__">__init__() (BufferDict method)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.__init__">(BufferList method)</a>
+</li>
+        <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.__init__">(Condenser method)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.__init__">(ElementAssembler method)</a>
+</li>
+        <li><a href="api_reference/ode.html#tensormesh.ode.builtin.ExplicitEuler.__init__">(ExplicitEuler method)</a>
+</li>
+        <li><a href="api_reference/ode.html#tensormesh.ode.ExplicitRungeKutta.__init__">(ExplicitRungeKutta method)</a>
+</li>
+        <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.HeatMultiFrequency.__init__">(HeatMultiFrequency method)</a>
+</li>
+        <li><a href="api_reference/ode.html#tensormesh.ode.builtin.ImplicitLinearEuler.__init__">(ImplicitLinearEuler method)</a>
+</li>
+        <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.__init__">(ImplicitLinearRungeKutta method)</a>
+</li>
+        <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.__init__">(Mesh method)</a>
+</li>
+        <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.__init__">(MeshGen method)</a>
+</li>
+        <li><a href="api_reference/ode.html#tensormesh.ode.builtin.MidPointLinearEuler.__init__">(MidPointLinearEuler method)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.__init__">(NodeAssembler method)</a>
+</li>
+        <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.PoissonMultiFrequency.__init__">(PoissonMultiFrequency method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.__init__">(Polynomial method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.__init__">(Polynomials method)</a>
+</li>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.__init__">(SparseMatrix method)</a>
+</li>
+        <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.__init__">(StreamPlotter method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.__init__">(Transformation method)</a>
+</li>
+        <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.WaveMultiFrequency.__init__">(WaveMultiFrequency method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials._coef">_coef (Polynomials attribute)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials._exp">_exp (Polynomials attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.accumulate_range">accumulate_range() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.add_circle">add_circle() (MeshGen method)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.add_cube">add_cube() (MeshGen method)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.add_rectangle">add_rectangle() (MeshGen method)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.add_sphere">add_sphere() (MeshGen method)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.append">append() (BufferList method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.apply_coefficient">apply_coefficient() (Polynomials method)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.as_buffer">as_buffer() (BufferDict method)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.as_buffer">(BufferList method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.as_parameter">as_parameter() (BufferDict method)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.as_parameter">(BufferList method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.axes">axes (StreamPlotter attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.basis">basis (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#id3">basis_order (Transformation attribute)</a>, <a href="api_reference/element.html#tensormesh.element.transformation.Transformation.basis_order">[1]</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.batch_elements_coords">batch_elements_coords() (Transformation method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.batch_quadrature">batch_quadrature() (Transformation method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.batch_shape_grad_jxw">batch_shape_grad_jxw() (Transformation method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.batch_shape_val">batch_shape_val() (Transformation method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.boundary_mask">boundary_mask (Mesh property)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict">BufferDict (class in tensormesh.nn)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferList">BufferList (class in tensormesh.nn)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.cell">cell (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.cell">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.cell">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.cell">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.cell">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.cell">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.cell">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.cell">(Triangle attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/mesh.html#id3">cell_data (Mesh attribute)</a>, <a href="api_reference/mesh.html#tensormesh.mesh.Mesh.cell_data">[1]</a>
+</li>
+      <li><a href="api_reference/mesh.html#id5">cell_sets (Mesh attribute)</a>, <a href="api_reference/mesh.html#tensormesh.mesh.Mesh.cell_sets">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/mesh.html#id1">cells (Mesh attribute)</a>, <a href="api_reference/mesh.html#tensormesh.mesh.Mesh.cells">[1]</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.clone">clone() (BufferDict method)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.clone">(BufferList method)</a>
+</li>
+        <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.clone">(Mesh method)</a>
+</li>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.clone">(SparseMatrix method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/sparse.html#id2">col (SparseMatrix attribute)</a>, <a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.col">[1]</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.combine">combine() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.combine_matrix">combine_matrix() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.combine_vector">combine_vector() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.condense_rhs">condense_rhs() (Condenser method)</a>
+</li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser">Condenser (class in tensormesh.operator)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.default_element_type">default_element_type (Mesh attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/mesh.html#id8">(Mesh property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/mesh.html#id7">default_eletyp (Mesh attribute)</a>, <a href="api_reference/mesh.html#tensormesh.mesh.Mesh.default_eletyp">[1]</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.degree">degree() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.deriv">deriv() (Polynomial method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.deriv">(Polynomials method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.detach">detach() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.detG">detG (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.detJ">detJ (Transformation property)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.deviatoric_stress">deviatoric_stress() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.deviatoric_stress_norm">deviatoric_stress_norm() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.device">device (BufferDict property)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.device">(BufferList property)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.device">(ElementAssembler property)</a>
+</li>
+        <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.device">(Mesh property)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.device">(NodeAssembler property)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.device">(Polynomials attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#id11">(Polynomials property)</a>
+</li>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.device">(SparseMatrix property)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.device">(Transformation property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.dim">dim (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.dim">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.dim">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.dim">(Mesh property)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.dim">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.dim">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.dim">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.dim">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.dim">(Transformation property)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.dim">(Triangle attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.dim">dim() (Polynomials method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#id6">dim2eletyp (Mesh attribute)</a>, <a href="api_reference/mesh.html#tensormesh.mesh.Mesh.dim2eletyp">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/assemble.html#id3">dimension (ElementAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.dimension">[1]</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.dimension">(LaplaceElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.dimension">(MassElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#id8">(NodeAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.dimension">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/operator.html#id0">dirichlet_mask (Condenser attribute)</a>, <a href="api_reference/operator.html#tensormesh.operator.Condenser.dirichlet_mask">[1]</a>
+</li>
+      <li><a href="api_reference/operator.html#id1">dirichlet_value (Condenser attribute)</a>, <a href="api_reference/operator.html#tensormesh.operator.Condenser.dirichlet_value">[1]</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.ops.divide">divide() (in module tensormesh.functional.ops)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_element_value.draw_element_value">draw_element_value() (in module tensormesh.visualization.draw_element_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_element_value.draw_element_value_2d">draw_element_value_2d() (in module tensormesh.visualization.draw_element_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_element_value.draw_element_value_2d_tri">draw_element_value_2d_tri() (in module tensormesh.visualization.draw_element_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_element_value.draw_element_value_3d">draw_element_value_3d() (in module tensormesh.visualization.draw_element_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_facet.draw_face">draw_face() (in module tensormesh.visualization.draw_facet)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_facet.draw_facet_2d">draw_facet_2d() (in module tensormesh.visualization.draw_facet)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_graph.draw_graph">draw_graph() (in module tensormesh.visualization.draw_graph)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_mesh.draw_mesh">draw_mesh() (in module tensormesh.visualization.draw_mesh)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.draw_mesh_2d">draw_mesh_2d() (StreamPlotter method)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.draw_mesh_2d_static">draw_mesh_2d_static() (in module tensormesh.visualization.stream_plotter)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.draw_mesh_2d_stream">draw_mesh_2d_stream() (in module tensormesh.visualization.stream_plotter)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value">draw_point_value() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value_2d">draw_point_value_2d() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value_2d_interpolation">draw_point_value_2d_interpolation() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value_2d_tri_gouraud">draw_point_value_2d_tri_gouraud() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value_3d_interpolation">draw_point_value_3d_interpolation() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.dtype">dtype (BufferDict property)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.dtype">(BufferList property)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.dtype">(ElementAssembler property)</a>
+</li>
+        <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.dtype">(Mesh property)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.dtype">(NodeAssembler property)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.dtype">(Polynomials attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#id12">(Polynomials property)</a>
+</li>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.dtype">(SparseMatrix property)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.dtype">(Transformation property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/sparse.html#id0">edata (SparseMatrix attribute)</a>, <a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.edata">[1]</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.edge">edge (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.edge">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.edge">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.edge">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.edge">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.edge">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.edge">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.edge">(Triangle attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.edge_index">edge_index() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/assemble.html#id0">edges (ElementAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.edges">[1]</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.edges">(LaplaceElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.edges">(MassElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.edges">(SparseMatrix property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element">Element (class in tensormesh.element.element)</a>
+</li>
+      <li><a href="api_reference/element.html#id2">element (Transformation attribute)</a>, <a href="api_reference/element.html#tensormesh.element.transformation.Transformation.element">[1]</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.element_adjacency">element_adjacency() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.element_coords">element_coords (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.element_to_edge">element_to_edge() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.element_to_facet">element_to_facet() (Element class method)</a>
+</li>
+      <li><a href="api_reference/assemble.html#id4">element_types (ElementAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.element_types">[1]</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.element_types">(LaplaceElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.element_types">(MassElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#id9">(NodeAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.element_types">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler">ElementAssembler (class in tensormesh.assemble.element_assembler)</a>
+</li>
+      <li><a href="api_reference/assemble.html#id2">elements (ElementAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.elements">[1]</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.elements">(LaplaceElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.elements">(MassElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#id7">(NodeAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.elements">[1]</a>
+</li>
+        <li><a href="api_reference/element.html#id0">(Transformation attribute)</a>, <a href="api_reference/element.html#tensormesh.element.transformation.Transformation.elements">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.elements">elements() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.elementwise_operation">elementwise_operation() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.eval_cell_jacobian">eval_cell_jacobian() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.eval_facet_cell_jacobian">eval_facet_cell_jacobian() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.eval_facet_jacobian">eval_facet_jacobian() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.eval_facet_shape_grad">eval_facet_shape_grad() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.eval_facet_surface_factor">eval_facet_surface_factor() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.eval_shape_grad">eval_shape_grad() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.eval_shape_val">eval_shape_val() (Element class method)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.builtin.ExplicitEuler">ExplicitEuler (class in tensormesh.ode.builtin)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ExplicitRungeKutta">ExplicitRungeKutta (class in tensormesh.ode)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.eye">eye() (SparseMatrix static method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.face">face (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.face">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.face">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.face">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.face">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.face">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.face">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.face">(Triangle attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.facet_basis_index_2d">facet_basis_index_2d() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.facet_quadrature">facet_quadrature (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.facet_quadrature_2d">facet_quadrature_2d() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.facet_shape_grad">facet_shape_grad (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.facet_shape_val">facet_shape_val (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.facets">facets (Transformation property)</a>
+</li>
+      <li><a href="api_reference/mesh.html#id4">field_data (Mesh attribute)</a>, <a href="api_reference/mesh.html#tensormesh.mesh.Mesh.field_data">[1]</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.fig">fig (StreamPlotter attribute)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.filename">filename (StreamPlotter attribute)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.forward">forward() (ElementAssembler method)</a>
+
+      <ul>
+        <li><a href="api_reference/ode.html#tensormesh.ode.ExplicitRungeKutta.forward">(ExplicitRungeKutta method)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.forward">(LaplaceElementAssembler method)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.forward">(MassElementAssembler method)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.forward">(NodeAssembler method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.forward">(Polynomial method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.forward">(Polynomials method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.forward_A">forward_A() (ImplicitLinearRungeKutta method)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.forward_B">forward_B() (ImplicitLinearRungeKutta method)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.forward_M">forward_M() (ImplicitLinearRungeKutta method)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.from_assembler">from_assembler() (ElementAssembler class method)</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.from_assembler">(NodeAssembler class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.from_block_coo">from_block_coo() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.from_dense">from_dense() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.from_elements">from_elements() (NodeAssembler class method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.from_file">from_file() (Mesh class method)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.from_mesh">from_mesh() (ElementAssembler class method)</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.from_mesh">(NodeAssembler class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.from_meshio">from_meshio() (Mesh class method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.from_scipy_coo">from_scipy_coo() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.from_sparse_coo">from_sparse_coo() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.full">full() (SparseMatrix static method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.G">G (Transformation property)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.gen">gen() (MeshGen method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_circle">gen_circle() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_cube">gen_cube() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_hollow_circle">gen_hollow_circle() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_hollow_cube">gen_hollow_cube() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_hollow_rectangle">gen_hollow_rectangle() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_hollow_sphere">gen_hollow_sphere() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_L">gen_L() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_rectangle">gen_rectangle() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.gen_sphere">gen_sphere() (Mesh static method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_basis">get_basis() (Element class method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.get_basis">(Hexahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.get_basis">(Line class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.get_basis">(Prism class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.get_basis">(Pyramid class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.get_basis">(Quadrilateral class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.get_basis">(Tetrahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.get_basis">(Triangle class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_basis_fns">get_basis_fns() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_basis_grad_fns">get_basis_grad_fns() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_contour">get_contour() (Element class method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.get_contour">(Quadrilateral class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.get_contour">(Triangle class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_edge">get_edge() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.get_exp_terms">get_exp_terms() (Polynomial method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.get_exp_terms">(Polynomials method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_facet">get_facet() (Element class method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.get_facet">(Hexahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.get_facet">(Prism class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.get_facet">(Pyramid class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.get_facet">(Quadrilateral class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.get_facet">(Tetrahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.get_facet">(Triangle class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_facet_quadrature">get_facet_quadrature() (Element class method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.get_facet_quadrature">(Hexahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.get_facet_quadrature">(Prism class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.get_facet_quadrature">(Pyramid class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.get_facet_quadrature">(Quadrilateral class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.get_facet_quadrature">(Tetrahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.get_facet_quadrature">(Triangle class method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_facet_type">get_facet_type() (Element class method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.get_facet_type">(Hexahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.get_facet_type">(Prism class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.get_facet_type">(Pyramid class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.get_facet_type">(Quadrilateral class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.get_facet_type">(Tetrahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.get_facet_type">(Triangle class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_local_facet_mapping_fns">get_local_facet_mapping_fns() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_local_facet_mapping_grad_fns">get_local_facet_mapping_grad_fns() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_n_basis">get_n_basis() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_n_facet">get_n_facet() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_outwards_facet_normal">get_outwards_facet_normal() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_polynomial">get_polynomial() (Element class method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.get_polynomial">(Hexahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.get_polynomial">(Line class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.get_polynomial">(Prism class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.get_polynomial">(Pyramid class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.get_polynomial">(Quadrilateral class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.get_polynomial">(Tetrahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.get_polynomial">(Triangle class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_quad_mask">get_quad_mask() (Element class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_quadrature">get_quadrature() (Element class method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.get_quadrature">(Hexahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.get_quadrature">(Line class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.get_quadrature">(Prism class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.get_quadrature">(Pyramid class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.get_quadrature">(Quadrilateral class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.get_quadrature">(Tetrahedron class method)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.get_quadrature">(Triangle class method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.get_tri_mask">get_tri_mask() (Element class method)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.grab_frame">grab_frame() (StreamPlotter method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.grad">grad (SparseMatrix property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.grad">grad() (Polynomial method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.grad">(Polynomials method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.grad_fn">grad_fn (SparseMatrix property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.gradphi">gradphi (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.GxW">GxW (Transformation property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.has_same_layout">has_same_layout() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.hash_layout">hash_layout (SparseMatrix attribute)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.HeatMultiFrequency">HeatMultiFrequency (class in tensormesh.dataset.equation)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.hex_basis">hex_basis() (in module tensormesh.element.basis)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.hex_facet_basis_index">hex_facet_basis_index() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.hex_facet_quadrature">hex_facet_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.hex_linspace">hex_linspace() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.hex_quadrature">hex_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron">Hexahedron (class in tensormesh.element.element)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/ode.html#tensormesh.ode.builtin.ImplicitLinearEuler">ImplicitLinearEuler (class in tensormesh.ode.builtin)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta">ImplicitLinearRungeKutta (class in tensormesh.ode)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.index_reverse_mapping">index_reverse_mapping() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.HeatMultiFrequency.initial_condition">initial_condition() (HeatMultiFrequency method)</a>
+
+      <ul>
+        <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.WaveMultiFrequency.initial_condition">(WaveMultiFrequency method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.inner_col">inner_col (Condenser attribute)</a>
+</li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.inner_row">inner_row (Condenser attribute)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.insert">insert() (BufferList method)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.is_complex">is_complex() (BufferDict method)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.is_complex">(BufferList method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.is_floating_point">is_floating_point() (BufferDict method)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.is_floating_point">(BufferList method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.is_inner_edge">is_inner_edge (Condenser attribute)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.is_mix_facet">is_mix_facet (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.is_mix_facet">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.is_mix_facet">(Pyramid attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.is_ou2in_edge">is_ou2in_edge (Condenser attribute)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.isotropic_stress">isotropic_stress() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.item">item() (BufferList method)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.items">items() (BufferDict method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.J">J (Transformation property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.jacobian">jacobian (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.JxW">JxW (Transformation property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.K_ou2in">K_ou2in (Condenser attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.keys">keys() (BufferDict method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler">LaplaceElementAssembler (class in tensormesh.assemble.builtin)</a>
+</li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.layout_hash">layout_hash (Condenser attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.layout_hash">(SparseMatrix attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.layout_mask">layout_mask (SparseMatrix property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.lin_basis">lin_basis() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.lin_exp">lin_exp() (Polynomial class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.lin_linspace">lin_linspace() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.lin_quadrature">lin_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Line">Line (class in tensormesh.element.element)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.map">map() (Polynomials method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.map_exp_terms">map_exp_terms() (Polynomials method)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler">MassElementAssembler (class in tensormesh.assemble.builtin)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh">Mesh (class in tensormesh.mesh)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen">MeshGen (class in tensormesh.dataset.mesh)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.builtin.MidPointLinearEuler">MidPointLinearEuler (class in tensormesh.ode.builtin)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.mix_facet_basis_index">mix_facet_basis_index() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.mix_facet_quadrature_3d">mix_facet_quadrature_3d() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="api_reference/element.html#module-tensormesh.element.basis">tensormesh.element.basis</a>
+</li>
+        <li><a href="api_reference/element.html#module-tensormesh.element.normal">tensormesh.element.normal</a>
+</li>
+        <li><a href="api_reference/element.html#module-tensormesh.element.quadrature">tensormesh.element.quadrature</a>
+</li>
+        <li><a href="api_reference/functional.html#module-tensormesh.functional.elasticity">tensormesh.functional.elasticity</a>
+</li>
+        <li><a href="api_reference/functional.html#module-tensormesh.functional.ops">tensormesh.functional.ops</a>
+</li>
+        <li><a href="api_reference/functional.html#module-tensormesh.functional.plastic">tensormesh.functional.plastic</a>
+</li>
+        <li><a href="api_reference/ode.html#module-tensormesh.ode.builtin">tensormesh.ode.builtin</a>
+</li>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_element_value">tensormesh.visualization.draw_element_value</a>
+</li>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_facet">tensormesh.visualization.draw_facet</a>
+</li>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_graph">tensormesh.visualization.draw_graph</a>
+</li>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_mesh">tensormesh.visualization.draw_mesh</a>
+</li>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_point_value">tensormesh.visualization.draw_point_value</a>
+</li>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.stream_plotter">tensormesh.visualization.stream_plotter</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.n_basis">n_basis (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.n_cell">n_cell (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.n_cell">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.n_cell">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.n_cell">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.n_cell">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.n_cell">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.n_cell">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.n_cell">(Triangle attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.n_edge">n_edge (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.n_edge">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.n_edge">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.n_edge">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.n_edge">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.n_edge">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.n_edge">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.n_edge">(Triangle attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.n_elements">n_elements (Mesh property)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.n_elements">(Transformation property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.n_face">n_face (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.n_face">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.n_face">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.n_face">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.n_face">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.n_face">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.n_face">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.n_face">(Triangle attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/assemble.html#id5">n_points (ElementAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.n_points">[1]</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.n_points">(LaplaceElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.n_points">(MassElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.n_points">(Mesh property)</a>
+</li>
+        <li><a href="api_reference/assemble.html#id10">(NodeAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.n_points">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#id7">n_polys (Polynomials attribute)</a>, <a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.n_polys">[1]</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.n_quadrature">n_quadrature (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.n_terms">n_terms (Polynomial attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#id9">(Polynomials attribute)</a>, <a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.n_terms">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.n_vars">n_vars (Polynomial attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#id8">(Polynomials attribute)</a>, <a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.n_vars">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.n_vertex">n_vertex (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.n_vertex">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.n_vertex">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.n_vertex">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.n_vertex">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.n_vertex">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.n_vertex">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.n_vertex">(Triangle attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.nanson_scale">nanson_scale (Transformation property)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.ncols">ncols (StreamPlotter attribute)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.ndim">ndim (Polynomials property)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.nnz">nnz (SparseMatrix property)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.node_adjacency">node_adjacency() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler">NodeAssembler (class in tensormesh.assemble.node_assembler)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.nrows">nrows (StreamPlotter attribute)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.numel">numel() (Polynomials method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.ou2in_col">ou2in_col (Condenser attribute)</a>
+</li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.ou2in_row">ou2in_row (Condenser attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.normal.outwards_normal_2d">outwards_normal_2d() (in module tensormesh.element.normal)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.normal.outwards_normal_3d">outwards_normal_3d() (in module tensormesh.element.normal)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.phi">phi (Transformation property)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.plot">plot() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#id2">point_data (Mesh attribute)</a>, <a href="api_reference/mesh.html#tensormesh.mesh.Mesh.point_data">[1]</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.points">points (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.points">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.points">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/mesh.html#id0">(Mesh attribute)</a>, <a href="api_reference/mesh.html#tensormesh.mesh.Mesh.points">[1]</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.points">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.points">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.points">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.points">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#id1">(Transformation attribute)</a>, <a href="api_reference/element.html#tensormesh.element.transformation.Transformation.points">[1]</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.points">(Triangle attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.PoissonMultiFrequency">PoissonMultiFrequency (class in tensormesh.dataset.equation)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.poly_exp">poly_exp() (Polynomial class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial">Polynomial (class in tensormesh.element.polynomial)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials">Polynomials (class in tensormesh.element.polynomial)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.pop">pop() (BufferList method)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.post_solve">post_solve() (ImplicitLinearRungeKutta method)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.pre_solve_lhs">pre_solve_lhs() (ImplicitLinearRungeKutta method)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.pre_solve_rhs">pre_solve_rhs() (ImplicitLinearRungeKutta method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.pri_basis">pri_basis() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.pri_exp">pri_exp() (Polynomial class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.pri_linspace">pri_linspace() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.pri_quadrature">pri_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Prism">Prism (class in tensormesh.element.element)</a>
+</li>
+      <li><a href="api_reference/assemble.html#id1">projector (ElementAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.projector">[1]</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.projector">(LaplaceElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.projector">(MassElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#id6">(NodeAssembler attribute)</a>, <a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.projector">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.pyr_basis">pyr_basis() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.pyr_exp">pyr_exp() (Polynomial class method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.pyr_linspace">pyr_linspace() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.pyr_quadrature">pyr_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid">Pyramid (class in tensormesh.element.element)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.quad_basis">quad_basis() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.quad_linspace">quad_linspace() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.quad_quadrature">quad_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.quadrature">quadrature (Transformation property)</a>
+</li>
+      <li><a href="api_reference/element.html#id4">quadrature_order (Transformation attribute)</a>, <a href="api_reference/element.html#tensormesh.element.transformation.Transformation.quadrature_order">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.quadrature_points">quadrature_points (ElementAssembler attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.quadrature_points">(NodeAssembler attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.quadrature_weights">quadrature_weights (ElementAssembler attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.quadrature_weights">(NodeAssembler attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral">Quadrilateral (class in tensormesh.element.element)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.random">random() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.random_from_layout">random_from_layout() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.random_layout">random_layout() (SparseMatrix static method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.read">read() (Mesh class method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.reciprocal">reciprocal() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/operator.html#tensormesh.operator.Condenser.recover">recover() (Condenser method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.register_element_data">register_element_data() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.register_point_data">register_point_data() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.remove_circle">remove_circle() (MeshGen method)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.remove_cube">remove_cube() (MeshGen method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.remove_rectangle">remove_rectangle() (MeshGen method)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.remove_sphere">remove_sphere() (MeshGen method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.repeat">repeat() (Polynomial method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.repeat">(Polynomials method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.requires_grad">requires_grad (SparseMatrix property)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.requires_grad_">requires_grad_() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.reset_coef">reset_coef() (Polynomial method)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.reset_coef">(Polynomials method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.reshape">reshape() (Polynomials method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#id1">row (SparseMatrix attribute)</a>, <a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.row">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.save">save() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.shape">shape (Polynomials attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#id10">(Polynomials property)</a>
+</li>
+        <li><a href="api_reference/sparse.html#id3">(SparseMatrix attribute)</a>, <a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.shape">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.shape_grad">shape_grad (Transformation property)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.shape_val">shape_val (ElementAssembler attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.shape_val">(NodeAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.shape_val">(Transformation property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.ops.skew">skew() (in module tensormesh.functional.ops)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.HeatMultiFrequency.solution">solution() (HeatMultiFrequency method)</a>
+
+      <ul>
+        <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.PoissonMultiFrequency.solution">(PoissonMultiFrequency method)</a>
+</li>
+        <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.WaveMultiFrequency.solution">(WaveMultiFrequency method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.solve">solve() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.PoissonMultiFrequency.source_term">source_term() (PoissonMultiFrequency method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix">SparseMatrix (class in tensormesh.sparse)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.ops.sqrt">sqrt() (in module tensormesh.functional.ops)</a>
+
+      <ul>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.sqrt">(SparseMatrix method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.stack">stack() (Polynomials class method)</a>
+</li>
+      <li><a href="api_reference/ode.html#tensormesh.ode.ExplicitRungeKutta.step">step() (ExplicitRungeKutta method)</a>
+
+      <ul>
+        <li><a href="api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.step">(ImplicitLinearRungeKutta method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.strain">strain() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter">StreamPlotter (class in tensormesh.visualization.stream_plotter)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.sum">sum() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.surface_factor">surface_factor (Transformation property)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.ops.sym">sym() (in module tensormesh.functional.ops)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.T">T (SparseMatrix property)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomial.tens_exp">tens_exp() (Polynomial class method)</a>
+</li>
+      <li>
+    tensormesh.element.basis
+
+      <ul>
+        <li><a href="api_reference/element.html#module-tensormesh.element.basis">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.element.normal
+
+      <ul>
+        <li><a href="api_reference/element.html#module-tensormesh.element.normal">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.element.quadrature
+
+      <ul>
+        <li><a href="api_reference/element.html#module-tensormesh.element.quadrature">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.functional.elasticity
+
+      <ul>
+        <li><a href="api_reference/functional.html#module-tensormesh.functional.elasticity">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.functional.ops
+
+      <ul>
+        <li><a href="api_reference/functional.html#module-tensormesh.functional.ops">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.functional.plastic
+
+      <ul>
+        <li><a href="api_reference/functional.html#module-tensormesh.functional.plastic">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.ode.builtin
+
+      <ul>
+        <li><a href="api_reference/ode.html#module-tensormesh.ode.builtin">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.visualization.draw_element_value
+
+      <ul>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_element_value">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.visualization.draw_facet
+
+      <ul>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_facet">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.visualization.draw_graph
+
+      <ul>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_graph">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.visualization.draw_mesh
+
+      <ul>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_mesh">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.visualization.draw_point_value
+
+      <ul>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.draw_point_value">module</a>
+</li>
+      </ul></li>
+      <li>
+    tensormesh.visualization.stream_plotter
+
+      <ul>
+        <li><a href="api_reference/visualization.html#module-tensormesh.visualization.stream_plotter">module</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.tet_basis">tet_basis() (in module tensormesh.element.basis)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.tet_facet_basis_index">tet_facet_basis_index() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.tet_facet_quadrature">tet_facet_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.tet_linspace">tet_linspace() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.tet_quadrature">tet_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron">Tetrahedron (class in tensormesh.element.element)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.to_dense">to_dense() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.to_dict">to_dict() (BufferDict method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.to_file">to_file() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.to_list">to_list() (BufferList method)</a>
+</li>
+      <li><a href="api_reference/mesh.html#tensormesh.mesh.Mesh.to_meshio">to_meshio() (Mesh method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.to_scipy_coo">to_scipy_coo() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.to_sparse_coo">to_sparse_coo() (SparseMatrix method)</a>
+</li>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.training">training (BufferDict attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/nn.html#tensormesh.nn.BufferList.training">(BufferList attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.training">(LaplaceElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.training">(MassElementAssembler attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation">Transformation (class in tensormesh.element.transformation)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.transformation">transformation (ElementAssembler attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.transformation">(LaplaceElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.transformation">(MassElementAssembler attribute)</a>
+</li>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.transformation">(NodeAssembler attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.polynomial.Polynomials.transpose">transpose() (Polynomials method)</a>
+
+      <ul>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.transpose">(SparseMatrix method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.tri_basis">tri_basis() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.basis.tri_linspace">tri_linspace() (in module tensormesh.element.basis)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.quadrature.tri_quadrature">tri_quadrature() (in module tensormesh.element.quadrature)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Triangle">Triangle (class in tensormesh.element.element)</a>
+</li>
+      <li><a href="api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.type">type() (ElementAssembler method)</a>
+
+      <ul>
+        <li><a href="api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.type">(NodeAssembler method)</a>
+</li>
+        <li><a href="api_reference/sparse.html#tensormesh.sparse.SparseMatrix.type">(SparseMatrix method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.update">update() (StreamPlotter method)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_element_value.update_element_value">update_element_value() (in module tensormesh.visualization.draw_element_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_element_value.update_element_value_2d">update_element_value_2d() (in module tensormesh.visualization.draw_element_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_element_value.update_element_value_2d_tri">update_element_value_2d_tri() (in module tensormesh.visualization.draw_element_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_element_value.update_element_value_3d">update_element_value_3d() (in module tensormesh.visualization.draw_element_value)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.plastic.update_plastic_stress">update_plastic_stress() (in module tensormesh.functional.plastic)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value">update_point_value() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value_2d">update_point_value_2d() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value_2d_interpolation">update_point_value_2d_interpolation() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value_2d_tri_gouraud">update_point_value_2d_tri_gouraud() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value_3d_interpolation">update_point_value_3d_interpolation() (in module tensormesh.visualization.draw_point_value)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.transformation.Transformation.update_points">update_points() (Transformation method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/nn.html#tensormesh.nn.BufferDict.values">values() (BufferDict method)</a>
+</li>
+      <li><a href="api_reference/element.html#tensormesh.element.element.Element.vertex">vertex (Element attribute)</a>
+
+      <ul>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Hexahedron.vertex">(Hexahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Line.vertex">(Line attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Prism.vertex">(Prism attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Pyramid.vertex">(Pyramid attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Quadrilateral.vertex">(Quadrilateral attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Tetrahedron.vertex">(Tetrahedron attribute)</a>
+</li>
+        <li><a href="api_reference/element.html#tensormesh.element.element.Triangle.vertex">(Triangle attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.voigt_B">voigt_B() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.voigt_C">voigt_C() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.voigt_N">voigt_N() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.voigt_shape_grad">voigt_shape_grad() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.voigt_shape_val">voigt_shape_val() (in module tensormesh.functional.elasticity)</a>
+</li>
+      <li><a href="api_reference/functional.html#tensormesh.functional.elasticity.voigt_stiffness">voigt_stiffness() (in module tensormesh.functional.elasticity)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/dataset.html#tensormesh.dataset.equation.WaveMultiFrequency">WaveMultiFrequency (class in tensormesh.dataset.equation)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, walkerchi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

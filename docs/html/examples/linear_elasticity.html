@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linear Elasticity &mdash; tensormesh  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/mytheme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tensormesh.dataset" href="../api_reference/dataset.html" />
+    <link rel="prev" title="Wave Equation" href="wave.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/installation.html#installatoion-via-pypi">Installatoion via PyPi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/benchmark.html">Benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#m2-pro-cpu">M2 Pro CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#assemble-speed">Assemble Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#pipeline-speed">Pipeline Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/element.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#line">Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#triangle">Triangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#quadrilateral">Quadrilateral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#tetrahedron">Tetrahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#hexahedron">Hexahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#pyramid">Pyramid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#prism">Prism</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mesh_gen.html">Mesh Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mesh_gen.html#d-high-order-mesh">2D high order mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_gen.html#d-high-circle-mesh">2D high circle mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_gen.html#d-hybrid-mesh">2D hybrid mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_gen.html#id1">3D high order mesh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adjacency.html">Adjacency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adjacency.html#d-node-adjacency">2D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adjacency.html#d-element-adjacency">2D Element Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adjacency.html#id1">3D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adjacency.html#id2">3D Element Adjacency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basis.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-line-basis">1D Line Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-triangle-basis">2D Triangle Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-quadrilateral-basis">2D Quadrilateral Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-tetrahedron-basis">3D Tetrahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-hexahedron-basis">3D Hexahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-pyramid-basis">3D Pyramid Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-prism-basis">3D Prism Basis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">Plot values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="values.html#d-point-value">2D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html#d-element-value">2D Element Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html#id1">3D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html#id2">3D Element Value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="poisson.html">Poisson Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="poisson.html#adaptive-mesh-refinement">Adaptive Mesh Refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wave.html">Wave Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wave.html#multi-frequency-dataset">multi frequency dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Linear Elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pressed-hollow-rectangle">Pressed Hollow Rectangle</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/dataset.html">tensormesh.dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/dataset.html#mesh">mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/dataset.html#equation">equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/mesh.html">tensormesh.mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/element.html">tensormesh.element</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#transformation">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#polynomial">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.basis">Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.normal">Normal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/assemble.html">tensormesh.assemble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#element-assembler">Element Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#facet-assembler">Facet Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#node-assembler">Node Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#built-in-assemblers">Built-in Assemblers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/sparse.html">tensormesh.sparse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/sparse.html#sparsematirx">SparseMatirx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/operator.html">tensormesh.operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/operator.html#condenser">Condenser</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/ode.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ode.html#runge-kutta-methods">Runge-Kutta methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ode.html#built-in-methods">Built-in Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/functional.html">tensormesh.functional</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.ops">ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.elasticity">elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.plastic">plastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/nn.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/nn.html#bufferutils">BufferUtils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/visualization.html">tensormesh.visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/visualization.html#module-tensormesh.visualization.draw_graph">Draw Facet</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tensormesh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Linear Elasticity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/linear_elasticity.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="linear-elasticity">
+<h1>Linear Elasticity<a class="headerlink" href="#linear-elasticity" title="Permalink to this heading"></a></h1>
+<section id="pressed-hollow-rectangle">
+<h2>Pressed Hollow Rectangle<a class="headerlink" href="#pressed-hollow-rectangle" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch_fem</span> <span class="kn">import</span> <span class="n">Mesh</span><span class="p">,</span> <span class="n">ElementAssembler</span>
+
+<span class="k">class</span> <span class="nc">KAssembler</span><span class="p">(</span><span class="n">ElementAssembler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">precompute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+        <span class="n">D</span> <span class="o">=</span> <span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">nu</span><span class="o">*</span><span class="n">nu</span><span class="p">)</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">nu</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">nu</span><span class="p">)]</span>
+        <span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">D</span>
+
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradu</span><span class="p">,</span> <span class="n">gradv</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Parameters:</span>
+<span class="sd">            -----------</span>
+<span class="sd">                gradu: torch.Tensor[n_basis, n_dim]</span>
+<span class="sd">                gradv: torch.Tensor[n_basis, n_dim]</span>
+<span class="sd">            Returns:</span>
+<span class="sd">            --------</span>
+<span class="sd">                K: torch.Tensor[n_basis, n_basis, n_dim, n_dim]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">gradu</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">gradu</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="n">zeros</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">gradu</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># [n_basis]</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">([</span>
+            <span class="p">[</span><span class="n">gradu</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">zeros</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">zeros</span><span class="p">,</span> <span class="n">gradu</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]],</span>
+            <span class="p">[</span><span class="n">gradu</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">gradu</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]]</span>
+        <span class="p">])</span> <span class="c1"># [n_basis, 3, 2]</span>
+
+        <span class="n">C</span>  <span class="o">=</span> <span class="n">matmul</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="c1"># [3, 3] @ [n_basis, 3, 2] = [n_basis, 3, 2]</span>
+
+        <span class="n">K</span>  <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">reduce_dim</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># [n_basis, n_basis, 2, 2]</span>
+
+        <span class="k">return</span> <span class="n">K</span>
+
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">gen_hollow_rectangle</span><span class="p">(</span><span class="n">chara_length</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">element_type</span><span class="o">=</span><span class="s2">&quot;quad&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">double</span><span class="p">()</span>
+
+<span class="n">K_asm</span> <span class="o">=</span> <span class="n">KAssembler</span><span class="o">.</span><span class="n">from_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">quadrature_order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="n">K_asm</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="n">F</span><span class="p">[</span><span class="n">mesh</span><span class="o">.</span><span class="n">point_data</span><span class="p">[</span><span class="s1">&#39;is_outer_top_boundary&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">dirichlet_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="n">dirichlet_mask</span><span class="p">[</span><span class="n">mesh</span><span class="o">.</span><span class="n">point_data</span><span class="p">[</span><span class="s1">&#39;is_outer_bottom_boundary&#39;</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">condenser</span> <span class="o">=</span> <span class="n">Condenser</span><span class="p">(</span><span class="n">dirichlet_mask</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+
+<span class="n">K_</span><span class="p">,</span> <span class="n">f_</span> <span class="o">=</span> <span class="n">condenser</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+
+<span class="n">u_</span> <span class="o">=</span> <span class="n">K_</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">f_</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">condenser</span><span class="o">.</span><span class="n">recover</span><span class="p">(</span><span class="n">u_</span><span class="p">)</span>
+
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;ux&quot;</span><span class="p">:</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span>
+     <span class="s2">&quot;uy&quot;</span><span class="p">:</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]},</span>
+     <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">,</span>
+    <span class="n">save_path</span><span class="o">=</span><span class="s2">&quot;press_hollow_rectangle.png&quot;</span><span class="p">,</span>
+    <span class="n">show_mesh</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/press_hollow_rectangle.png"><img alt="../_images/press_hollow_rectangle.png" class="align-center" src="../_images/press_hollow_rectangle.png" style="width: 600px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="wave.html" class="btn btn-neutral float-left" title="Wave Equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api_reference/dataset.html" class="btn btn-neutral float-right" title="tensormesh.dataset" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, walkerchi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

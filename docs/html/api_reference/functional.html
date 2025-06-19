@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tensormesh.functional &mdash; tensormesh  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/mytheme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tensormesh.ode" href="nn.html" />
+    <link rel="prev" title="tensormesh.ode" href="ode.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/installation.html#installatoion-via-pypi">Installatoion via PyPi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/benchmark.html">Benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#m2-pro-cpu">M2 Pro CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#assemble-speed">Assemble Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#pipeline-speed">Pipeline Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/element.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#line">Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#triangle">Triangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#quadrilateral">Quadrilateral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#tetrahedron">Tetrahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#hexahedron">Hexahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#pyramid">Pyramid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#prism">Prism</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mesh_gen.html">Mesh Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-high-order-mesh">2D high order mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-high-circle-mesh">2D high circle mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-hybrid-mesh">2D hybrid mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#id1">3D high order mesh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/adjacency.html">Adjacency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#d-node-adjacency">2D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#d-element-adjacency">2D Element Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#id1">3D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#id2">3D Element Adjacency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/basis.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-line-basis">1D Line Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-triangle-basis">2D Triangle Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-quadrilateral-basis">2D Quadrilateral Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-tetrahedron-basis">3D Tetrahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-hexahedron-basis">3D Hexahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-pyramid-basis">3D Pyramid Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-prism-basis">3D Prism Basis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/values.html">Plot values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#d-point-value">2D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#d-element-value">2D Element Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#id1">3D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#id2">3D Element Value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/poisson.html">Poisson Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/poisson.html#adaptive-mesh-refinement">Adaptive Mesh Refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/wave.html">Wave Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/wave.html#multi-frequency-dataset">multi frequency dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/linear_elasticity.html">Linear Elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/linear_elasticity.html#pressed-hollow-rectangle">Pressed Hollow Rectangle</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">tensormesh.dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dataset.html#mesh">mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset.html#equation">equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">tensormesh.mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="element.html">tensormesh.element</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="element.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#transformation">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#polynomial">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.basis">Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.normal">Normal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assemble.html">tensormesh.assemble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assemble.html#element-assembler">Element Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assemble.html#facet-assembler">Facet Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assemble.html#node-assembler">Node Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assemble.html#built-in-assemblers">Built-in Assemblers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sparse.html">tensormesh.sparse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html#sparsematirx">SparseMatirx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">tensormesh.operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operator.html#condenser">Condenser</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ode.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ode.html#runge-kutta-methods">Runge-Kutta methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ode.html#built-in-methods">Built-in Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tensormesh.functional</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-tensormesh.functional.ops">ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tensormesh.functional.elasticity">elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tensormesh.functional.plastic">plastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#bufferutils">BufferUtils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">tensormesh.visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#module-tensormesh.visualization.draw_graph">Draw Facet</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tensormesh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">tensormesh.functional</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api_reference/functional.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tensormesh-functional">
+<h1>tensormesh.functional<a class="headerlink" href="#tensormesh-functional" title="Permalink to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<p class="topic-title">contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#module-tensormesh.functional.ops" id="id1">ops</a></p></li>
+<li><p><a class="reference internal" href="#module-tensormesh.functional.elasticity" id="id2">elasticity</a></p></li>
+<li><p><a class="reference internal" href="#module-tensormesh.functional.plastic" id="id3">plastic</a></p></li>
+</ul>
+</nav>
+<section id="module-tensormesh.functional.ops">
+<span id="ops"></span><h2><a class="toc-backref" href="#id1" role="doc-backlink">ops</a><a class="headerlink" href="#module-tensormesh.functional.ops" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.ops.sym">
+<span class="sig-name descname"><span class="pre">sym</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/ops.html#sym"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.ops.sym" title="Permalink to this definition"></a></dt>
+<dd><div class="math notranslate nohighlight">
+\[\text{sym}(A)_{\cdots ij} = \frac{1}{2} (A_{\cdots i} + A_{\cdots j})\]</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sym</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">tensor([[1.0000, 1.5000],</span>
+<span class="go">        [1.5000, 2.0000]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sym</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">tensor([[1.0000, 1.5000, 2.0000],</span>
+<span class="go">        [1.5000, 2.0000, 2.5000],</span>
+<span class="go">        [2.0000, 2.5000, 3.0000]])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>torch.Tensor</em>) – <span class="math notranslate nohighlight">\([..., D]\)</span>, where <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the matrix</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\([..., D, D]\)</span>, where <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the matrix</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.ops.skew">
+<span class="sig-name descname"><span class="pre">skew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at_least2d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/ops.html#skew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.ops.skew" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the skew-symmetric matrix from a vector.</p>
+<p>For 2D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{skew}\left(\begin{bmatrix}
+    v_1 \\
+    v_2
+\end{bmatrix}\right) = \begin{cases}
+    \begin{bmatrix}
+        -v_2 \\
+        v_1
+    \end{bmatrix} &amp; \text{if sign=True} \\[1em]
+    \begin{bmatrix}
+        v_2 \\
+        v_1
+    \end{bmatrix} &amp; \text{if sign=False}
+\end{cases}\end{split}\]</div>
+<p>For 3D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{skew}(v) = \begin{cases}
+    \begin{bmatrix}
+        0 &amp; -v_3 &amp; v_2 \\
+        v_3 &amp; 0 &amp; -v_1 \\
+        -v_2 &amp; v_1 &amp; 0
+    \end{bmatrix} &amp; \text{if sign=True} \\[1em]
+    \begin{bmatrix}
+        0 &amp; v_3 &amp; v_2 \\
+        v_3 &amp; 0 &amp; v_1 \\
+        v_2 &amp; v_1 &amp; 0
+    \end{bmatrix} &amp; \text{if sign=False}
+\end{cases}\end{split}\]</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">tensor([-2.,  1.])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sign</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">tensor([2., 1.])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">at_least2d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">tensor([[-2.,  1.]])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">tensor([[ 0., -3.,  2.],</span>
+<span class="go">       [ 3.,  0., -1.],</span>
+<span class="go">       [-2.,  1.,  0.]])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sign</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">tensor([[0., 3., 2.],</span>
+<span class="go">       [3., 0., 1.],</span>
+<span class="go">       [2., 1., 0.]])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>torch.Tensor</em>) – 1D Tensor of shape [2] or [3], representing a vector in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> or <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span></p></li>
+<li><p><strong>sign</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, use negative signs in skew matrix. Default is True.</p></li>
+<li><p><strong>at_least2d</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, ensure output is at least 2D for 2D case. Default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>For 2D case:</dt><dd><ul class="simple">
+<li><p>1D Tensor of shape [2] if at_least2d=False</p></li>
+<li><p>2D Tensor of shape [1,2] if at_least2d=True</p></li>
+</ul>
+</dd>
+<dt>For 3D case:</dt><dd><ul class="simple">
+<li><p>2D Tensor of shape [3,3]</p></li>
+</ul>
+</dd>
+</dl>
+<p>The skew-symmetric matrix representation of the input vector.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.ops.sqrt">
+<span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/ops.html#sqrt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.ops.sqrt" title="Permalink to this definition"></a></dt>
+<dd><p>Square root function that returns 0 for negative inputs.</p>
+<p>This function computes the square root of the input tensor, but clamps negative values to 0 first.
+This avoids NaN values that would occur from taking the square root of negative numbers.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sqrt{x} = \begin{cases}
+    \sqrt{x} &amp; \text{if } x \geq 0 \\
+    0 &amp; \text{if } x &lt; 0
+\end{cases}\end{split}\]</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">tensor([0.0000, 0.0000, 2.0000])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – <span class="math notranslate nohighlight">\([...]\)</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\([...]\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.ops.divide">
+<span class="sig-name descname"><span class="pre">divide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/ops.html#divide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.ops.divide" title="Permalink to this definition"></a></dt>
+<dd><p>Safe division function that returns 0 for division by zero.</p>
+<p>This function performs element-wise division of x by y, but returns 0 wherever y is 0.
+This avoids NaN/Inf values that would occur from dividing by zero.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{x}{y} = \begin{cases}
+    \frac{x}{y} &amp; \text{if } y \neq 0 \\
+    0 &amp; \text{if } y = 0
+\end{cases}\end{split}\]</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divide</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">tensor([0.5000, 0.0000, 0.7500])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>torch.Tensor</em>) – <span class="math notranslate nohighlight">\([...]\)</span></p></li>
+<li><p><strong>y</strong> (<em>torch.Tensor</em>) – <span class="math notranslate nohighlight">\([...]\)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\([...]\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-tensormesh.functional.elasticity">
+<span id="elasticity"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">elasticity</a><a class="headerlink" href="#module-tensormesh.functional.elasticity" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.strain">
+<span class="sig-name descname"><span class="pre">strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gradu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/elasticity.html#strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.elasticity.strain" title="Permalink to this definition"></a></dt>
+<dd><div class="math notranslate nohighlight">
+\[\varepsilon_{ij} = \frac{1}{2}(\nabla u_{ij} + \nabla u_{ji}), \quad \varepsilon,\nabla u \in \mathbb{R}^{d \times d}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\nabla u \in \mathbb{R}^{d \times d}\)</span> is the displacement gradient tensor</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon \in \mathbb{R}^{d \times d}\)</span> is the strain tensor</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gradu</strong> (<em>torch.Tensor</em>) – 1D Tensor of shape [d]
+gradient of displacement field u with respect to spatial coordinates</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor of shape [d, d]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.isotropic_stress">
+<span class="sig-name descname"><span class="pre">isotropic_stress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.13)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">70.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.13)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/elasticity.html#isotropic_stress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.elasticity.isotropic_stress" title="Permalink to this definition"></a></dt>
+<dd><div class="math notranslate nohighlight">
+\[\sigma_{ij} = \frac{E}{1+\nu} \left(\varepsilon_{ij} + \frac{\nu}{1-2\nu} \text{tr}(\varepsilon) \delta_{ij}\right), \quad \sigma,\varepsilon \in \mathbb{R}^{d \times d}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma \in \mathbb{R}^{d \times d}\)</span> is the stress tensor</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon \in \mathbb{R}^{d \times d}\)</span> is the strain tensor</p></li>
+<li><p><span class="math notranslate nohighlight">\(E \in \mathbb{R}\)</span> is Young’s modulus</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu \in \mathbb{R}\)</span> is Poisson’s ratio</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta_{ij} \in \mathbb{R}^{d \times d}\)</span> is the Kronecker delta tensor</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{tr}: \mathbb{R}^{d \times d} \rightarrow \mathbb{R}\)</span> denotes the trace operator</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>strain</strong> (<em>torch.Tensor</em>) – 2D Tensor of shape [d, d]
+strain tensor</p></li>
+<li><p><strong>E</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>,</em><em>torch.Tensor</em><em>]</em>) – if torch.Tensor, 0D Tensor of shape []
+Young’s modulus</p></li>
+<li><p><strong>nu</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>,</em><em>torch.Tensor</em><em>]</em>) – if torch.Tensor, 0D Tensor of shape []
+Poisson’s ratio</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor of shape [d, d]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.deviatoric_stress">
+<span class="sig-name descname"><span class="pre">deviatoric_stress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/elasticity.html#deviatoric_stress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.elasticity.deviatoric_stress" title="Permalink to this definition"></a></dt>
+<dd><div class="math notranslate nohighlight">
+\[s_{ij} = \sigma_{ij} - \frac{1}{d} \text{tr}(\sigma) \delta_{ij}, \quad s,\sigma \in \mathbb{R}^{d \times d}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s_{ij} \in \mathbb{R}^{d \times d}\)</span> is the deviatoric stress tensor</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{ij} \in \mathbb{R}^{d \times d}\)</span> is the stress tensor</p></li>
+<li><p><span class="math notranslate nohighlight">\(d \in \mathbb{N}\)</span> is the dimension</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta_{ij} \in \mathbb{R}^{d \times d}\)</span> is the Kronecker delta</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{tr}: \mathbb{R}^{d \times d} \rightarrow \mathbb{R}\)</span> denotes the trace operator</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stress</strong> (<em>torch.Tensor</em>) – 2D Tensor of shape [d, d]
+stress tensor</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor of shape [d, d]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.deviatoric_stress_norm">
+<span class="sig-name descname"><span class="pre">deviatoric_stress_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/elasticity.html#deviatoric_stress_norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.elasticity.deviatoric_stress_norm" title="Permalink to this definition"></a></dt>
+<dd><div class="math notranslate nohighlight">
+\[\|s\| = \sqrt{\frac{3}{2} s:s}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s \in \mathbb{R}^{d \times d}\)</span> is the deviatoric stress tensor</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|s\| \in \mathbb{R}\)</span> is the norm of the deviatoric stress tensor</p></li>
+<li><p><span class="math notranslate nohighlight">\(:\)</span> denotes the double dot product <span class="math notranslate nohighlight">\(\mathbb{R}^{d \times d} \times \mathbb{R}^{d \times d} \rightarrow \mathbb{R}\)</span></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stress</strong> (<em>torch.Tensor</em>) – 2D Tensor of shape [d, d]
+stress tensor</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0D Tensor of shape []</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.voigt_shape_grad">
+<span class="sig-name descname"><span class="pre">voigt_shape_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gradu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/elasticity.html#voigt_shape_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.elasticity.voigt_shape_grad" title="Permalink to this definition"></a></dt>
+<dd><p>Convert displacement gradient to Voigt notation for strain calculation.</p>
+<p>For 2D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}B \in \mathbb{R}^{3 \times (2\times 3)} = \begin{bmatrix}
+    \frac{\partial u_1}{\partial x_1} &amp; 0 &amp; \mid &amp; \frac{\partial u_2}{\partial x_1} &amp; 0 &amp; \mid &amp; \frac{\partial u_3}{\partial x_1} &amp; 0 \\
+    0 &amp; \frac{\partial u_1}{\partial x_2} &amp; \mid &amp; 0 &amp; \frac{\partial u_2}{\partial x_2} &amp; \mid &amp; 0 &amp; \frac{\partial u_3}{\partial x_2} \\
+    \frac{\partial u_1}{\partial x_2} &amp; \frac{\partial u_1}{\partial x_1} &amp; \mid &amp; \frac{\partial u_2}{\partial x_2} &amp; \frac{\partial u_2}{\partial x_1} &amp; \mid &amp; \frac{\partial u_3}{\partial x_2} &amp; \frac{\partial u_3}{\partial x_1}
+\end{bmatrix}\end{split}\]</div>
+<p>representing [<span class="math notranslate nohighlight">\(\varepsilon_{xx}, \varepsilon_{yy}, \gamma_{xy}\)</span>]</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i \in \mathbb{R}\)</span> is the displacement component in direction i</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i \in \mathbb{R}\)</span> is the spatial coordinate in direction i</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial u_i}{\partial x_j} \in \mathbb{R}\)</span> is the partial derivative of displacement i with respect to coordinate j</p></li>
+</ul>
+<p>For 3D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}B \in \mathbb{R}^{6 \times (3\times 3)} = \begin{bmatrix}
+    \frac{\partial u_1}{\partial x_1} &amp; 0 &amp; 0 &amp; \mid &amp; \frac{\partial u_2}{\partial x_1} &amp; 0 &amp; 0 &amp; \mid &amp; \frac{\partial u_3}{\partial x_1} &amp; 0 &amp; 0 \\
+    0 &amp; \frac{\partial u_1}{\partial x_2} &amp; 0 &amp; \mid &amp; 0 &amp; \frac{\partial u_2}{\partial x_2} &amp; 0 &amp; \mid &amp; 0 &amp; \frac{\partial u_3}{\partial x_2} &amp; 0 \\
+    0 &amp; 0 &amp; \frac{\partial u_1}{\partial x_3} &amp; \mid &amp; 0 &amp; 0 &amp; \frac{\partial u_2}{\partial x_3} &amp; \mid &amp; 0 &amp; 0 &amp; \frac{\partial u_3}{\partial x_3} \\
+    0 &amp; \frac{\partial u_1}{\partial x_3} &amp; \frac{\partial u_1}{\partial x_2} &amp; \mid &amp; 0 &amp; \frac{\partial u_2}{\partial x_3} &amp; \frac{\partial u_2}{\partial x_2} &amp; \mid &amp; 0 &amp; \frac{\partial u_3}{\partial x_3} &amp; \frac{\partial u_3}{\partial x_2} \\
+    \frac{\partial u_1}{\partial x_3} &amp; 0 &amp; \frac{\partial u_1}{\partial x_1} &amp; \mid &amp; \frac{\partial u_2}{\partial x_3} &amp; 0 &amp; \frac{\partial u_2}{\partial x_1} &amp; \mid &amp; \frac{\partial u_3}{\partial x_3} &amp; 0 &amp; \frac{\partial u_3}{\partial x_1} \\
+    \frac{\partial u_1}{\partial x_2} &amp; \frac{\partial u_1}{\partial x_1} &amp; 0 &amp; \mid &amp; \frac{\partial u_2}{\partial x_2} &amp; \frac{\partial u_2}{\partial x_1} &amp; 0 &amp; \mid &amp; \frac{\partial u_3}{\partial x_2} &amp; \frac{\partial u_3}{\partial x_1} &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>representing [<span class="math notranslate nohighlight">\(\varepsilon_{xx}, \varepsilon_{yy}, \varepsilon_{zz}, \gamma_{yz}, \gamma_{xz}, \gamma_{xy}\)</span>]</p>
+<p>where <span class="math notranslate nohighlight">\(\varepsilon\)</span> denotes normal strain and <span class="math notranslate nohighlight">\(\gamma\)</span> denotes shear strain components</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i \in \mathbb{R}\)</span> is the displacement component in direction i</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i \in \mathbb{R}\)</span> is the spatial coordinate in direction i</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial u_i}{\partial x_j} \in \mathbb{R}\)</span> is the partial derivative of displacement i with respect to coordinate j</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gradu</strong> (<em>torch.Tensor</em>) – 1D Tensor of shape [d], where dim must be 2 or 3
+gradient of displacement</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor with shape [3, 2] if d=2 or [6, 3] if d=3,</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.voigt_stiffness">
+<span class="sig-name descname"><span class="pre">voigt_stiffness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">E:</span> <span class="pre">~typing.Union[float,</span> <span class="pre">~torch.Tensor],</span> <span class="pre">nu:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'torch.Tensor'&gt;],</span> <span class="pre">dim:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/elasticity.html#voigt_stiffness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.elasticity.voigt_stiffness" title="Permalink to this definition"></a></dt>
+<dd><p>For 2D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbb{C} \in \mathbb{R}^{3 \times 3} = \begin{bmatrix}
+    \lambda + 2\mu &amp; \lambda &amp; 0 \\
+    \lambda &amp; \lambda + 2\mu &amp; 0 \\
+    0 &amp; 0 &amp; \mu
+\end{bmatrix}\end{split}\]</div>
+<p>representing [<span class="math notranslate nohighlight">\(\varepsilon_{xx}, \varepsilon_{yy}, \gamma_{xy}\)</span>]</p>
+<p>For 3D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbb{C} \in \mathbb{R}^{6 \times 6} = \begin{bmatrix}
+    \lambda + 2\mu &amp; \lambda &amp; \lambda &amp; 0 &amp; 0 &amp; 0 \\
+    \lambda &amp; \lambda + 2\mu &amp; \lambda &amp; 0 &amp; 0 &amp; 0 \\
+    \lambda &amp; \lambda &amp; \lambda + 2\mu &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; \mu &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; \mu &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \mu
+\end{bmatrix}\end{split}\]</div>
+<p>representing [<span class="math notranslate nohighlight">\(\varepsilon_{xx}, \varepsilon_{yy}, \varepsilon_{zz}, \gamma_{yz}, \gamma_{xz}, \gamma_{xy}\)</span>]</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda \in \mathbb{R} = \frac{E\nu}{(1+\nu)(1-2\nu)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu \in \mathbb{R} = \frac{E}{2(1+\nu)}\)</span></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>E</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>,</em><em>torch.Tensor</em><em>]</em>) – if torch.Tensor, 0D Tensor
+Young’s modulus</p></li>
+<li><p><strong>nu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – if torch.Tensor, 0D Tensor
+Poisson’s ratio</p></li>
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Spatial dimension of the problem (2 or 3).
+For 2D problems use dim=2, for 3D problems use dim=3.
+Default is 2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor of shape <span class="math notranslate nohighlight">\([d(d+1)/2, d(d+1)/2]\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is the spatial dimension</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.voigt_shape_val">
+<span class="sig-name descname"><span class="pre">voigt_shape_val</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/elasticity.html#voigt_shape_val"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.elasticity.voigt_shape_val" title="Permalink to this definition"></a></dt>
+<dd><p>Convert shape functions to Voigt notation matrix for strain-displacement relations.</p>
+<p>For 2D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}N_1, N_2, N_3 \in \mathbb{R} \quad \text{(shape values)} \\
+N \in \mathbb{R}^{2 \times (2\times 3)}= \begin{bmatrix}
+N_1 &amp; 0 &amp;\mid&amp; N_2 &amp; 0 &amp;\mid&amp; N_3 &amp; 0 \\
+0 &amp; N_1 &amp;\mid&amp; 0 &amp; N_2 &amp;\mid&amp; 0 &amp; N_3
+\end{bmatrix}\end{split}\]</div>
+<p>For 3D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}N_1, N_2, N_3 \in \mathbb{R} \quad \text{(shape values)} \\
+N \in \mathbb{R}^{3 \times (3\times 3)}= \begin{bmatrix}
+N_1 &amp; 0 &amp; 0 &amp;\mid&amp; N_2 &amp; 0 &amp; 0 &amp;\mid&amp; N_3 &amp; 0 &amp; 0 \\
+0 &amp; N_1 &amp; 0 &amp;\mid&amp; 0 &amp; N_2 &amp; 0 &amp;\mid&amp; 0 &amp; N_3 &amp; 0 \\
+0 &amp; 0 &amp; N_1 &amp;\mid&amp; 0 &amp; 0 &amp; N_2 &amp;\mid&amp; 0 &amp; 0 &amp; N_3
+\end{bmatrix}\end{split}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<em>torch.Tensor</em>) – 0D Tensor of shape [],
+shape value</p></li>
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Spatial dimension. Must be 2 or 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor of shape [d, d], where <span class="math notranslate nohighlight">\(d\in \{2,3\}\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.voigt_C">
+<span class="sig-name descname"><span class="pre">voigt_C</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">E:</span> <span class="pre">~typing.Union[float,</span> <span class="pre">~torch.Tensor],</span> <span class="pre">nu:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'torch.Tensor'&gt;],</span> <span class="pre">dim:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#tensormesh.functional.elasticity.voigt_C" title="Permalink to this definition"></a></dt>
+<dd><p>For 2D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbb{C} \in \mathbb{R}^{3 \times 3} = \begin{bmatrix}
+    \lambda + 2\mu &amp; \lambda &amp; 0 \\
+    \lambda &amp; \lambda + 2\mu &amp; 0 \\
+    0 &amp; 0 &amp; \mu
+\end{bmatrix}\end{split}\]</div>
+<p>representing [<span class="math notranslate nohighlight">\(\varepsilon_{xx}, \varepsilon_{yy}, \gamma_{xy}\)</span>]</p>
+<p>For 3D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbb{C} \in \mathbb{R}^{6 \times 6} = \begin{bmatrix}
+    \lambda + 2\mu &amp; \lambda &amp; \lambda &amp; 0 &amp; 0 &amp; 0 \\
+    \lambda &amp; \lambda + 2\mu &amp; \lambda &amp; 0 &amp; 0 &amp; 0 \\
+    \lambda &amp; \lambda &amp; \lambda + 2\mu &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; \mu &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; \mu &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \mu
+\end{bmatrix}\end{split}\]</div>
+<p>representing [<span class="math notranslate nohighlight">\(\varepsilon_{xx}, \varepsilon_{yy}, \varepsilon_{zz}, \gamma_{yz}, \gamma_{xz}, \gamma_{xy}\)</span>]</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda \in \mathbb{R} = \frac{E\nu}{(1+\nu)(1-2\nu)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu \in \mathbb{R} = \frac{E}{2(1+\nu)}\)</span></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>E</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>,</em><em>torch.Tensor</em><em>]</em>) – if torch.Tensor, 0D Tensor
+Young’s modulus</p></li>
+<li><p><strong>nu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – if torch.Tensor, 0D Tensor
+Poisson’s ratio</p></li>
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Spatial dimension of the problem (2 or 3).
+For 2D problems use dim=2, for 3D problems use dim=3.
+Default is 2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor of shape <span class="math notranslate nohighlight">\([d(d+1)/2, d(d+1)/2]\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is the spatial dimension</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.voigt_B">
+<span class="sig-name descname"><span class="pre">voigt_B</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gradu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#tensormesh.functional.elasticity.voigt_B" title="Permalink to this definition"></a></dt>
+<dd><p>Convert displacement gradient to Voigt notation for strain calculation.</p>
+<p>For 2D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}B \in \mathbb{R}^{3 \times (2\times 3)} = \begin{bmatrix}
+    \frac{\partial u_1}{\partial x_1} &amp; 0 &amp; \mid &amp; \frac{\partial u_2}{\partial x_1} &amp; 0 &amp; \mid &amp; \frac{\partial u_3}{\partial x_1} &amp; 0 \\
+    0 &amp; \frac{\partial u_1}{\partial x_2} &amp; \mid &amp; 0 &amp; \frac{\partial u_2}{\partial x_2} &amp; \mid &amp; 0 &amp; \frac{\partial u_3}{\partial x_2} \\
+    \frac{\partial u_1}{\partial x_2} &amp; \frac{\partial u_1}{\partial x_1} &amp; \mid &amp; \frac{\partial u_2}{\partial x_2} &amp; \frac{\partial u_2}{\partial x_1} &amp; \mid &amp; \frac{\partial u_3}{\partial x_2} &amp; \frac{\partial u_3}{\partial x_1}
+\end{bmatrix}\end{split}\]</div>
+<p>representing [<span class="math notranslate nohighlight">\(\varepsilon_{xx}, \varepsilon_{yy}, \gamma_{xy}\)</span>]</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i \in \mathbb{R}\)</span> is the displacement component in direction i</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i \in \mathbb{R}\)</span> is the spatial coordinate in direction i</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial u_i}{\partial x_j} \in \mathbb{R}\)</span> is the partial derivative of displacement i with respect to coordinate j</p></li>
+</ul>
+<p>For 3D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}B \in \mathbb{R}^{6 \times (3\times 3)} = \begin{bmatrix}
+    \frac{\partial u_1}{\partial x_1} &amp; 0 &amp; 0 &amp; \mid &amp; \frac{\partial u_2}{\partial x_1} &amp; 0 &amp; 0 &amp; \mid &amp; \frac{\partial u_3}{\partial x_1} &amp; 0 &amp; 0 \\
+    0 &amp; \frac{\partial u_1}{\partial x_2} &amp; 0 &amp; \mid &amp; 0 &amp; \frac{\partial u_2}{\partial x_2} &amp; 0 &amp; \mid &amp; 0 &amp; \frac{\partial u_3}{\partial x_2} &amp; 0 \\
+    0 &amp; 0 &amp; \frac{\partial u_1}{\partial x_3} &amp; \mid &amp; 0 &amp; 0 &amp; \frac{\partial u_2}{\partial x_3} &amp; \mid &amp; 0 &amp; 0 &amp; \frac{\partial u_3}{\partial x_3} \\
+    0 &amp; \frac{\partial u_1}{\partial x_3} &amp; \frac{\partial u_1}{\partial x_2} &amp; \mid &amp; 0 &amp; \frac{\partial u_2}{\partial x_3} &amp; \frac{\partial u_2}{\partial x_2} &amp; \mid &amp; 0 &amp; \frac{\partial u_3}{\partial x_3} &amp; \frac{\partial u_3}{\partial x_2} \\
+    \frac{\partial u_1}{\partial x_3} &amp; 0 &amp; \frac{\partial u_1}{\partial x_1} &amp; \mid &amp; \frac{\partial u_2}{\partial x_3} &amp; 0 &amp; \frac{\partial u_2}{\partial x_1} &amp; \mid &amp; \frac{\partial u_3}{\partial x_3} &amp; 0 &amp; \frac{\partial u_3}{\partial x_1} \\
+    \frac{\partial u_1}{\partial x_2} &amp; \frac{\partial u_1}{\partial x_1} &amp; 0 &amp; \mid &amp; \frac{\partial u_2}{\partial x_2} &amp; \frac{\partial u_2}{\partial x_1} &amp; 0 &amp; \mid &amp; \frac{\partial u_3}{\partial x_2} &amp; \frac{\partial u_3}{\partial x_1} &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>representing [<span class="math notranslate nohighlight">\(\varepsilon_{xx}, \varepsilon_{yy}, \varepsilon_{zz}, \gamma_{yz}, \gamma_{xz}, \gamma_{xy}\)</span>]</p>
+<p>where <span class="math notranslate nohighlight">\(\varepsilon\)</span> denotes normal strain and <span class="math notranslate nohighlight">\(\gamma\)</span> denotes shear strain components</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i \in \mathbb{R}\)</span> is the displacement component in direction i</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i \in \mathbb{R}\)</span> is the spatial coordinate in direction i</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial u_i}{\partial x_j} \in \mathbb{R}\)</span> is the partial derivative of displacement i with respect to coordinate j</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gradu</strong> (<em>torch.Tensor</em>) – 1D Tensor of shape [d], where dim must be 2 or 3
+gradient of displacement</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor with shape [3, 2] if d=2 or [6, 3] if d=3,</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.elasticity.voigt_N">
+<span class="sig-name descname"><span class="pre">voigt_N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#tensormesh.functional.elasticity.voigt_N" title="Permalink to this definition"></a></dt>
+<dd><p>Convert shape functions to Voigt notation matrix for strain-displacement relations.</p>
+<p>For 2D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}N_1, N_2, N_3 \in \mathbb{R} \quad \text{(shape values)} \\
+N \in \mathbb{R}^{2 \times (2\times 3)}= \begin{bmatrix}
+N_1 &amp; 0 &amp;\mid&amp; N_2 &amp; 0 &amp;\mid&amp; N_3 &amp; 0 \\
+0 &amp; N_1 &amp;\mid&amp; 0 &amp; N_2 &amp;\mid&amp; 0 &amp; N_3
+\end{bmatrix}\end{split}\]</div>
+<p>For 3D:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}N_1, N_2, N_3 \in \mathbb{R} \quad \text{(shape values)} \\
+N \in \mathbb{R}^{3 \times (3\times 3)}= \begin{bmatrix}
+N_1 &amp; 0 &amp; 0 &amp;\mid&amp; N_2 &amp; 0 &amp; 0 &amp;\mid&amp; N_3 &amp; 0 &amp; 0 \\
+0 &amp; N_1 &amp; 0 &amp;\mid&amp; 0 &amp; N_2 &amp; 0 &amp;\mid&amp; 0 &amp; N_3 &amp; 0 \\
+0 &amp; 0 &amp; N_1 &amp;\mid&amp; 0 &amp; 0 &amp; N_2 &amp;\mid&amp; 0 &amp; 0 &amp; N_3
+\end{bmatrix}\end{split}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<em>torch.Tensor</em>) – 0D Tensor of shape [],
+shape value</p></li>
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Spatial dimension. Must be 2 or 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor of shape [d, d], where <span class="math notranslate nohighlight">\(d\in \{2,3\}\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-tensormesh.functional.plastic">
+<span id="plastic"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">plastic</a><a class="headerlink" href="#module-tensormesh.functional.plastic" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="tensormesh.functional.plastic.update_plastic_stress">
+<span class="sig-name descname"><span class="pre">update_plastic_stress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">gradu:</span> <span class="pre">~torch.Tensor,</span> <span class="pre">strain:</span> <span class="pre">~torch.Tensor,</span> <span class="pre">stress:</span> <span class="pre">~torch.Tensor,</span> <span class="pre">E:</span> <span class="pre">~typing.Union[float,</span> <span class="pre">~torch.Tensor]</span> <span class="pre">=</span> <span class="pre">70.0,</span> <span class="pre">yield_stress:</span> <span class="pre">~typing.Union[float,</span> <span class="pre">~torch.Tensor]</span> <span class="pre">=</span> <span class="pre">250.0,</span> <span class="pre">strain_fn:</span> <span class="pre">~typing.Callable[[~torch.Tensor],</span> <span class="pre">~torch.Tensor]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">strain&gt;,</span> <span class="pre">stress_fn:</span> <span class="pre">~typing.Callable[[~torch.Tensor,</span> <span class="pre">~typing.Union[~torch.Tensor,</span> <span class="pre">float]],</span> <span class="pre">~torch.Tensor]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">isotropic_stress&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/tensormesh/functional/plastic.html#update_plastic_stress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.functional.plastic.update_plastic_stress" title="Permalink to this definition"></a></dt>
+<dd><p>Update stress tensor using plastic constitutive model.</p>
+<p>The plastic model follows von Mises yield criterion with perfect plasticity:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\sigma_{\text{trial}} = \sigma + \mathbb{C}:\Delta\varepsilon\\f(\sigma_{\text{trial}}) = \|\text{dev}(\sigma_{\text{trial}})\| - \sigma_y\\\Delta\gamma = \frac{\langle f(\sigma_{\text{trial}}) \rangle}{\|\text{dev}(\sigma_{\text{trial}})\|}\\\sigma = \sigma_{\text{trial}} - \Delta\gamma\, \text{dev}(\sigma_{\text{trial}})\end{aligned}\end{align} \]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> is the stress tensor in <span class="math notranslate nohighlight">\(\mathbb{R}^{D \times D}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{C}\)</span> is the elasticity tensor in <span class="math notranslate nohighlight">\(\mathbb{R}^{D \times D \times D \times D}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon\)</span> is the strain tensor in <span class="math notranslate nohighlight">\(\mathbb{R}^{D \times D}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_y\)</span> is the yield stress scalar in <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{dev}\)</span> denotes the deviatoric part operator <span class="math notranslate nohighlight">\(\mathbb{R}^{D \times D} \rightarrow \mathbb{R}^{D \times D}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|\cdot\|\)</span> is the von Mises norm operator <span class="math notranslate nohighlight">\(\mathbb{R}^{D \times D} \rightarrow \mathbb{R}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle \cdot \rangle\)</span> denotes the positive part operator <span class="math notranslate nohighlight">\(\mathbb{R} \rightarrow \mathbb{R}\)</span></p></li>
+</ul>
+<p>The model uses a trial elastic predictor followed by plastic correction if yielding occurs.
+If the trial stress exceeds the yield surface, it is projected back onto the yield surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gradu</strong> (<em>torch.Tensor</em>) – 1D Tensor of shape [d], where d is the spatial dimension.
+Gradient of displacement field with respect to spatial coordinates.</p></li>
+<li><p><strong>strain</strong> (<em>torch.Tensor</em>) – 2D Tensor of shape [d, d], where d is the spatial dimension.
+Current strain tensor at the start of the timestep.</p></li>
+<li><p><strong>stress</strong> (<em>torch.Tensor</em>) – 2D Tensor of shape [d, d], where d is the spatial dimension.
+Current stress tensor at the start of the timestep.</p></li>
+<li><p><strong>E</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>torch.Tensor</em><em>]</em><em>, </em><em>default=70.0</em>) – Young’s modulus. If tensor, must be 0D scalar tensor.
+Controls the elastic stiffness of the material.</p></li>
+<li><p><strong>yield_stress</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>torch.Tensor</em><em>]</em><em>, </em><em>default=250.0</em>) – Yield stress threshold. If tensor, must be 0D scalar tensor.
+Material yields plastically when von Mises stress exceeds this value.</p></li>
+<li><p><strong>strain_fn</strong> (<em>Callable</em><em>[</em><em>[</em><em>torch.Tensor</em><em>]</em><em>, </em><em>torch.Tensor</em><em>]</em><em>, </em><em>default=strain</em>) – <p>Function to compute strain tensor from displacement gradient.
+Default uses small strain assumption:</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon_{ij} = \frac{1}{2}(\nabla u_{ij} + \nabla u_{ji}), \quad \varepsilon,\nabla u \in \mathbb{R}^{d \times d}\]</div>
+</p></li>
+<li><p><strong>stress_fn</strong> (<em>Callable</em><em>[</em><em>[</em><em>torch.Tensor</em><em>, </em><em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>,</em><em>torch.Tensor</em><em>]</em><em>]</em><em>, </em><em>torch.Tensor</em><em>]</em><em>, </em><em>default=isotropic_stress</em>) – <p>Function to compute stress tensor from strain tensor and Young’s modulus.
+Default uses isotropic linear elasticity:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{ij} = \lambda \text{tr}(\varepsilon)\delta_{ij} + 2\mu\varepsilon_{ij}, \quad \sigma,\varepsilon \in \mathbb{R}^{d \times d}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}\)</span>, <span class="math notranslate nohighlight">\(\mu = \frac{E}{2(1+\nu)}\)</span>, <span class="math notranslate nohighlight">\(E,\nu \in \mathbb{R}\)</span>, and <span class="math notranslate nohighlight">\(\delta_{ij}\)</span> is the Kronecker delta</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D Tensor of shape [d, d], where d is the spatial dimension.
+Updated stress tensor after plastic correction.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ode.html" class="btn btn-neutral float-left" title="tensormesh.ode" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nn.html" class="btn btn-neutral float-right" title="tensormesh.ode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, walkerchi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

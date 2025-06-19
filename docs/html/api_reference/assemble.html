@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tensormesh.assemble &mdash; tensormesh  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/mytheme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tensormesh.sparse" href="sparse.html" />
+    <link rel="prev" title="tensormesh.element" href="element.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/installation.html#installatoion-via-pypi">Installatoion via PyPi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/benchmark.html">Benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#m2-pro-cpu">M2 Pro CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#assemble-speed">Assemble Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#pipeline-speed">Pipeline Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/element.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#line">Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#triangle">Triangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#quadrilateral">Quadrilateral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#tetrahedron">Tetrahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#hexahedron">Hexahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#pyramid">Pyramid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#prism">Prism</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mesh_gen.html">Mesh Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-high-order-mesh">2D high order mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-high-circle-mesh">2D high circle mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-hybrid-mesh">2D hybrid mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#id1">3D high order mesh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/adjacency.html">Adjacency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#d-node-adjacency">2D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#d-element-adjacency">2D Element Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#id1">3D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#id2">3D Element Adjacency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/basis.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-line-basis">1D Line Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-triangle-basis">2D Triangle Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-quadrilateral-basis">2D Quadrilateral Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-tetrahedron-basis">3D Tetrahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-hexahedron-basis">3D Hexahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-pyramid-basis">3D Pyramid Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-prism-basis">3D Prism Basis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/values.html">Plot values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#d-point-value">2D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#d-element-value">2D Element Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#id1">3D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#id2">3D Element Value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/poisson.html">Poisson Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/poisson.html#adaptive-mesh-refinement">Adaptive Mesh Refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/wave.html">Wave Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/wave.html#multi-frequency-dataset">multi frequency dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/linear_elasticity.html">Linear Elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/linear_elasticity.html#pressed-hollow-rectangle">Pressed Hollow Rectangle</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">tensormesh.dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dataset.html#mesh">mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset.html#equation">equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">tensormesh.mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="element.html">tensormesh.element</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="element.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#transformation">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#polynomial">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.basis">Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.normal">Normal</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tensormesh.assemble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#element-assembler">Element Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#facet-assembler">Facet Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node-assembler">Node Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-assemblers">Built-in Assemblers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sparse.html">tensormesh.sparse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html#sparsematirx">SparseMatirx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">tensormesh.operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operator.html#condenser">Condenser</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ode.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ode.html#runge-kutta-methods">Runge-Kutta methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ode.html#built-in-methods">Built-in Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functional.html">tensormesh.functional</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functional.html#module-tensormesh.functional.ops">ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functional.html#module-tensormesh.functional.elasticity">elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functional.html#module-tensormesh.functional.plastic">plastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#bufferutils">BufferUtils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">tensormesh.visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#module-tensormesh.visualization.draw_graph">Draw Facet</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tensormesh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">tensormesh.assemble</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api_reference/assemble.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tensormesh-assemble">
+<h1>tensormesh.assemble<a class="headerlink" href="#tensormesh-assemble" title="Permalink to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<p class="topic-title">contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#element-assembler" id="id11">Element Assembler</a></p></li>
+<li><p><a class="reference internal" href="#facet-assembler" id="id12">Facet Assembler</a></p></li>
+<li><p><a class="reference internal" href="#node-assembler" id="id13">Node Assembler</a></p></li>
+<li><p><a class="reference internal" href="#built-in-assemblers" id="id14">Built-in Assemblers</a></p></li>
+</ul>
+</nav>
+<section id="element-assembler">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Element Assembler</a><a class="headerlink" href="#element-assembler" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ElementAssembler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/element_assembler.html#ElementAssembler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>The <a class="reference internal" href="#tensormesh.assemble.element_assembler.ElementAssembler" title="tensormesh.assemble.element_assembler.ElementAssembler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementAssembler</span></code></a> is inheritated from <code class="xref py py-class docutils literal notranslate"><span class="pre">torch:torch.nn.Module</span></code>. Therefore, all the operation from <code class="xref py py-class docutils literal notranslate"><span class="pre">torch:torch.nn.Module</span></code> is applicable to <a class="reference internal" href="#tensormesh.assemble.element_assembler.ElementAssembler" title="tensormesh.assemble.element_assembler.ElementAssembler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementAssembler</span></code></a></p>
+<p>You are not encouraged to build the ElementAssembler directly, instead, you should use <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.assemble.ElementAssembler.from_mesh()</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.assemble.ElementAssembler.from_assembler()</span></code> to build the ElementAssembler from a mesh</p>
+<dl class="simple">
+<dt>The output when calling the ElementAssembler is a sparse matrix, which is the global galerkin matrix of shape <span class="math notranslate nohighlight">\(\mathbb R_{\text{sparse}}^{\vert\mathcal V\vert, \vert\mathcal V\vert}\)</span> or <span class="math notranslate nohighlight">\(\mathbb R_{\text{sparse}}^[\vert\mathcal V\vert \times  H, \vert\mathcal V\vert \times  H]\)</span>,</dt><dd><p>where <span class="math notranslate nohighlight">\(H\)</span> is the number of degree of freedom per point, <span class="math notranslate nohighlight">\(\vert\mathcal V\vert\)</span> is the number of points.</p>
+</dd>
+</dl>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}K \overset{\text{bsr matrix}}{\leftarrow}\hat K_\text{global}\\\hat K_{\text{global}}^{nkl} = \mathcal P_{\mathcal E}^{nhij} \hat K_{\text{local}}^{hklij}\\\hat K_{ij} = \int_\Omega  f(u, v) \text dv\end{aligned}\end{align} \]</div>
+<p><span class="math notranslate nohighlight">\(f\)</span> is <cite>forward</cite> function which is defined by inheritating this class</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat K_{\text{global}}\)</span> : non zero value of the global galerkin matrix, <span class="math notranslate nohighlight">\(K_{\text{global}}\in \mathbb R^{\vert\mathcal E\vert\times  d\times d}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat K_{\text{local}}\)</span> : local galerkin matrix for each element , <span class="math notranslate nohighlight">\(K_{\text{local}}\in \mathbb R^{\vert\mathcal C\vert\times h\times h\times d\times d}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal P_{\mathcal E}\)</span> : projection (assemble) tensor from <span class="math notranslate nohighlight">\(\hat K_{\text{local}}\)</span> to <span class="math notranslate nohighlight">\(\hat K_{\text{global}}, `\mathcal P_{\mathcal E} \in \mathbb R_{\text{sparse}}^{\vert\mathcal E\vert\times \vert\mathcal C\vert\times h\times h}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal C\)</span> : elements/cells</p></li>
+<li><p><span class="math notranslate nohighlight">\(h\)</span> : number of basis for each element/cell</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal E\)</span> : connections for nodes/vertices/points</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal V\)</span> : nodes/vertices/points</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<ol class="arabic simple">
+<li><p>assemble the mass matrix</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[M_{ij} = \int_\Omega u_i v_j \text dv\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch_fem</span>
+<span class="k">class</span> <span class="nc">MassAssembler</span><span class="p">(</span><span class="n">torch_fem</span><span class="o">.</span><span class="n">ElementAssembler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">u</span> <span class="o">@</span> <span class="n">v</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">torch_fem</span><span class="o">.</span><span class="n">Mesh</span><span class="o">.</span><span class="n">gen_rectangle</span><span class="p">()</span>
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">MassAssembler</span><span class="o">.</span><span class="n">from_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">assembler</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>assemble the laplace matrix</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[K_{ij} = \int_\Omega \nabla u_i \cdot \nabla v_j \text dv\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch_fem</span>
+<span class="kn">import</span> <span class="nn">torch_fem.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="k">class</span> <span class="nc">LaplaceAssembler</span><span class="p">(</span><span class="n">torch_fem</span><span class="o">.</span><span class="n">ElementAssembler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradu</span><span class="p">,</span> <span class="n">gradv</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">gradu</span><span class="p">,</span> <span class="n">gradv</span><span class="p">)</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">torch_fem</span><span class="o">.</span><span class="n">Mesh</span><span class="o">.</span><span class="n">gen_circle</span><span class="p">()</span>
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">LaplaceAssembler</span><span class="o">.</span><span class="n">from_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">assembler</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.quadrature_weights">
+<span class="sig-name descname"><span class="pre">quadrature_weights</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.quadrature_weights" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a 1D tensor of shape <span class="math notranslate nohighlight">\([Q]\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is the number of quadrature points
+the quadrature weights of each element type, e.g. <code class="xref py py-obj docutils literal notranslate"><span class="pre">{&quot;triangle6&quot;:</span> <span class="pre">torch.tensor([0.5,</span> <span class="pre">0.5])}</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.quadrature_points">
+<span class="sig-name descname"><span class="pre">quadrature_points</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.quadrature_points" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a 2D tensor of shape <span class="math notranslate nohighlight">\([Q, D]\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is the number of quadrature points, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the domain
+the quadrature points of each element type, e.g. <code class="xref py py-obj docutils literal notranslate"><span class="pre">{&quot;triangle6&quot;:</span> <span class="pre">torch.tensor([[0.5,</span> <span class="pre">0.5],</span> <span class="pre">[0.5,</span> <span class="pre">0.0]])}</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.shape_val">
+<span class="sig-name descname"><span class="pre">shape_val</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.shape_val" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a 2D tensor of shape <span class="math notranslate nohighlight">\([Q, B]\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is the number of quadrature points, <span class="math notranslate nohighlight">\(B\)</span> is the number of basis
+the shape value of each element type, e.g. <code class="xref py py-obj docutils literal notranslate"><span class="pre">{&quot;triangle6&quot;:</span> <span class="pre">torch.tensor([[0.5,</span> <span class="pre">0.5,</span> <span class="pre">0.0],</span> <span class="pre">[0.0,</span> <span class="pre">0.5,</span> <span class="pre">0.5]])}</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.projector">
+<span class="sig-name descname"><span class="pre">projector</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.projector" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.shape.element_types()</span></code>.
+ach <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a projector from element to edge,
+each  projector is a <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.assemble.Projector()</span></code> object, could be considered as a sparse matrix</p>
+<div class="math notranslate nohighlight">
+\[\mathcal P_e: \mathbb{R}_{\text{sparse}}^{\vert\mathcal C_e\vert \times B_e \times B_e} \rightarrow \mathbb{R}^{\vert\mathcal E\vert}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal C\)</span> is the set of elements, <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(\mathcal E\)</span> is the set of edges.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Projector]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.elements">
+<span class="sig-name descname"><span class="pre">elements</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.elements" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a 2D tensor of shape <span class="math notranslate nohighlight">\([\vert\mathcal C\vert, B]\)</span>, where <span class="math notranslate nohighlight">\(\mathcal C\)</span> is the set of elements, <span class="math notranslate nohighlight">\(B\)</span> is the number of basis
+the element connectivity of each element type, e.g. <code class="xref py py-obj docutils literal notranslate"><span class="pre">{&quot;triangle6&quot;:</span> <span class="pre">torch.tensor([[0,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]])}</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.edges">
+<span class="sig-name descname"><span class="pre">edges</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.edges" title="Permalink to this definition"></a></dt>
+<dd><p>2D tensor of shape <span class="math notranslate nohighlight">\([2, \vert\mathcal E\vert]\)</span>, where <span class="math notranslate nohighlight">\(\mathcal E\)</span> is the set of edges
+edge connectivity considering all element_types, e.g. <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.tensor([[0,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]])</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.n_points">
+<span class="sig-name descname"><span class="pre">n_points</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.n_points" title="Permalink to this definition"></a></dt>
+<dd><p>number of points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.dimension">
+<span class="sig-name descname"><span class="pre">dimension</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.dimension" title="Permalink to this definition"></a></dt>
+<dd><p>dimension of the mesh, either <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(2\)</span> or <span class="math notranslate nohighlight">\(3\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.element_types">
+<span class="sig-name descname"><span class="pre">element_types</span></span><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.element_types" title="Permalink to this definition"></a></dt>
+<dd><p>element types, e.g. <code class="xref py py-obj docutils literal notranslate"><span class="pre">[&quot;triangle6&quot;,</span> <span class="pre">&quot;quad9&quot;]</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">edges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/element_assembler.html#ElementAssembler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">projector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleDict</span></em><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleDict</span></em><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.transformation" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">elements</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></em><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">dimension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">element_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">n_points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.device">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">device</span></em><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.device" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the device of the assembler, either <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.device(&quot;cpu&quot;)</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.device(f&quot;cuda:{x}&quot;)</span></code></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>torch.device</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.dtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dtype</span></em><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.dtype" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the data type of the assembler, either <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.float32</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.float64</span></code></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>torch.dtype</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/element_assembler.html#ElementAssembler.type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.type" title="Permalink to this definition"></a></dt>
+<dd><p>Casts all parameters and buffers to <code class="xref py py-attr docutils literal notranslate"><span class="pre">dst_type</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method modifies the module in-place.</p>
+</div>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dst_type (type or string): the desired type</p>
+</dd>
+<dt>Returns:</dt><dd><p>Module: self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.forward">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/element_assembler.html#ElementAssembler.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.forward" title="Permalink to this definition"></a></dt>
+<dd><p>The weak form of the operator, you should override this function.
+Similar to the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch:torch.nn.Module.forward()</span></code> function, you can use :meth: <cite>torch_fem.assemble.ElementAssembler.__call__</cite> to call this function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 0D tensor shape <span class="math notranslate nohighlight">\([]\)</span></p></li>
+<li><p><strong>v</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 0D tensor shape <span class="math notranslate nohighlight">\([]\)</span></p></li>
+<li><p><strong>gradu</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>gradv</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>x</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>gradx</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 2D tensor shape <span class="math notranslate nohighlight">\([D, D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>**point_data</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>torch.Tensor</em><em>]</em><em>, </em><em>optional</em>) – The point_data are passed by __call__
+if the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;example_key&quot;</span></code> passed in is of shape <span class="math notranslate nohighlight">\([\vert\mathcal V\vert, ...]\)</span>,
+then the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;example_key&quot;</span></code> passed in will be of shape <span class="math notranslate nohighlight">\([...]\)</span>,
+and the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;gradexample_key&quot;</span></code> passed in will be of shape <span class="math notranslate nohighlight">\([..., D]\)</span>,
+where <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D tensor of shape <span class="math notranslate nohighlight">\([B,B]\)</span> or 4D tensor of shape <span class="math notranslate nohighlight">\([B, B, H, H]\)</span>, where <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(H\)</span> is the number of degree of freedom per point</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.from_assembler">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_assembler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/element_assembler.html#ElementAssembler.from_assembler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.from_assembler" title="Permalink to this definition"></a></dt>
+<dd><p>Build an <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.assemble.ElementAssembler()</span></code> from another <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.assemble.ElementAssembler()</span></code>.
+It’s much faster than <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.assemble.ElementAssembler.from_mesh()</span></code>.
+When you already have an ElementAssembler, you can use this function to build another ElementAssembler sharig the same mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>torch_fem.assemble.ElementAssembler</em>) – an meth:<cite>torch_fem.assemble.ElementAssembler</cite> object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the new element assembler sharing the same mesh</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch_fem.assemble.ElementAssembler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.element_assembler.ElementAssembler.from_mesh">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="mesh.html#tensormesh.mesh.Mesh" title="tensormesh.mesh.mesh.Mesh"><span class="pre">Mesh</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrature_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reduce'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/element_assembler.html#ElementAssembler.from_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.element_assembler.ElementAssembler.from_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Build an <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.assemble.ElementAssembler()</span></code> from a mesh <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.mesh.Mesh()</span></code>.
+It’s much slower than <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch_fem.assemble.ElementAssembler.from_assembler()</span></code>.
+Because it will precompute the projection matrix $mathcal P_{mathcal E}$</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>torch_fem.mesh.mesh.Mesh</em>) – a meth:<cite>torch_fem.mesh.Mesh</cite> object</p></li>
+<li><p><strong>quadrature_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the order should be poisitive integer, default is <code class="xref py py-obj docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the projection method, either ‘reduce’ or ‘sparse’, default is <code class="xref py py-obj docutils literal notranslate"><span class="pre">'reduce'</span></code></p></li>
+<li><p><strong>args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – additional positional arguments passed to the constructor</p></li>
+<li><p><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – additional keyword arguments passed to the constructor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the new element assembler use the topology of the mesh</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch_fem.assemble.ElementAssembler</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="facet-assembler">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Facet Assembler</a><a class="headerlink" href="#facet-assembler" title="Permalink to this heading"></a></h2>
+</section>
+<section id="node-assembler">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Node Assembler</a><a class="headerlink" href="#node-assembler" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NodeAssembler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/node_assembler.html#NodeAssembler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>The NodeAssembler is used to assemble the operator on the nodes of the mesh</p>
+<p>The output when calling the NodeAssembler is a vector, which is of shape <span class="math notranslate nohighlight">\([|\mathcal V|]\)</span> or <span class="math notranslate nohighlight">\([|\mathcal V|\times H]\)</span>,
+where <span class="math notranslate nohighlight">\(|\mathcal V|\)</span> is th</p>
+<p class="rubric">Examples</p>
+<ol class="arabic simple">
+<li><p>assemble the mass vector</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[f_i = \int_\Omega v_i \text dv\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensormesh</span>
+<span class="k">class</span> <span class="nc">MassAssembler</span><span class="p">(</span><span class="n">tensormesh</span><span class="o">.</span><span class="n">NodeAssembler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">v</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">tensormesh</span><span class="o">.</span><span class="n">Mesh</span><span class="o">.</span><span class="n">gen_rectangle</span><span class="p">()</span>
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">MassAssembler</span><span class="o">.</span><span class="n">from_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">assembler</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>assemble the traction vector</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[f_i = \int_\Omega t \cdot v_i \text dv\]</div>
+<p>where <span class="math notranslate nohighlight">\(t\)</span> is the traction vector.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensormesh</span>
+<span class="kn">import</span> <span class="nn">tensormesh.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="k">class</span> <span class="nc">TractionAssembler</span><span class="p">(</span><span class="n">tensormesh</span><span class="o">.</span><span class="n">NodeAssembler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">tensormesh</span><span class="o">.</span><span class="n">Mesh</span><span class="o">.</span><span class="n">gen_circle</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">n_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># unit traction in x,y directions</span>
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">TractionAssembler</span><span class="o">.</span><span class="n">from_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">assembler</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.quadrature_weights">
+<span class="sig-name descname"><span class="pre">quadrature_weights</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.quadrature_weights" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a 1D tensor of shape <span class="math notranslate nohighlight">\([Q]\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is the number of quadrature points`
+quadrature_weights of each element type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.quadrature_points">
+<span class="sig-name descname"><span class="pre">quadrature_points</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.quadrature_points" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a 2D tensor of shape <span class="math notranslate nohighlight">\([Q, D]\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is the number of quadrature points and <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the mesh
+quadrature_points of each element type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.shape_val">
+<span class="sig-name descname"><span class="pre">shape_val</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.shape_val" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a 2D tensor of shape <span class="math notranslate nohighlight">\([Q, B]\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span> is the number of quadrature points and <span class="math notranslate nohighlight">\(B\)</span> is the number of basis functions
+shape_val of each element type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.projector">
+<span class="sig-name descname"><span class="pre">projector</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.projector" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a projector from element to nodes,
+each  projector is a <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.Projector()</span></code> object, could be considered as a sparse matrix</p>
+<div class="math notranslate nohighlight">
+\[\mathcal P_e: \mathbb{R}_{\text{sparse}}^{|\mathcal C_e| \times B_e} \rightarrow \mathbb{R}^{|\mathcal V|}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal C\)</span> is the set of elements, <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(\mathcal V\)</span> is the set of nodes/vertices/points.</p>
+<p>projector from element to edge</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Projector]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.elements">
+<span class="sig-name descname"><span class="pre">elements</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.elements" title="Permalink to this definition"></a></dt>
+<dd><p>The element type is the key, which should be one of <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormeshe.shape.element_types()</span></code>.
+Each <code class="xref py py-obj docutils literal notranslate"><span class="pre">element_type</span></code> corresponds to a 2D tensor of shape <span class="math notranslate nohighlight">\([N, B]\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the number of elements and <span class="math notranslate nohighlight">\(B\)</span> is the number of basis functions
+element connectivity of each element type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.BufferDict">BufferDict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.n_points">
+<span class="sig-name descname"><span class="pre">n_points</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.n_points" title="Permalink to this definition"></a></dt>
+<dd><p>number of points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.dimension">
+<span class="sig-name descname"><span class="pre">dimension</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.dimension" title="Permalink to this definition"></a></dt>
+<dd><p>dimension of the mesh, either <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(2\)</span> or <span class="math notranslate nohighlight">\(3\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.element_types">
+<span class="sig-name descname"><span class="pre">element_types</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.element_types" title="Permalink to this definition"></a></dt>
+<dd><p>element types, e.g. <code class="xref py py-obj docutils literal notranslate"><span class="pre">[&quot;triangle6&quot;,</span> <span class="pre">&quot;quad9&quot;]</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/node_assembler.html#NodeAssembler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize internal Module state, shared by both nn.Module and ScriptModule.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">projector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleDict</span></em><a class="headerlink" href="#id6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleDict</span></em><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.transformation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">elements</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></em><a class="headerlink" href="#id7" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">dimension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#id8" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">element_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id9" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">n_points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#id10" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.device">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.device" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.dtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.dtype" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.type">
+<span class="sig-name descname"><span class="pre">type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/node_assembler.html#NodeAssembler.type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.type" title="Permalink to this definition"></a></dt>
+<dd><p>Casts all parameters and buffers to <code class="xref py py-attr docutils literal notranslate"><span class="pre">dst_type</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method modifies the module in-place.</p>
+</div>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dst_type (type or string): the desired type</p>
+</dd>
+<dt>Returns:</dt><dd><p>Module: self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.forward">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/node_assembler.html#NodeAssembler.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.forward" title="Permalink to this definition"></a></dt>
+<dd><p>The weak form of the operator, you should override this function.
+Similar to the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch:torch.nn.Module.forward()</span></code> function, you can use :method: <cite>tensormesh.assemble.ElementAssembler.__call__</cite> to call this function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([]\)</span></p></li>
+<li><p><strong>v</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([]\)</span></p></li>
+<li><p><strong>gradu</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 2D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>gradv</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 2D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>x</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 2D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>gradx</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 3D tensor shape <span class="math notranslate nohighlight">\([D, D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>**point_data</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>torch.Tensor</em><em>]</em><em>, </em><em>optional</em>) – The point_data are passed by __call__
+if the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;example_key&quot;</span></code> passed in is of shape <span class="math notranslate nohighlight">\([|\mathcal V|, ...]\)</span>,
+then the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;example_key&quot;</span></code> passed in will be of shape <span class="math notranslate nohighlight">\([ ...]\)</span>,
+and the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;gradexample_key&quot;</span></code> passed in will be of shape <span class="math notranslate nohighlight">\([ ..., D]\)</span>,
+where <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0D tensor of shape <span class="math notranslate nohighlight">\([]\)</span> or 1D tensor of shape <span class="math notranslate nohighlight">\([H]\)</span>, <span class="math notranslate nohighlight">\(H\)</span> is the number of degree of freedom per point</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.from_assembler">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_assembler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/node_assembler.html#NodeAssembler.from_assembler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.from_assembler" title="Permalink to this definition"></a></dt>
+<dd><p>Build an NodeAssembler from another <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.NodeAssembler()</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.ElementAssembler()</span></code>.
+It’s much faster than <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.NodeAssembler.from_mesh()</span></code>.
+When you already have an NodeAssembler or ElementAssembler, you can use this function to build another NodeAssembler sharig the same mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> (<em>tensormesh.assemble.NodeAssembler</em><em> or </em><em>tensormesh.assemble.ElementAssembler</em>) – an <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.NodeAssembler()</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.ElementAssembler()</span></code> object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the new node_assembler sharing the same mesh</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensormesh.assemble.NodeAssembler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.from_elements">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrature_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.13)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">device</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dtype</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">torch.float32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reduce'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/node_assembler.html#NodeAssembler.from_elements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.from_elements" title="Permalink to this definition"></a></dt>
+<dd><p>Build an <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.NodeAssembler()</span></code> from element connectivity.
+It’s slower than <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.NodeAssembler.from_assembler()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>torch.Tensor</em>) – 2D tensor of shape <span class="math notranslate nohighlight">\([|\mathcal V|, D]\)</span>, where <span class="math notranslate nohighlight">\(\mathcal V\)</span> is the set of nodes/vertices/points, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the domain</p></li>
+<li><p><strong>elements</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>torch.Tensor</em><em>] or </em><em>torch.Tensor</em>) – the element connectivity, the key is the element type, the value is the element connectivity
+e.g. {“tri3”: torch.tensor([[0, 1, 2], [1, 2, 3]])}</p></li>
+<li><p><strong>quadrature_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – the order should be poisitive integer, default is <code class="xref py py-obj docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><strong>device</strong> (<em>torch.device</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the device of the assembler, default is <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;cpu&quot;</span></code></p></li>
+<li><p><strong>dtype</strong> (<em>torch.dtype</em>) – the data type of the assembler, default is <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.float32</span></code></p></li>
+<li><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the projection method, either “reduce” or “sparse”, default is “reduce”
+“reduce” uses <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch:torch.Tensor.index_add_()</span></code> to assemble the matrix, which is more memory efficient
+“sparse” uses sparse matrix multiplication to assemble the matrix, which is faster but requires more memory</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the new node assembler use the topology of the mesh</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensormesh.assemble.NodeAssembler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.node_assembler.NodeAssembler.from_mesh">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="mesh.html#tensormesh.mesh.Mesh" title="tensormesh.mesh.mesh.Mesh"><span class="pre">Mesh</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrature_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reduce'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/node_assembler.html#NodeAssembler.from_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.node_assembler.NodeAssembler.from_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Build an <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.NodeAssembler()</span></code> from a mesh <a class="reference internal" href="mesh.html#tensormesh.mesh.Mesh" title="tensormesh.mesh.Mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.mesh.Mesh()</span></code></a>.
+It’s slower than <code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.assemble.NodeAssembler.from_assembler()</span></code>.
+Because it will precompute the projection matrix $mathcal P_{mathcal V}$</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<a class="reference internal" href="mesh.html#tensormesh.mesh.Mesh" title="tensormesh.mesh.mesh.Mesh"><em>tensormesh.mesh.mesh.Mesh</em></a>) – a meth:<cite>tensormesh.mesh.Mesh</cite> object</p></li>
+<li><p><strong>quadrature_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em> or </em><em>None</em>) – the order should be poisitive integer, default is <code class="xref py py-obj docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><strong>project</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – the projection method, either “reduce” or “sparse”,
+default is <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;reduce&quot;</span></code></p></li>
+<li><p><strong>*args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – Additional positional arguments passed to the assembler constructor</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – Additional keyword arguments passed to the assembler constructor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the new node assembler use the topology of the mesh</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensormesh.assemble.NodeAssembler</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="built-in-assemblers">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Built-in Assemblers</a><a class="headerlink" href="#built-in-assemblers" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LaplaceElementAssembler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/builtin.html#LaplaceElementAssembler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tensormesh.assemble.element_assembler.ElementAssembler" title="tensormesh.assemble.element_assembler.ElementAssembler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElementAssembler</span></code></a></p>
+<p>The element laplace assembler</p>
+<div class="math notranslate nohighlight">
+\[K = \int_{\Omega}\nabla u \cdot \nabla v \mathrm{d}v\]</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gradu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/builtin.html#LaplaceElementAssembler.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.forward" title="Permalink to this definition"></a></dt>
+<dd><p>The weak form of the operator, you should override this function.
+Similar to the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch:torch.nn.Module.forward()</span></code> function, you can use :meth: <cite>torch_fem.assemble.ElementAssembler.__call__</cite> to call this function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 0D tensor shape <span class="math notranslate nohighlight">\([]\)</span></p></li>
+<li><p><strong>v</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 0D tensor shape <span class="math notranslate nohighlight">\([]\)</span></p></li>
+<li><p><strong>gradu</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>gradv</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>x</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>gradx</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 2D tensor shape <span class="math notranslate nohighlight">\([D, D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>**point_data</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>torch.Tensor</em><em>]</em><em>, </em><em>optional</em>) – The point_data are passed by __call__
+if the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;example_key&quot;</span></code> passed in is of shape <span class="math notranslate nohighlight">\([\vert\mathcal V\vert, ...]\)</span>,
+then the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;example_key&quot;</span></code> passed in will be of shape <span class="math notranslate nohighlight">\([...]\)</span>,
+and the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;gradexample_key&quot;</span></code> passed in will be of shape <span class="math notranslate nohighlight">\([..., D]\)</span>,
+where <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D tensor of shape <span class="math notranslate nohighlight">\([B,B]\)</span> or 4D tensor of shape <span class="math notranslate nohighlight">\([B, B, H, H]\)</span>, where <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(H\)</span> is the number of degree of freedom per point</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.projector">
+<span class="sig-name descname"><span class="pre">projector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleDict</span></em><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.projector" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleDict</span></em><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.transformation" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.elements">
+<span class="sig-name descname"><span class="pre">elements</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></em><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.elements" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.edges">
+<span class="sig-name descname"><span class="pre">edges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.edges" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.dimension">
+<span class="sig-name descname"><span class="pre">dimension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.dimension" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.element_types">
+<span class="sig-name descname"><span class="pre">element_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.element_types" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.n_points">
+<span class="sig-name descname"><span class="pre">n_points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.n_points" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.LaplaceElementAssembler.training">
+<span class="sig-name descname"><span class="pre">training</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><a class="headerlink" href="#tensormesh.assemble.builtin.LaplaceElementAssembler.training" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MassElementAssembler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModuleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/builtin.html#MassElementAssembler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tensormesh.assemble.element_assembler.ElementAssembler" title="tensormesh.assemble.element_assembler.ElementAssembler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElementAssembler</span></code></a></p>
+<p>The element mass assembler</p>
+<div class="math notranslate nohighlight">
+\[K = \int_{\Omega} u v \mathrm{d}v\]</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/assemble/builtin.html#MassElementAssembler.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.forward" title="Permalink to this definition"></a></dt>
+<dd><p>The weak form of the operator, you should override this function.
+Similar to the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch:torch.nn.Module.forward()</span></code> function, you can use :meth: <cite>torch_fem.assemble.ElementAssembler.__call__</cite> to call this function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 0D tensor shape <span class="math notranslate nohighlight">\([]\)</span></p></li>
+<li><p><strong>v</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 0D tensor shape <span class="math notranslate nohighlight">\([]\)</span></p></li>
+<li><p><strong>gradu</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>gradv</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>x</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 1D tensor shape <span class="math notranslate nohighlight">\([D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>gradx</strong> (<em>torch.Tensor</em><em>, </em><em>optional</em>) – 2D tensor shape <span class="math notranslate nohighlight">\([D, D]\)</span>, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+<li><p><strong>**point_data</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>torch.Tensor</em><em>]</em><em>, </em><em>optional</em>) – The point_data are passed by __call__
+if the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;example_key&quot;</span></code> passed in is of shape <span class="math notranslate nohighlight">\([\vert\mathcal V\vert, ...]\)</span>,
+then the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;example_key&quot;</span></code> passed in will be of shape <span class="math notranslate nohighlight">\([...]\)</span>,
+and the point data <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;gradexample_key&quot;</span></code> passed in will be of shape <span class="math notranslate nohighlight">\([..., D]\)</span>,
+where <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the dimension</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D tensor of shape <span class="math notranslate nohighlight">\([B,B]\)</span> or 4D tensor of shape <span class="math notranslate nohighlight">\([B, B, H, H]\)</span>, where <span class="math notranslate nohighlight">\(B\)</span> is the number of basis, <span class="math notranslate nohighlight">\(H\)</span> is the number of degree of freedom per point</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.projector">
+<span class="sig-name descname"><span class="pre">projector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleDict</span></em><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.projector" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModuleDict</span></em><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.transformation" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.elements">
+<span class="sig-name descname"><span class="pre">elements</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="nn.html#tensormesh.nn.BufferDict" title="tensormesh.nn.buffer_dict.BufferDict"><span class="pre">BufferDict</span></a></em><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.elements" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.edges">
+<span class="sig-name descname"><span class="pre">edges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.edges" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.dimension">
+<span class="sig-name descname"><span class="pre">dimension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.dimension" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.element_types">
+<span class="sig-name descname"><span class="pre">element_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.element_types" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.n_points">
+<span class="sig-name descname"><span class="pre">n_points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.n_points" title="Permalink to this definition"></a></dt>
+<dd><p>no-index:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tensormesh.assemble.builtin.MassElementAssembler.training">
+<span class="sig-name descname"><span class="pre">training</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><a class="headerlink" href="#tensormesh.assemble.builtin.MassElementAssembler.training" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="element.html" class="btn btn-neutral float-left" title="tensormesh.element" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sparse.html" class="btn btn-neutral float-right" title="tensormesh.sparse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, walkerchi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

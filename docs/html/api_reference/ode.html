@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tensormesh.ode &mdash; tensormesh  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/mytheme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tensormesh.functional" href="functional.html" />
+    <link rel="prev" title="tensormesh.operator" href="operator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/installation.html#installatoion-via-pypi">Installatoion via PyPi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/benchmark.html">Benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#m2-pro-cpu">M2 Pro CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#assemble-speed">Assemble Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#pipeline-speed">Pipeline Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/element.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#line">Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#triangle">Triangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#quadrilateral">Quadrilateral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#tetrahedron">Tetrahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#hexahedron">Hexahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#pyramid">Pyramid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#prism">Prism</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mesh_gen.html">Mesh Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-high-order-mesh">2D high order mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-high-circle-mesh">2D high circle mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-hybrid-mesh">2D hybrid mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#id1">3D high order mesh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/adjacency.html">Adjacency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#d-node-adjacency">2D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#d-element-adjacency">2D Element Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#id1">3D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#id2">3D Element Adjacency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/basis.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-line-basis">1D Line Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-triangle-basis">2D Triangle Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-quadrilateral-basis">2D Quadrilateral Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-tetrahedron-basis">3D Tetrahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-hexahedron-basis">3D Hexahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-pyramid-basis">3D Pyramid Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-prism-basis">3D Prism Basis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/values.html">Plot values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#d-point-value">2D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#d-element-value">2D Element Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#id1">3D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#id2">3D Element Value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/poisson.html">Poisson Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/poisson.html#adaptive-mesh-refinement">Adaptive Mesh Refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/wave.html">Wave Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/wave.html#multi-frequency-dataset">multi frequency dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/linear_elasticity.html">Linear Elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/linear_elasticity.html#pressed-hollow-rectangle">Pressed Hollow Rectangle</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dataset.html">tensormesh.dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dataset.html#mesh">mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset.html#equation">equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">tensormesh.mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="element.html">tensormesh.element</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="element.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#transformation">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#polynomial">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.basis">Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="element.html#module-tensormesh.element.normal">Normal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assemble.html">tensormesh.assemble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assemble.html#element-assembler">Element Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assemble.html#facet-assembler">Facet Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assemble.html#node-assembler">Node Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assemble.html#built-in-assemblers">Built-in Assemblers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sparse.html">tensormesh.sparse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sparse.html#sparsematirx">SparseMatirx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">tensormesh.operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operator.html#condenser">Condenser</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#runge-kutta-methods">Runge-Kutta methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-methods">Built-in Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functional.html">tensormesh.functional</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functional.html#module-tensormesh.functional.ops">ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functional.html#module-tensormesh.functional.elasticity">elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functional.html#module-tensormesh.functional.plastic">plastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#bufferutils">BufferUtils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">tensormesh.visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#module-tensormesh.visualization.draw_graph">Draw Facet</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tensormesh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">tensormesh.ode</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api_reference/ode.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tensormesh-ode">
+<h1>tensormesh.ode<a class="headerlink" href="#tensormesh-ode" title="Permalink to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<p class="topic-title">contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#runge-kutta-methods" id="id1">Runge-Kutta methods</a></p></li>
+<li><p><a class="reference internal" href="#built-in-methods" id="id2">Built-in Methods</a></p></li>
+</ul>
+</nav>
+<section id="runge-kutta-methods">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Runge-Kutta methods</a><a class="headerlink" href="#runge-kutta-methods" title="Permalink to this heading"></a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c|c}
+\textbf  c &amp; \mathfrak A \\
+\hline
+&amp;\textbf b^\top
+\end{array}
+\quad = \quad
+\begin{array}{c|ccc}
+c_1 &amp; a_{11} &amp; \cdots &amp; a_{1s}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+c_s &amp; a_{s1} &amp; \cdots &amp; a_{ss}\\\hline
+&amp; b_1 &amp; \cdots &amp; b_s
+\end{array}
+\qquad
+\textbf c, \textbf b \in \mathbb R^s,\mathfrak A\in  \mathbb R^{s\times s}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\textbf k_i =\textbf f(t+c_i\tau, \textbf u +\tau \sum_{j=1}^s a_{ij}\textbf k_j)\quad \Psi^{t,t+\tau}\textbf u = \textbf u+\tau\sum_{i=1}^s b_i \textbf  k_i\]</div>
+<div class="math notranslate nohighlight">
+\[c_i = \sum_j a_{ij}\]</div>
+</section>
+<section id="built-in-methods">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Built-in Methods</a><a class="headerlink" href="#built-in-methods" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.ode.ExplicitRungeKutta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExplicitRungeKutta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/explicit_rungekutta.html#ExplicitRungeKutta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ExplicitRungeKutta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t} = f(t, u)\]</div>
+<p class="rubric">Examples</p>
+<div class="math notranslate nohighlight">
+\[\frac{\text{d}u}{\text{d}t} = u\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">tensormesh.ode</span> <span class="kn">import</span> <span class="n">ExplicitRungeKutta</span>
+
+<span class="k">class</span> <span class="nc">MyExplicitRungeKutta</span><span class="p">(</span><span class="n">ExplicitRungeKutta</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">u</span>
+
+<span class="n">u0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ut_my</span> <span class="o">=</span> <span class="n">MyExplicitRungeKutta</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>torch.Tensor</em>) – <p>2D tensor of shape [s, s]
+shoule be lower triangular</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}a = \begin{bmatrix}
+0 &amp; \cdots &amp;0&amp; 0 \\
+a_{21} &amp; \cdots &amp;0 &amp; 0 \\
+\vdots &amp; \ddots &amp; \vdots  &amp;\vdots\\
+a_{s1} &amp; \cdots &amp; a_{s{s-1}} &amp;0
+\end{bmatrix}\end{split}\]</div>
+</p></li>
+<li><p><strong>b</strong> (<em>torch.Tensor</em>) – 1D tensor of shape [s], <span class="math notranslate nohighlight">\(\sum_{b_i} = 1\)</span></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ExplicitRungeKutta.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/explicit_rungekutta.html#ExplicitRungeKutta.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ExplicitRungeKutta.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ExplicitRungeKutta.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/explicit_rungekutta.html#ExplicitRungeKutta.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ExplicitRungeKutta.forward" title="Permalink to this definition"></a></dt>
+<dd><p>right side function <span class="math notranslate nohighlight">\(f(t, u)\)</span></p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t} = \text{forward}(t, u)\]</div>
+<p>default <span class="math notranslate nohighlight">\(f(t, u) = u\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – time</p></li>
+<li><p><strong>u</strong> (<em>torch.Tensor</em>) – value of shape <span class="math notranslate nohighlight">\([D]\)</span> where D is the dimension of the problem</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>value of shape <span class="math notranslate nohighlight">\([D]\)</span> where D is the dimension of the problem
+the value of the right side function <span class="math notranslate nohighlight">\(f(t, u)\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ExplicitRungeKutta.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/explicit_rungekutta.html#ExplicitRungeKutta.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ExplicitRungeKutta.step" title="Permalink to this definition"></a></dt>
+<dd><p>one step of explicit Runge-Kutta method</p>
+<div class="math notranslate nohighlight">
+\[\textbf k_i =\textbf f(t+c_i\tau, \textbf u +\tau \sum_{j=1}^s a_{ij}\textbf k_j)\quad \Psi^{t,t+\tau}\textbf u = \textbf u+\tau\sum_{i=1}^s b_i \textbf  k_i\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – initial time</p></li>
+<li><p><strong>u0</strong> (<em>torch.Tensor</em>) – initial value of shape <span class="math notranslate nohighlight">\([D]\)</span> where D is the dimension of the problem</p></li>
+<li><p><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – time step</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>value of shape <span class="math notranslate nohighlight">\([D]\)</span> where D is the dimension of the problem
+the value of the solution at time <span class="math notranslate nohighlight">\(t_0 + \text{d}t\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ImplicitLinearRungeKutta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<div class="math notranslate nohighlight">
+\[M(t) \frac{\partial u}{\partial t} = A(t) u + B(t)\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(M\in \mathbb R^{n\times n}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A\in \mathbb R^{n\times n}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(B\in \mathbb R^{n}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u\in \mathbb R^n\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+M_0 - A_0\tau a_{0,0}&amp; - A_0\tau a_{0,1}&amp;\cdots  &amp; - A_{0}\tau a_{0,{n-1}}\\
+-A_1\tau a_{1,0}&amp; M_1-A_1\tau a_{1,1} &amp; \cdots &amp; - A_{1}\tau a_{1,{n-1}}\\
+\vdots &amp; \vdots &amp;\ddots &amp; \vdots \\
+-A_{n-1}\tau a_{{n-1},0} &amp; -A_{n-1}\tau a_{{n-1},1} &amp; \cdots &amp;  M_{n-1} - A_{n-1}\tau a_{n-1,n-1}
+\end{bmatrix}
+\begin{bmatrix}
+\textbf k_0\\ \textbf k_1 \\\vdots \\\textbf k_{n-1}
+\end{bmatrix}=
+\begin{bmatrix}
+B_0 + A_0 u \\
+B_1 + A_1 u \\
+\vdots\\
+B_{n-1} + A_{n-1} u
+\end{bmatrix}\end{split}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>torch.Tensor</em>) – 2D tensor of shape [s, s]</p></li>
+<li><p><strong>b</strong> (<em>torch.Tensor</em>) – 1D tensor of shape [s], <span class="math notranslate nohighlight">\(\sum_{b_i} = 1\)</span></p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="math notranslate nohighlight">
+\[M \frac{\text{d}u}{\text{d}t} = Au + B\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">tensormesh.ode</span> <span class="kn">import</span> <span class="n">ImplicitLinearRungeKutta</span>
+
+<span class="k">class</span> <span class="nc">MyImplicitLinearRungeKutta</span><span class="p">(</span><span class="n">ImplicitLinearRungeKutta</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward_M</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward_A</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward_B</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">u0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ut_my</span> <span class="o">=</span> <span class="n">MyImplicitLinearRungeKutta</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta.forward_M">
+<span class="sig-name descname"><span class="pre">forward_M</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta.forward_M"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta.forward_M" title="Permalink to this definition"></a></dt>
+<dd><p>left side matrix</p>
+<div class="math notranslate nohighlight">
+\[M \frac{\partial u}{\partial t} = A(t)u + B(t)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – time</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>normally, 2D <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor()</span></code> or <a class="reference internal" href="sparse.html#tensormesh.sparse.SparseMatrix" title="tensormesh.sparse.SparseMatrix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.sparse.SparseMatrix()</span></code></a> of shape <span class="math notranslate nohighlight">\([D, D]\)</span> where <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the problem;
+if return <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, the left side matrix <span class="math notranslate nohighlight">\(M\)</span> is assumed to be a diagonal matrix with the same value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="sparse.html#tensormesh.sparse.SparseMatrix" title="tensormesh.sparse.SparseMatrix">tensormesh.sparse.SparseMatrix</a> or torch.Tensor or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta.forward_A">
+<span class="sig-name descname"><span class="pre">forward_A</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta.forward_A"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta.forward_A" title="Permalink to this definition"></a></dt>
+<dd><p>compute the linear mapping term <span class="math notranslate nohighlight">\(A(t)\)</span></p>
+<div class="math notranslate nohighlight">
+\[M \frac{\partial u}{\partial t} = A(t)u + B(t)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – time</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>2D <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor()</span></code> or <a class="reference internal" href="sparse.html#tensormesh.sparse.SparseMatrix" title="tensormesh.sparse.SparseMatrix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tensormesh.sparse.SparseMatrix()</span></code></a> of shape <span class="math notranslate nohighlight">\([D, D]\)</span> where <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the problem;
+if return <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, the linear mapping term is assumed to be a diagonal matrix with the same value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="sparse.html#tensormesh.sparse.SparseMatrix" title="tensormesh.sparse.SparseMatrix">tensormesh.sparse.SparseMatrix</a> or torch.Tensor or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta.forward_B">
+<span class="sig-name descname"><span class="pre">forward_B</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta.forward_B"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta.forward_B" title="Permalink to this definition"></a></dt>
+<dd><p>compute the linear mapping term <span class="math notranslate nohighlight">\(B(t)\)</span></p>
+<div class="math notranslate nohighlight">
+\[M \frac{\partial u}{\partial t} = A(t)u + B(t)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – time</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>1D <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.Tensor()</span></code> of shape <span class="math notranslate nohighlight">\([D]\)</span> where <span class="math notranslate nohighlight">\(D\)</span> is the dimension of the problem;
+if return <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, the linear mapping term is assumed to be a vector with the same value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor or <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta.pre_solve_lhs">
+<span class="sig-name descname"><span class="pre">pre_solve_lhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta.pre_solve_lhs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta.pre_solve_lhs" title="Permalink to this definition"></a></dt>
+<dd><p>precompute something before solving the linear system,
+for example, do the condensation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>K</strong> (<em>torch.Tensor</em><em> or </em><a class="reference internal" href="sparse.html#tensormesh.sparse.SparseMatrix" title="tensormesh.sparse.SparseMatrix"><em>tensormesh.sparse.SparseMatrix</em></a>) – the left side matrix</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the left side matrix after precompute</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor or <a class="reference internal" href="sparse.html#tensormesh.sparse.SparseMatrix" title="tensormesh.sparse.SparseMatrix">tensormesh.sparse.SparseMatrix</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta.pre_solve_rhs">
+<span class="sig-name descname"><span class="pre">pre_solve_rhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta.pre_solve_rhs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta.pre_solve_rhs" title="Permalink to this definition"></a></dt>
+<dd><p>precompute something before solving the linear system,
+for example, do the condensation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<em>torch.Tensor</em>) – the right hand side vector</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the right hand side vector after precompute</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta.post_solve">
+<span class="sig-name descname"><span class="pre">post_solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta.post_solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta.post_solve" title="Permalink to this definition"></a></dt>
+<dd><p>postprocess after solving the linear system,
+for example, do the condensation recovery</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>u</strong> (<em>torch.Tensor</em>) – the solution of the linear system</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the solution after postprocess</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.ImplicitLinearRungeKutta.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/implicit_linear_rungekutta.html#ImplicitLinearRungeKutta.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.ImplicitLinearRungeKutta.step" title="Permalink to this definition"></a></dt>
+<dd><div class="math notranslate nohighlight">
+\[\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – initial time</p></li>
+<li><p><strong>u0</strong> (<em>torch.Tensor</em>) – initial value of shape <span class="math notranslate nohighlight">\([D]\)</span> where D is the dimension of the problem</p></li>
+<li><p><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – time step</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-tensormesh.ode.builtin"></span><dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.ode.builtin.ExplicitEuler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExplicitEuler</span></span><a class="reference internal" href="../_modules/tensormesh/ode/builtin.html#ExplicitEuler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.builtin.ExplicitEuler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tensormesh.ode.ExplicitRungeKutta" title="tensormesh.ode.explicit_rungekutta.ExplicitRungeKutta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExplicitRungeKutta</span></code></a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c|c}
+\textbf{c} &amp; \mathfrak{A} \\
+\hline
+&amp; \textbf{b}^\top
+\end{array}
+=
+\begin{array}{c|c}
+0 &amp; 0 \\
+\hline
+&amp; 1
+\end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\Psi^{t,t+\tau}\textbf{u} \approx \textbf{u} + \tau \textbf{f}(t,\textbf{u})\]</div>
+<p class="rubric">Examples</p>
+<div class="math notranslate nohighlight">
+\[\frac{\text{d}u}{\text{d}t} = u\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">tensormesh.ode</span> <span class="kn">import</span> <span class="n">ExplicitEuler</span>
+
+<span class="k">class</span> <span class="nc">MyExplicitEuler</span><span class="p">(</span><span class="n">ExplicitEuler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">u</span>
+
+<span class="n">u0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ut_gt</span> <span class="o">=</span> <span class="n">u0</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">u0</span>
+<span class="n">ut_my</span> <span class="o">=</span> <span class="n">MyExplicitEuler</span><span class="p">()</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ut_gt</span><span class="p">,</span> <span class="n">ut_my</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.builtin.ExplicitEuler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/builtin.html#ExplicitEuler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.builtin.ExplicitEuler.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.ode.builtin.ImplicitLinearEuler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ImplicitLinearEuler</span></span><a class="reference internal" href="../_modules/tensormesh/ode/builtin.html#ImplicitLinearEuler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.builtin.ImplicitLinearEuler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tensormesh.ode.ImplicitLinearRungeKutta" title="tensormesh.ode.implicit_linear_rungekutta.ImplicitLinearRungeKutta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta</span></code></a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c|c}
+\textbf{c} &amp; \mathfrak{A} \\
+\hline
+&amp; \textbf{b}^\top
+\end{array}
+=
+\begin{array}{c|c}
+1 &amp; 1 \\
+\hline
+&amp; 1
+\end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\Psi^{t,t+\tau}\textbf{u} \approx \textbf{w}\quad \textbf{w}=\textbf{u}+\tau\textbf{f}(t+\tau,\textbf{w})\]</div>
+<p class="rubric">Examples</p>
+<div class="math notranslate nohighlight">
+\[\frac{\text{d}u}{\text{d}t} = u\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">tensormesh.ode</span> <span class="kn">import</span> <span class="n">ImplicitLinearEuler</span>
+
+<span class="n">u0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">double</span><span class="p">()</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ut_gt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">dt</span><span class="p">))</span> <span class="o">*</span> <span class="n">u0</span>
+<span class="n">ut_my</span> <span class="o">=</span> <span class="n">ImplicitLinearEuler</span><span class="p">()</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ut_gt</span><span class="p">,</span> <span class="n">ut_my</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;expected </span><span class="si">{</span><span class="n">ut_gt</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">ut_my</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.builtin.ImplicitLinearEuler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/builtin.html#ImplicitLinearEuler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.builtin.ImplicitLinearEuler.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tensormesh.ode.builtin.MidPointLinearEuler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MidPointLinearEuler</span></span><a class="reference internal" href="../_modules/tensormesh/ode/builtin.html#MidPointLinearEuler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.builtin.MidPointLinearEuler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tensormesh.ode.ImplicitLinearRungeKutta" title="tensormesh.ode.implicit_linear_rungekutta.ImplicitLinearRungeKutta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta</span></code></a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c|c}
+\textbf{c} &amp; \mathfrak{A} \\
+\hline
+&amp; \textbf{b}^\top
+\end{array}
+=
+\begin{array}{c|c}
+\frac{1}{2} &amp; \frac{1}{2} \\
+\hline
+&amp; 1
+\end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\Psi^{t,t+\tau}\textbf{u} \approx \textbf{w}\quad \textbf{w} = \textbf{u} +\tau \textbf{f}\left(t+\frac{\tau}{2},\frac{\textbf{w}+\textbf{u}}{2}\right)\]</div>
+<p class="rubric">Examples</p>
+<div class="math notranslate nohighlight">
+\[\frac{\text{d} u}{\text{d} t} = u\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">tensormesh.ode</span> <span class="kn">import</span> <span class="n">MidPointLinearEuler</span>
+
+<span class="n">u0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ut_gt</span> <span class="o">=</span> <span class="p">((</span><span class="n">dt</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">dt</span><span class="p">))</span> <span class="o">*</span> <span class="n">u0</span>
+<span class="n">ut_my</span> <span class="o">=</span> <span class="n">MidPointLinearEuler</span><span class="p">()</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ut_gt</span><span class="p">,</span> <span class="n">ut_my</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;expected </span><span class="si">{</span><span class="n">ut_gt</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">ut_my</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="tensormesh.ode.builtin.MidPointLinearEuler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tensormesh/ode/builtin.html#MidPointLinearEuler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tensormesh.ode.builtin.MidPointLinearEuler.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="operator.html" class="btn btn-neutral float-left" title="tensormesh.operator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functional.html" class="btn btn-neutral float-right" title="tensormesh.functional" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, walkerchi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

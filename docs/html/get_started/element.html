@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basis &mdash; tensormesh  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/mytheme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mesh Generation" href="../examples/mesh_gen.html" />
+    <link rel="prev" title="Benchmark" href="benchmark.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installatoion-via-pypi">Installatoion via PyPi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html#m2-pro-cpu">M2 Pro CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html#assemble-speed">Assemble Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html#pipeline-speed">Pipeline Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#line">Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#triangle">Triangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quadrilateral">Quadrilateral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tetrahedron">Tetrahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hexahedron">Hexahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyramid">Pyramid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prism">Prism</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/mesh_gen.html">Mesh Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-high-order-mesh">2D high order mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-high-circle-mesh">2D high circle mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#d-hybrid-mesh">2D hybrid mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/mesh_gen.html#id1">3D high order mesh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/adjacency.html">Adjacency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#d-node-adjacency">2D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#d-element-adjacency">2D Element Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#id1">3D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/adjacency.html#id2">3D Element Adjacency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/basis.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-line-basis">1D Line Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-triangle-basis">2D Triangle Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-quadrilateral-basis">2D Quadrilateral Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-tetrahedron-basis">3D Tetrahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-hexahedron-basis">3D Hexahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-pyramid-basis">3D Pyramid Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basis.html#d-prism-basis">3D Prism Basis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/values.html">Plot values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#d-point-value">2D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#d-element-value">2D Element Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#id1">3D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/values.html#id2">3D Element Value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/poisson.html">Poisson Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/poisson.html#adaptive-mesh-refinement">Adaptive Mesh Refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/wave.html">Wave Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/wave.html#multi-frequency-dataset">multi frequency dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/linear_elasticity.html">Linear Elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/linear_elasticity.html#pressed-hollow-rectangle">Pressed Hollow Rectangle</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/dataset.html">tensormesh.dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/dataset.html#mesh">mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/dataset.html#equation">equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/mesh.html">tensormesh.mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/element.html">tensormesh.element</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#elements">Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#transformation">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#polynomial">Polynomial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.basis">Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.normal">Normal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/assemble.html">tensormesh.assemble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#element-assembler">Element Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#facet-assembler">Facet Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#node-assembler">Node Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#built-in-assemblers">Built-in Assemblers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/sparse.html">tensormesh.sparse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/sparse.html#sparsematirx">SparseMatirx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/operator.html">tensormesh.operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/operator.html#condenser">Condenser</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/ode.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ode.html#runge-kutta-methods">Runge-Kutta methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ode.html#built-in-methods">Built-in Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/functional.html">tensormesh.functional</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.ops">ops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.elasticity">elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.plastic">plastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/nn.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/nn.html#bufferutils">BufferUtils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/visualization.html">tensormesh.visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/visualization.html#module-tensormesh.visualization.draw_graph">Draw Facet</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tensormesh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/get_started/element.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basis">
+<h1>Basis<a class="headerlink" href="#basis" title="Permalink to this heading"></a></h1>
+<section id="line">
+<h2>Line<a class="headerlink" href="#line" title="Permalink to this heading"></a></h2>
+<p>The line basis functions are used to interpolate values along a 1D line element. For a line element of order n, there are n+1 basis functions.</p>
+<p>For order 1 (linear), there are 2 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(x) &amp;= 1 - x \\
+N_2(x) &amp;= x
+\end{align*}\end{split}\]</div>
+<p>For order 2 (quadratic), there are 3 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(x) &amp;= 2x^2 - 3x + 1 \\
+N_2(x) &amp;= -4x^2 + 4x \\
+N_3(x) &amp;= 2x^2 - x
+\end{align*}\end{split}\]</div>
+<p>For order 3 (cubic), there are 4 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(x) &amp;= -4.5x^3 + 9x^2 - 5.5x + 1 \\
+N_2(x) &amp;= 13.5x^3 - 22.5x^2 + 9x \\
+N_3(x) &amp;= -13.5x^3 + 18x^2 - 4.5x \\
+N_4(x) &amp;= 4.5x^3 - 4.5x^2 + x
+\end{align*}\end{split}\]</div>
+<p>The basis functions have the following key properties:</p>
+<ol class="arabic simple">
+<li><p><strong>Partition of unity</strong>: At any point, the sum of all basis functions equals 1</p></li>
+<li><p><strong>Interpolation</strong>: Each basis function equals 1 at its own node and 0 at all other nodes</p></li>
+<li><p><strong>Continuity</strong>: The functions are continuous across element boundaries</p></li>
+</ol>
+<p>The figures below show the basis functions and node locations for different polynomial orders.</p>
+<figure class="align-default">
+<img alt="Line Basis Function" src="../_images/line.png" />
+</figure>
+<p>The figures below show the basis points (nodes) for line elements of different polynomial orders. The basis points represent the locations where the basis functions take on values of 1 or 0.</p>
+<p>For a line element:</p>
+<p>The basis points (nodes) for line elements are the locations where the basis functions take on values of 1 or 0. These points are used to define the interpolation properties of the element.</p>
+<p>For a line element, the basis points are distributed along the line segment [0,1] according to the polynomial order:</p>
+<figure class="align-default">
+<img alt="Line element basis points comparison showing node locations for polynomial orders 1-4" src="../_images/line_comparison.png" />
+</figure>
+<p>For a line element of polynomial order <span class="math notranslate nohighlight">\(p\)</span>, the number of basis points <span class="math notranslate nohighlight">\(n\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[n = p + 1\]</div>
+<p>Higher order elements (<span class="math notranslate nohighlight">\(p &gt; 1\)</span>) have more basis points, enabling higher-order polynomial interpolation for improved approximation of curved geometries and solutions.</p>
+</section>
+<section id="triangle">
+<h2>Triangle<a class="headerlink" href="#triangle" title="Permalink to this heading"></a></h2>
+<p>The triangle basis functions are used to interpolate values across a 2D triangular element. For a triangle element of order n, there are (n+1)(n+2)/2 basis functions.</p>
+<p>The basis functions are defined using barycentric coordinates (L1, L2, L3) where:
+- L1 + L2 + L3 = 1
+- Each Li represents the relative distance from a vertex
+- Li = 1 at vertex i and 0 at other vertices</p>
+<p>For order 1 (linear), there are 3 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(L_1,L_2,L_3) &amp;= L_1 \\
+N_2(L_1,L_2,L_3) &amp;= L_2 \\
+N_3(L_1,L_2,L_3) &amp;= L_3
+\end{align*}\end{split}\]</div>
+<p>For order 2 (quadratic), there are 6 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(L_1,L_2,L_3) &amp;= L_1(2L_1-1) \\
+N_2(L_1,L_2,L_3) &amp;= L_2(2L_2-1) \\
+N_3(L_1,L_2,L_3) &amp;= L_3(2L_3-1) \\
+N_4(L_1,L_2,L_3) &amp;= 4L_1L_2 \\
+N_5(L_1,L_2,L_3) &amp;= 4L_2L_3 \\
+N_6(L_1,L_2,L_3) &amp;= 4L_3L_1
+\end{align*}\end{split}\]</div>
+<p>The basis functions have the following key properties:</p>
+<ol class="arabic simple">
+<li><p><strong>Partition of unity</strong>: At any point, the sum of all basis functions equals 1</p></li>
+<li><p><strong>Interpolation</strong>: Each basis function equals 1 at its own node and 0 at all other nodes</p></li>
+<li><p><strong>Continuity</strong>: The functions are continuous across element boundaries</p></li>
+</ol>
+<figure class="align-default">
+<img alt="Triangle Basis Function" src="../_images/triangle1.png" />
+</figure>
+<p>The figures below show the basis points (nodes) for triangle elements of different polynomial orders. The basis points represent the locations where the basis functions take on values of 1 or 0.</p>
+<p>For a triangle element, the basis points are distributed according to the polynomial order:</p>
+<figure class="align-default">
+<img alt="Triangle element basis points comparison showing node locations for polynomial orders 1-4" src="../_images/triangle_comparison.png" />
+</figure>
+<p>For a triangle element of polynomial order p, the number of basis points n is given by:</p>
+<div class="math notranslate nohighlight">
+\[n = \frac{(p+1)(p+2)}{2}\]</div>
+<p>Higher order elements (p &gt; 1) have more basis points, enabling higher-order polynomial interpolation for improved approximation of curved geometries and solutions. The trade-off is increased computational cost with more degrees of freedom.</p>
+</section>
+<section id="quadrilateral">
+<h2>Quadrilateral<a class="headerlink" href="#quadrilateral" title="Permalink to this heading"></a></h2>
+<p>For quadrilateral elements, the shape functions are constructed using tensor products of 1D Lagrange polynomials in the reference coordinates .. math:: (ξ,η) in [-1,1]times[-1,1]. For a polynomial order p, the shape functions are:</p>
+<div class="math notranslate nohighlight">
+\[N_{ij}(ξ,η) = l_i(ξ)l_j(η)\]</div>
+<p>where l_i(ξ) and l_j(η) are the 1D Lagrange polynomials of order p.</p>
+<p>The shape functions for a linear quadrilateral element (p=1) are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(ξ,η) &amp;= \frac{1}{4}(1-ξ)(1-η) \\
+N_2(ξ,η) &amp;= \frac{1}{4}(1+ξ)(1-η) \\
+N_3(ξ,η) &amp;= \frac{1}{4}(1+ξ)(1+η) \\
+N_4(ξ,η) &amp;= \frac{1}{4}(1-ξ)(1+η)
+\end{align*}\end{split}\]</div>
+<p>For quadratic elements, additional shape functions are added for the edge midpoints and center:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_5(ξ,η) &amp;= \frac{1}{2}(1-ξ^2)(1-η) \\
+N_6(ξ,η) &amp;= \frac{1}{2}(1+ξ)(1-η^2) \\
+N_7(ξ,η) &amp;= \frac{1}{2}(1-ξ^2)(1+η) \\
+N_8(ξ,η) &amp;= \frac{1}{2}(1-ξ)(1-η^2) \\
+N_9(ξ,η) &amp;= (1-ξ^2)(1-η^2)
+\end{align*}\end{split}\]</div>
+<figure class="align-default">
+<img alt="Quadrilateral Basis Function" src="../_images/quadrilateral1.png" />
+</figure>
+<p>The basis points represent the nodes where each shape function equals 1 while all others equal 0. For a quadrilateral element, the basis points are distributed according to the polynomial order:</p>
+<figure class="align-default">
+<img alt="Quadrilateral element basis points comparison showing node locations for polynomial orders 1-4" src="../_images/quadrilateral_comparison.png" />
+</figure>
+<p>For a quadrilateral element of polynomial order p, the number of basis points n is given by:</p>
+<div class="math notranslate nohighlight">
+\[n = (p+1)^2\]</div>
+<p>Higher order elements (p &gt; 1) have more basis points, enabling higher-order polynomial interpolation for improved approximation of curved geometries and solutions. The trade-off is increased computational cost with more degrees of freedom.</p>
+</section>
+<section id="tetrahedron">
+<h2>Tetrahedron<a class="headerlink" href="#tetrahedron" title="Permalink to this heading"></a></h2>
+<p>For tetrahedral elements, the shape functions are defined using barycentric coordinates (L1, L2, L3, L4) where:</p>
+<ul class="simple">
+<li><p>L1 + L2 + L3 + L4 = 1</p></li>
+<li><p>Each Li represents the relative distance from a vertex</p></li>
+<li><p>Li = 1 at vertex i and 0 at other vertices</p></li>
+</ul>
+<p>For order 1 (linear), there are 4 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(L_1,L_2,L_3,L_4) &amp;= L_1 \\
+N_2(L_1,L_2,L_3,L_4) &amp;= L_2 \\
+N_3(L_1,L_2,L_3,L_4) &amp;= L_3 \\
+N_4(L_1,L_2,L_3,L_4) &amp;= L_4
+\end{align*}\end{split}\]</div>
+<p>For order 2 (quadratic), there are 10 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(L_1,L_2,L_3,L_4) &amp;= L_1(2L_1-1) \\
+N_2(L_1,L_2,L_3,L_4) &amp;= L_2(2L_2-1) \\
+N_3(L_1,L_2,L_3,L_4) &amp;= L_3(2L_3-1) \\
+N_4(L_1,L_2,L_3,L_4) &amp;= L_4(2L_4-1) \\
+N_5(L_1,L_2,L_3,L_4) &amp;= 4L_1L_2 \\
+N_6(L_1,L_2,L_3,L_4) &amp;= 4L_2L_3 \\
+N_7(L_1,L_2,L_3,L_4) &amp;= 4L_3L_1 \\
+N_8(L_1,L_2,L_3,L_4) &amp;= 4L_1L_4 \\
+N_9(L_1,L_2,L_3,L_4) &amp;= 4L_2L_4 \\
+N_{10}(L_1,L_2,L_3,L_4) &amp;= 4L_3L_4
+\end{align*}\end{split}\]</div>
+<p>The basis functions have the following key properties:</p>
+<ol class="arabic simple">
+<li><p><strong>Partition of unity</strong>: At any point, the sum of all basis functions equals 1</p></li>
+<li><p><strong>Interpolation</strong>: Each basis function equals 1 at its own node and 0 at all other nodes</p></li>
+<li><p><strong>Continuity</strong>: The functions are continuous across element boundaries</p></li>
+</ol>
+<p>The figures below show the basis functions for tetrahedral elements of different orders:</p>
+<ul>
+<li><p>Order 1 (Linear):</p>
+<figure class="align-default">
+<img alt="Tetrahedron Basis Function for order 1" src="../_images/1.png" />
+</figure>
+</li>
+<li><p>Order 2 (Quadratic):</p>
+<figure class="align-default">
+<img alt="Tetrahedron Basis Function for order 2" src="../_images/2.png" />
+</figure>
+</li>
+</ul>
+<p>The figures below show the basis points (nodes) for tetrahedral elements of different polynomial orders. The basis points represent the locations where the basis functions take on values of 1 or 0.</p>
+<p>For a tetrahedral element, the basis points are distributed according to the polynomial order:</p>
+<figure class="align-default">
+<img alt="Tetrahedron element basis points comparison showing node locations for polynomial orders 1-4" src="../_images/tetrahedron_comparison.png" />
+</figure>
+<p>For a tetrahedral element of polynomial order p, the number of basis points n is given by:</p>
+<div class="math notranslate nohighlight">
+\[n = \frac{(p+1)(p+2)(p+3)}{6}\]</div>
+<p>Higher order elements (p &gt; 1) have more basis points, enabling higher-order polynomial interpolation for improved approximation of curved geometries and solutions. The trade-off is increased computational cost with more degrees of freedom.</p>
+</section>
+<section id="hexahedron">
+<h2>Hexahedron<a class="headerlink" href="#hexahedron" title="Permalink to this heading"></a></h2>
+<p>The hexahedral basis functions are used to interpolate values within a 3D hexahedral element. For a hexahedral element of order n, there are (n+1)³ basis functions.</p>
+<p>For order 1 (linear), there are 8 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(x,y,z) &amp;= (1-x)(1-y)(1-z) \\
+N_2(x,y,z) &amp;= x(1-y)(1-z) \\
+N_3(x,y,z) &amp;= xy(1-z) \\
+N_4(x,y,z) &amp;= (1-x)y(1-z) \\
+N_5(x,y,z) &amp;= (1-x)(1-y)z \\
+N_6(x,y,z) &amp;= x(1-y)z \\
+N_7(x,y,z) &amp;= xyz \\
+N_8(x,y,z) &amp;= (1-x)yz
+\end{align*}\end{split}\]</div>
+<p>The basis functions have the following key properties:</p>
+<ol class="arabic simple">
+<li><p><strong>Partition of unity</strong>: At any point, the sum of all basis functions equals 1</p></li>
+<li><p><strong>Interpolation</strong>: Each basis function equals 1 at its own node and 0 at all other nodes</p></li>
+<li><p><strong>Continuity</strong>: The functions are continuous across element boundaries</p></li>
+</ol>
+<p>The figures below show the basis functions for hexahedral elements of different orders:</p>
+<ul>
+<li><p>Order 1 (Linear):</p>
+<figure class="align-default">
+<img alt="Hexahedron Basis Function for order 1" src="../_images/11.png" />
+</figure>
+</li>
+<li><p>Order 2 (Quadratic):</p>
+<figure class="align-default">
+<img alt="Hexahedron Basis Function for order 2" src="../_images/21.png" />
+</figure>
+</li>
+</ul>
+<p>The figures below show the basis points (nodes) for hexahedral elements of different polynomial orders. The basis points represent the locations where the basis functions take on values of 1 or 0.</p>
+<p>For a hexahedral element, the basis points are distributed according to the polynomial order:</p>
+<figure class="align-default">
+<img alt="Hexahedron element basis points comparison showing node locations for polynomial orders 1-4" src="../_images/hexahedron_comparison.png" />
+</figure>
+<p>For a hexahedral element of polynomial order p, the number of basis points n is given by:</p>
+<div class="math notranslate nohighlight">
+\[n = (p+1)^3\]</div>
+<p>Higher order elements (p &gt; 1) have more basis points, enabling higher-order polynomial interpolation for improved approximation of curved geometries and solutions. The trade-off is increased computational cost with more degrees of freedom.</p>
+</section>
+<section id="pyramid">
+<h2>Pyramid<a class="headerlink" href="#pyramid" title="Permalink to this heading"></a></h2>
+<p>The pyramidal basis functions are used to interpolate values within a 3D pyramidal element. For a pyramidal element of order n, there are specific numbers of basis functions depending on the order.</p>
+<p>For order 1 (linear), there are 5 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(x,y,z) &amp;= (1-x-z)(1-y-z)/(1-z) \\
+N_2(x,y,z) &amp;= x(1-y-z)/(1-z) \\
+N_3(x,y,z) &amp;= xy/(1-z) \\
+N_4(x,y,z) &amp;= (1-x-z)y/(1-z) \\
+N_5(x,y,z) &amp;= z
+\end{align*}\end{split}\]</div>
+<p>The basis functions have the following key properties:</p>
+<ol class="arabic simple">
+<li><p><strong>Partition of unity</strong>: At any point, the sum of all basis functions equals 1</p></li>
+<li><p><strong>Interpolation</strong>: Each basis function equals 1 at its own node and 0 at all other nodes</p></li>
+<li><p><strong>Continuity</strong>: The functions are continuous across element boundaries</p></li>
+</ol>
+<p>The figures below show the basis functions for pyramidal elements of different orders:</p>
+<ul>
+<li><p>Order 1 (Linear):</p>
+<figure class="align-default">
+<img alt="Pyramid Basis Function for order 1" src="../_images/12.png" />
+</figure>
+</li>
+<li><p>Order 2 (Quadratic):</p>
+<figure class="align-default">
+<img alt="Pyramid Basis Function for order 2" src="../_images/22.png" />
+</figure>
+</li>
+</ul>
+<p>The figures below show the basis points (nodes) for pyramidal elements of different polynomial orders. The basis points represent the locations where the basis functions take on values of 1 or 0.</p>
+<p>For a pyramidal element, the basis points are distributed according to the polynomial order:</p>
+<figure class="align-default">
+<img alt="Pyramid element basis points comparison showing node locations for polynomial orders 1-4" src="../_images/pyramid_comparison.png" />
+</figure>
+<p>For a pyramidal element of polynomial order p, the number of basis points n is given by:</p>
+<div class="math notranslate nohighlight">
+\[n = \frac{(p+1)(p+2)(2p+3)}{6}\]</div>
+<p>Higher order elements (p &gt; 1) have more basis points, enabling higher-order polynomial interpolation for improved approximation of curved geometries and solutions. The trade-off is increased computational cost with more degrees of freedom.</p>
+</section>
+<section id="prism">
+<h2>Prism<a class="headerlink" href="#prism" title="Permalink to this heading"></a></h2>
+<p>The prismatic basis functions are used to interpolate values within a 3D prismatic element. For a prismatic element of order n, there are specific numbers of basis functions depending on the order.</p>
+<p>For order 1 (linear), there are 6 basis functions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+N_1(L_1,L_2,L_3,z) &amp;= L_1(1-z) \\
+N_2(L_1,L_2,L_3,z) &amp;= L_2(1-z) \\
+N_3(L_1,L_2,L_3,z) &amp;= L_3(1-z) \\
+N_4(L_1,L_2,L_3,z) &amp;= L_1z \\
+N_5(L_1,L_2,L_3,z) &amp;= L_2z \\
+N_6(L_1,L_2,L_3,z) &amp;= L_3z
+\end{align*}\end{split}\]</div>
+<p>The basis functions have the following key properties:</p>
+<ol class="arabic simple">
+<li><p><strong>Partition of unity</strong>: At any point, the sum of all basis functions equals 1</p></li>
+<li><p><strong>Interpolation</strong>: Each basis function equals 1 at its own node and 0 at all other nodes</p></li>
+<li><p><strong>Continuity</strong>: The functions are continuous across element boundaries</p></li>
+</ol>
+<p>The figures below show the basis functions for prismatic elements of different orders:</p>
+<ul>
+<li><p>Order 1 (Linear):</p>
+<figure class="align-default">
+<img alt="Prism Basis Function for order 1" src="../_images/13.png" />
+</figure>
+</li>
+<li><p>Order 2 (Quadratic):</p>
+<figure class="align-default">
+<img alt="Prism Basis Function for order 2" src="../_images/23.png" />
+</figure>
+</li>
+</ul>
+<p>The figures below show the basis points (nodes) for prismatic elements of different polynomial orders. The basis points represent the locations where the basis functions take on values of 1 or 0.</p>
+<p>For a prismatic element, the basis points are distributed according to the polynomial order:</p>
+<figure class="align-default">
+<img alt="Prism element basis points comparison showing node locations for polynomial orders 1-4" src="../_images/prism_comparison.png" />
+</figure>
+<p>For a prismatic element of polynomial order p, the number of basis points n is given by:</p>
+<div class="math notranslate nohighlight">
+\[n = \frac{(p+1)^2(p+2)}{2}\]</div>
+<p>Higher order elements (p &gt; 1) have more basis points, enabling higher-order polynomial interpolation for improved approximation of curved geometries and solutions. The trade-off is increased computational cost with more degrees of freedom.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="benchmark.html" class="btn btn-neutral float-left" title="Benchmark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/mesh_gen.html" class="btn btn-neutral float-right" title="Mesh Generation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, walkerchi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

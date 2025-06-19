@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adjacency &mdash; tensormesh  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/mytheme.css?v=e73ece32" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Basis" href="basis.html" />
+    <link rel="prev" title="Mesh Generation" href="mesh_gen.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="https://raw.githubusercontent.com/walkerchi/tensormesh_sphinx_theme/master/tensormesh_sphinx_theme/static/img/tensormesh_logo.webp" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/installation.html#installatoion-via-pypi">Installatoion via PyPi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/benchmark.html">Benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#m2-pro-cpu">M2 Pro CPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#assemble-speed">Assemble Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/benchmark.html#pipeline-speed">Pipeline Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/element.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#line">Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#triangle">Triangle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#quadrilateral">Quadrilateral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#tetrahedron">Tetrahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#hexahedron">Hexahedron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#pyramid">Pyramid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started/element.html#prism">Prism</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mesh_gen.html">Mesh Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mesh_gen.html#d-high-order-mesh">2D high order mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_gen.html#d-high-circle-mesh">2D high circle mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_gen.html#d-hybrid-mesh">2D hybrid mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mesh_gen.html#id1">3D high order mesh</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Adjacency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#d-node-adjacency">2D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#d-element-adjacency">2D Element Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">3D Node Adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3D Element Adjacency</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basis.html">Basis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-line-basis">1D Line Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-triangle-basis">2D Triangle Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-quadrilateral-basis">2D Quadrilateral Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-tetrahedron-basis">3D Tetrahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-hexahedron-basis">3D Hexahedron Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-pyramid-basis">3D Pyramid Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis.html#d-prism-basis">3D Prism Basis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">Plot values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="values.html#d-point-value">2D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html#d-element-value">2D Element Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html#id1">3D Point Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values.html#id2">3D Element Value</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="poisson.html">Poisson Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="poisson.html#adaptive-mesh-refinement">Adaptive Mesh Refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wave.html">Wave Equation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wave.html#multi-frequency-dataset">multi frequency dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linear_elasticity.html">Linear Elasticity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear_elasticity.html#pressed-hollow-rectangle">Pressed Hollow Rectangle</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/dataset.html">tensormesh.dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/dataset.html#mesh">Mesh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen"><code class="docutils literal notranslate"><span class="pre">MeshGen</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.__init__"><code class="docutils literal notranslate"><span class="pre">MeshGen.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.add_rectangle"><code class="docutils literal notranslate"><span class="pre">MeshGen.add_rectangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.remove_rectangle"><code class="docutils literal notranslate"><span class="pre">MeshGen.remove_rectangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.add_circle"><code class="docutils literal notranslate"><span class="pre">MeshGen.add_circle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.remove_circle"><code class="docutils literal notranslate"><span class="pre">MeshGen.remove_circle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.add_cube"><code class="docutils literal notranslate"><span class="pre">MeshGen.add_cube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.remove_cube"><code class="docutils literal notranslate"><span class="pre">MeshGen.remove_cube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.add_sphere"><code class="docutils literal notranslate"><span class="pre">MeshGen.add_sphere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.remove_sphere"><code class="docutils literal notranslate"><span class="pre">MeshGen.remove_sphere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.mesh.MeshGen.gen"><code class="docutils literal notranslate"><span class="pre">MeshGen.gen()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/dataset.html#equation">Equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.PoissonMultiFrequency"><code class="docutils literal notranslate"><span class="pre">PoissonMultiFrequency</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.PoissonMultiFrequency.__init__"><code class="docutils literal notranslate"><span class="pre">PoissonMultiFrequency.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.PoissonMultiFrequency.source_term"><code class="docutils literal notranslate"><span class="pre">PoissonMultiFrequency.source_term()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.PoissonMultiFrequency.solution"><code class="docutils literal notranslate"><span class="pre">PoissonMultiFrequency.solution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.HeatMultiFrequency"><code class="docutils literal notranslate"><span class="pre">HeatMultiFrequency</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.HeatMultiFrequency.__init__"><code class="docutils literal notranslate"><span class="pre">HeatMultiFrequency.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.HeatMultiFrequency.initial_condition"><code class="docutils literal notranslate"><span class="pre">HeatMultiFrequency.initial_condition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.HeatMultiFrequency.solution"><code class="docutils literal notranslate"><span class="pre">HeatMultiFrequency.solution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.WaveMultiFrequency"><code class="docutils literal notranslate"><span class="pre">WaveMultiFrequency</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.WaveMultiFrequency.__init__"><code class="docutils literal notranslate"><span class="pre">WaveMultiFrequency.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.WaveMultiFrequency.initial_condition"><code class="docutils literal notranslate"><span class="pre">WaveMultiFrequency.initial_condition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/dataset.html#tensormesh.dataset.equation.WaveMultiFrequency.solution"><code class="docutils literal notranslate"><span class="pre">WaveMultiFrequency.solution()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/mesh.html">tensormesh.mesh</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/mesh.html#mesh">Mesh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh"><code class="docutils literal notranslate"><span class="pre">Mesh</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.points"><code class="docutils literal notranslate"><span class="pre">Mesh.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.cells"><code class="docutils literal notranslate"><span class="pre">Mesh.cells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.point_data"><code class="docutils literal notranslate"><span class="pre">Mesh.point_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.cell_data"><code class="docutils literal notranslate"><span class="pre">Mesh.cell_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.field_data"><code class="docutils literal notranslate"><span class="pre">Mesh.field_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.cell_sets"><code class="docutils literal notranslate"><span class="pre">Mesh.cell_sets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.dim2eletyp"><code class="docutils literal notranslate"><span class="pre">Mesh.dim2eletyp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.default_eletyp"><code class="docutils literal notranslate"><span class="pre">Mesh.default_eletyp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.default_element_type"><code class="docutils literal notranslate"><span class="pre">Mesh.default_element_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id0"><code class="docutils literal notranslate"><span class="pre">Mesh.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.__init__"><code class="docutils literal notranslate"><span class="pre">Mesh.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id1"><code class="docutils literal notranslate"><span class="pre">Mesh.cells</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id2"><code class="docutils literal notranslate"><span class="pre">Mesh.point_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id3"><code class="docutils literal notranslate"><span class="pre">Mesh.cell_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id4"><code class="docutils literal notranslate"><span class="pre">Mesh.field_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id5"><code class="docutils literal notranslate"><span class="pre">Mesh.cell_sets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id6"><code class="docutils literal notranslate"><span class="pre">Mesh.dim2eletyp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id7"><code class="docutils literal notranslate"><span class="pre">Mesh.default_eletyp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.register_point_data"><code class="docutils literal notranslate"><span class="pre">Mesh.register_point_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.register_element_data"><code class="docutils literal notranslate"><span class="pre">Mesh.register_element_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.to_meshio"><code class="docutils literal notranslate"><span class="pre">Mesh.to_meshio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.dim"><code class="docutils literal notranslate"><span class="pre">Mesh.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.save"><code class="docutils literal notranslate"><span class="pre">Mesh.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.to_file"><code class="docutils literal notranslate"><span class="pre">Mesh.to_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.node_adjacency"><code class="docutils literal notranslate"><span class="pre">Mesh.node_adjacency()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.element_adjacency"><code class="docutils literal notranslate"><span class="pre">Mesh.element_adjacency()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.elements"><code class="docutils literal notranslate"><span class="pre">Mesh.elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.clone"><code class="docutils literal notranslate"><span class="pre">Mesh.clone()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.plot"><code class="docutils literal notranslate"><span class="pre">Mesh.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.n_points"><code class="docutils literal notranslate"><span class="pre">Mesh.n_points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.n_elements"><code class="docutils literal notranslate"><span class="pre">Mesh.n_elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.boundary_mask"><code class="docutils literal notranslate"><span class="pre">Mesh.boundary_mask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#id8"><code class="docutils literal notranslate"><span class="pre">Mesh.default_element_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.dtype"><code class="docutils literal notranslate"><span class="pre">Mesh.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.device"><code class="docutils literal notranslate"><span class="pre">Mesh.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.from_meshio"><code class="docutils literal notranslate"><span class="pre">Mesh.from_meshio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.read"><code class="docutils literal notranslate"><span class="pre">Mesh.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.from_file"><code class="docutils literal notranslate"><span class="pre">Mesh.from_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_rectangle"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_rectangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_hollow_rectangle"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_hollow_rectangle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_circle"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_circle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_hollow_circle"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_hollow_circle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_L"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_cube"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_cube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_hollow_cube"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_hollow_cube()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_sphere"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_sphere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/mesh.html#tensormesh.mesh.Mesh.gen_hollow_sphere"><code class="docutils literal notranslate"><span class="pre">Mesh.gen_hollow_sphere()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/element.html">tensormesh.element</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#elements">Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element"><code class="docutils literal notranslate"><span class="pre">Element</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.points"><code class="docutils literal notranslate"><span class="pre">Element.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.vertex"><code class="docutils literal notranslate"><span class="pre">Element.vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.edge"><code class="docutils literal notranslate"><span class="pre">Element.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.face"><code class="docutils literal notranslate"><span class="pre">Element.face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.cell"><code class="docutils literal notranslate"><span class="pre">Element.cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.dim"><code class="docutils literal notranslate"><span class="pre">Element.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.n_vertex"><code class="docutils literal notranslate"><span class="pre">Element.n_vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.n_edge"><code class="docutils literal notranslate"><span class="pre">Element.n_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.n_face"><code class="docutils literal notranslate"><span class="pre">Element.n_face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.n_cell"><code class="docutils literal notranslate"><span class="pre">Element.n_cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.is_mix_facet"><code class="docutils literal notranslate"><span class="pre">Element.is_mix_facet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_facet_type"><code class="docutils literal notranslate"><span class="pre">Element.get_facet_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_basis"><code class="docutils literal notranslate"><span class="pre">Element.get_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_facet"><code class="docutils literal notranslate"><span class="pre">Element.get_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_edge"><code class="docutils literal notranslate"><span class="pre">Element.get_edge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_polynomial"><code class="docutils literal notranslate"><span class="pre">Element.get_polynomial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_quadrature"><code class="docutils literal notranslate"><span class="pre">Element.get_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">Element.get_facet_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_basis_fns"><code class="docutils literal notranslate"><span class="pre">Element.get_basis_fns()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_basis_grad_fns"><code class="docutils literal notranslate"><span class="pre">Element.get_basis_grad_fns()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.eval_cell_jacobian"><code class="docutils literal notranslate"><span class="pre">Element.eval_cell_jacobian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.eval_shape_val"><code class="docutils literal notranslate"><span class="pre">Element.eval_shape_val()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.eval_shape_grad"><code class="docutils literal notranslate"><span class="pre">Element.eval_shape_grad()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_local_facet_mapping_fns"><code class="docutils literal notranslate"><span class="pre">Element.get_local_facet_mapping_fns()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_local_facet_mapping_grad_fns"><code class="docutils literal notranslate"><span class="pre">Element.get_local_facet_mapping_grad_fns()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_outwards_facet_normal"><code class="docutils literal notranslate"><span class="pre">Element.get_outwards_facet_normal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_n_facet"><code class="docutils literal notranslate"><span class="pre">Element.get_n_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_n_basis"><code class="docutils literal notranslate"><span class="pre">Element.get_n_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.eval_facet_cell_jacobian"><code class="docutils literal notranslate"><span class="pre">Element.eval_facet_cell_jacobian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.eval_facet_jacobian"><code class="docutils literal notranslate"><span class="pre">Element.eval_facet_jacobian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.element_to_facet"><code class="docutils literal notranslate"><span class="pre">Element.element_to_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.element_to_edge"><code class="docutils literal notranslate"><span class="pre">Element.element_to_edge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_tri_mask"><code class="docutils literal notranslate"><span class="pre">Element.get_tri_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_quad_mask"><code class="docutils literal notranslate"><span class="pre">Element.get_quad_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Element.get_contour"><code class="docutils literal notranslate"><span class="pre">Element.get_contour()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line"><code class="docutils literal notranslate"><span class="pre">Line</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.points"><code class="docutils literal notranslate"><span class="pre">Line.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.vertex"><code class="docutils literal notranslate"><span class="pre">Line.vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.edge"><code class="docutils literal notranslate"><span class="pre">Line.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.dim"><code class="docutils literal notranslate"><span class="pre">Line.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.n_vertex"><code class="docutils literal notranslate"><span class="pre">Line.n_vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.n_edge"><code class="docutils literal notranslate"><span class="pre">Line.n_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.n_face"><code class="docutils literal notranslate"><span class="pre">Line.n_face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.n_cell"><code class="docutils literal notranslate"><span class="pre">Line.n_cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.get_basis"><code class="docutils literal notranslate"><span class="pre">Line.get_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.get_polynomial"><code class="docutils literal notranslate"><span class="pre">Line.get_polynomial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Line.get_quadrature"><code class="docutils literal notranslate"><span class="pre">Line.get_quadrature()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle"><code class="docutils literal notranslate"><span class="pre">Triangle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.points"><code class="docutils literal notranslate"><span class="pre">Triangle.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.vertex"><code class="docutils literal notranslate"><span class="pre">Triangle.vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.edge"><code class="docutils literal notranslate"><span class="pre">Triangle.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.face"><code class="docutils literal notranslate"><span class="pre">Triangle.face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.dim"><code class="docutils literal notranslate"><span class="pre">Triangle.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.n_vertex"><code class="docutils literal notranslate"><span class="pre">Triangle.n_vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.n_edge"><code class="docutils literal notranslate"><span class="pre">Triangle.n_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.n_face"><code class="docutils literal notranslate"><span class="pre">Triangle.n_face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.n_cell"><code class="docutils literal notranslate"><span class="pre">Triangle.n_cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.get_basis"><code class="docutils literal notranslate"><span class="pre">Triangle.get_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.get_polynomial"><code class="docutils literal notranslate"><span class="pre">Triangle.get_polynomial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.get_facet"><code class="docutils literal notranslate"><span class="pre">Triangle.get_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.get_quadrature"><code class="docutils literal notranslate"><span class="pre">Triangle.get_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.get_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">Triangle.get_facet_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.get_facet_type"><code class="docutils literal notranslate"><span class="pre">Triangle.get_facet_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Triangle.get_contour"><code class="docutils literal notranslate"><span class="pre">Triangle.get_contour()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron"><code class="docutils literal notranslate"><span class="pre">Tetrahedron</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.points"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.vertex"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.edge"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.face"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.cell"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.dim"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.n_vertex"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.n_vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.n_edge"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.n_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.n_face"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.n_face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.n_cell"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.n_cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.get_basis"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.get_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.get_polynomial"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.get_polynomial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.get_quadrature"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.get_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.get_facet"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.get_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.get_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.get_facet_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Tetrahedron.get_facet_type"><code class="docutils literal notranslate"><span class="pre">Tetrahedron.get_facet_type()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral"><code class="docutils literal notranslate"><span class="pre">Quadrilateral</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.points"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.vertex"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.edge"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.face"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.dim"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.n_vertex"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.n_vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.n_edge"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.n_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.n_face"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.n_face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.n_cell"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.n_cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.get_basis"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.get_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.get_polynomial"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.get_polynomial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.get_facet"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.get_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.get_quadrature"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.get_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.get_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.get_facet_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.get_facet_type"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.get_facet_type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Quadrilateral.get_coutour"><code class="docutils literal notranslate"><span class="pre">Quadrilateral.get_coutour()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron"><code class="docutils literal notranslate"><span class="pre">Hexahedron</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.points"><code class="docutils literal notranslate"><span class="pre">Hexahedron.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.vertex"><code class="docutils literal notranslate"><span class="pre">Hexahedron.vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.edge"><code class="docutils literal notranslate"><span class="pre">Hexahedron.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.face"><code class="docutils literal notranslate"><span class="pre">Hexahedron.face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.cell"><code class="docutils literal notranslate"><span class="pre">Hexahedron.cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.dim"><code class="docutils literal notranslate"><span class="pre">Hexahedron.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.n_vertex"><code class="docutils literal notranslate"><span class="pre">Hexahedron.n_vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.n_edge"><code class="docutils literal notranslate"><span class="pre">Hexahedron.n_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.n_face"><code class="docutils literal notranslate"><span class="pre">Hexahedron.n_face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.n_cell"><code class="docutils literal notranslate"><span class="pre">Hexahedron.n_cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.get_basis"><code class="docutils literal notranslate"><span class="pre">Hexahedron.get_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.get_polynomial"><code class="docutils literal notranslate"><span class="pre">Hexahedron.get_polynomial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.get_quadrature"><code class="docutils literal notranslate"><span class="pre">Hexahedron.get_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.get_facet"><code class="docutils literal notranslate"><span class="pre">Hexahedron.get_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.get_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">Hexahedron.get_facet_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Hexahedron.get_facet_type"><code class="docutils literal notranslate"><span class="pre">Hexahedron.get_facet_type()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism"><code class="docutils literal notranslate"><span class="pre">Prism</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.points"><code class="docutils literal notranslate"><span class="pre">Prism.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.vertex"><code class="docutils literal notranslate"><span class="pre">Prism.vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.edge"><code class="docutils literal notranslate"><span class="pre">Prism.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.face"><code class="docutils literal notranslate"><span class="pre">Prism.face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.cell"><code class="docutils literal notranslate"><span class="pre">Prism.cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.dim"><code class="docutils literal notranslate"><span class="pre">Prism.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.n_vertex"><code class="docutils literal notranslate"><span class="pre">Prism.n_vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.n_edge"><code class="docutils literal notranslate"><span class="pre">Prism.n_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.n_face"><code class="docutils literal notranslate"><span class="pre">Prism.n_face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.n_cell"><code class="docutils literal notranslate"><span class="pre">Prism.n_cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.is_mix_facet"><code class="docutils literal notranslate"><span class="pre">Prism.is_mix_facet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.get_basis"><code class="docutils literal notranslate"><span class="pre">Prism.get_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.get_polynomial"><code class="docutils literal notranslate"><span class="pre">Prism.get_polynomial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.get_quadrature"><code class="docutils literal notranslate"><span class="pre">Prism.get_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.get_facet"><code class="docutils literal notranslate"><span class="pre">Prism.get_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.get_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">Prism.get_facet_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Prism.get_facet_type"><code class="docutils literal notranslate"><span class="pre">Prism.get_facet_type()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid"><code class="docutils literal notranslate"><span class="pre">Pyramid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.points"><code class="docutils literal notranslate"><span class="pre">Pyramid.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.vertex"><code class="docutils literal notranslate"><span class="pre">Pyramid.vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.edge"><code class="docutils literal notranslate"><span class="pre">Pyramid.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.face"><code class="docutils literal notranslate"><span class="pre">Pyramid.face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.cell"><code class="docutils literal notranslate"><span class="pre">Pyramid.cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.dim"><code class="docutils literal notranslate"><span class="pre">Pyramid.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.n_vertex"><code class="docutils literal notranslate"><span class="pre">Pyramid.n_vertex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.n_edge"><code class="docutils literal notranslate"><span class="pre">Pyramid.n_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.n_face"><code class="docutils literal notranslate"><span class="pre">Pyramid.n_face</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.n_cell"><code class="docutils literal notranslate"><span class="pre">Pyramid.n_cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.is_mix_facet"><code class="docutils literal notranslate"><span class="pre">Pyramid.is_mix_facet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.get_basis"><code class="docutils literal notranslate"><span class="pre">Pyramid.get_basis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.get_polynomial"><code class="docutils literal notranslate"><span class="pre">Pyramid.get_polynomial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.get_quadrature"><code class="docutils literal notranslate"><span class="pre">Pyramid.get_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.get_facet"><code class="docutils literal notranslate"><span class="pre">Pyramid.get_facet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.get_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">Pyramid.get_facet_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.element.Pyramid.get_facet_type"><code class="docutils literal notranslate"><span class="pre">Pyramid.get_facet_type()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#transformation">Transformation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation"><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.elements"><code class="docutils literal notranslate"><span class="pre">Transformation.elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.points"><code class="docutils literal notranslate"><span class="pre">Transformation.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.element"><code class="docutils literal notranslate"><span class="pre">Transformation.element</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.basis_order"><code class="docutils literal notranslate"><span class="pre">Transformation.basis_order</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.quadrature_order"><code class="docutils literal notranslate"><span class="pre">Transformation.quadrature_order</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id0"><code class="docutils literal notranslate"><span class="pre">Transformation.elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id1"><code class="docutils literal notranslate"><span class="pre">Transformation.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.__init__"><code class="docutils literal notranslate"><span class="pre">Transformation.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id2"><code class="docutils literal notranslate"><span class="pre">Transformation.element</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id3"><code class="docutils literal notranslate"><span class="pre">Transformation.basis_order</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id4"><code class="docutils literal notranslate"><span class="pre">Transformation.quadrature_order</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.update_points"><code class="docutils literal notranslate"><span class="pre">Transformation.update_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.dim"><code class="docutils literal notranslate"><span class="pre">Transformation.dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.device"><code class="docutils literal notranslate"><span class="pre">Transformation.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.dtype"><code class="docutils literal notranslate"><span class="pre">Transformation.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.element_coords"><code class="docutils literal notranslate"><span class="pre">Transformation.element_coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.n_elements"><code class="docutils literal notranslate"><span class="pre">Transformation.n_elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.basis"><code class="docutils literal notranslate"><span class="pre">Transformation.basis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.n_basis"><code class="docutils literal notranslate"><span class="pre">Transformation.n_basis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.quadrature"><code class="docutils literal notranslate"><span class="pre">Transformation.quadrature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.n_quadrature"><code class="docutils literal notranslate"><span class="pre">Transformation.n_quadrature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.shape_val"><code class="docutils literal notranslate"><span class="pre">Transformation.shape_val</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.shape_grad"><code class="docutils literal notranslate"><span class="pre">Transformation.shape_grad</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.jacobian"><code class="docutils literal notranslate"><span class="pre">Transformation.jacobian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.facets"><code class="docutils literal notranslate"><span class="pre">Transformation.facets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.facet_quadrature"><code class="docutils literal notranslate"><span class="pre">Transformation.facet_quadrature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.facet_shape_val"><code class="docutils literal notranslate"><span class="pre">Transformation.facet_shape_val</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.facet_shape_grad"><code class="docutils literal notranslate"><span class="pre">Transformation.facet_shape_grad</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.facet_jacobian"><code class="docutils literal notranslate"><span class="pre">Transformation.facet_jacobian</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.nanson_scale"><code class="docutils literal notranslate"><span class="pre">Transformation.nanson_scale</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.phi"><code class="docutils literal notranslate"><span class="pre">Transformation.phi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.gradphi"><code class="docutils literal notranslate"><span class="pre">Transformation.gradphi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.J"><code class="docutils literal notranslate"><span class="pre">Transformation.J</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.detJ"><code class="docutils literal notranslate"><span class="pre">Transformation.detJ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.JxW"><code class="docutils literal notranslate"><span class="pre">Transformation.JxW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.G"><code class="docutils literal notranslate"><span class="pre">Transformation.G</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.detG"><code class="docutils literal notranslate"><span class="pre">Transformation.detG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.GxW"><code class="docutils literal notranslate"><span class="pre">Transformation.GxW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.F"><code class="docutils literal notranslate"><span class="pre">Transformation.F</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.detF"><code class="docutils literal notranslate"><span class="pre">Transformation.detF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.FxW"><code class="docutils literal notranslate"><span class="pre">Transformation.FxW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.n"><code class="docutils literal notranslate"><span class="pre">Transformation.n</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.batch_quadrature"><code class="docutils literal notranslate"><span class="pre">Transformation.batch_quadrature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.batch_elements_coords"><code class="docutils literal notranslate"><span class="pre">Transformation.batch_elements_coords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.batch_shape_val"><code class="docutils literal notranslate"><span class="pre">Transformation.batch_shape_val()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.transformation.Transformation.batch_shape_grad_jxw"><code class="docutils literal notranslate"><span class="pre">Transformation.batch_shape_grad_jxw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#polynomial">Polynomial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial"><code class="docutils literal notranslate"><span class="pre">Polynomial</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.__init__"><code class="docutils literal notranslate"><span class="pre">Polynomial.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.n_vars"><code class="docutils literal notranslate"><span class="pre">Polynomial.n_vars</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.n_terms"><code class="docutils literal notranslate"><span class="pre">Polynomial.n_terms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.forward"><code class="docutils literal notranslate"><span class="pre">Polynomial.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.get_exp_terms"><code class="docutils literal notranslate"><span class="pre">Polynomial.get_exp_terms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.deriv"><code class="docutils literal notranslate"><span class="pre">Polynomial.deriv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.grad"><code class="docutils literal notranslate"><span class="pre">Polynomial.grad()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.reset_coef"><code class="docutils literal notranslate"><span class="pre">Polynomial.reset_coef()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.repeat"><code class="docutils literal notranslate"><span class="pre">Polynomial.repeat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.lin_exp"><code class="docutils literal notranslate"><span class="pre">Polynomial.lin_exp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.poly_exp"><code class="docutils literal notranslate"><span class="pre">Polynomial.poly_exp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.tens_exp"><code class="docutils literal notranslate"><span class="pre">Polynomial.tens_exp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.pyr_exp"><code class="docutils literal notranslate"><span class="pre">Polynomial.pyr_exp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomial.pri_exp"><code class="docutils literal notranslate"><span class="pre">Polynomial.pri_exp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials"><code class="docutils literal notranslate"><span class="pre">Polynomials</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials._coef"><code class="docutils literal notranslate"><span class="pre">Polynomials._coef</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials._exp"><code class="docutils literal notranslate"><span class="pre">Polynomials._exp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.n_polys"><code class="docutils literal notranslate"><span class="pre">Polynomials.n_polys</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.n_vars"><code class="docutils literal notranslate"><span class="pre">Polynomials.n_vars</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.n_terms"><code class="docutils literal notranslate"><span class="pre">Polynomials.n_terms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.device"><code class="docutils literal notranslate"><span class="pre">Polynomials.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.dtype"><code class="docutils literal notranslate"><span class="pre">Polynomials.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.shape"><code class="docutils literal notranslate"><span class="pre">Polynomials.shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.__init__"><code class="docutils literal notranslate"><span class="pre">Polynomials.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id7"><code class="docutils literal notranslate"><span class="pre">Polynomials.n_polys</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id8"><code class="docutils literal notranslate"><span class="pre">Polynomials.n_vars</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id9"><code class="docutils literal notranslate"><span class="pre">Polynomials.n_terms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.numel"><code class="docutils literal notranslate"><span class="pre">Polynomials.numel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id10"><code class="docutils literal notranslate"><span class="pre">Polynomials.shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.ndim"><code class="docutils literal notranslate"><span class="pre">Polynomials.ndim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id11"><code class="docutils literal notranslate"><span class="pre">Polynomials.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#id12"><code class="docutils literal notranslate"><span class="pre">Polynomials.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.dim"><code class="docutils literal notranslate"><span class="pre">Polynomials.dim()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.forward"><code class="docutils literal notranslate"><span class="pre">Polynomials.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.get_exp_terms"><code class="docutils literal notranslate"><span class="pre">Polynomials.get_exp_terms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.apply_coefficient"><code class="docutils literal notranslate"><span class="pre">Polynomials.apply_coefficient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.map"><code class="docutils literal notranslate"><span class="pre">Polynomials.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.map_exp_terms"><code class="docutils literal notranslate"><span class="pre">Polynomials.map_exp_terms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.reshape"><code class="docutils literal notranslate"><span class="pre">Polynomials.reshape()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.transpose"><code class="docutils literal notranslate"><span class="pre">Polynomials.transpose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.deriv"><code class="docutils literal notranslate"><span class="pre">Polynomials.deriv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.grad"><code class="docutils literal notranslate"><span class="pre">Polynomials.grad()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.reset_coef"><code class="docutils literal notranslate"><span class="pre">Polynomials.reset_coef()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.repeat"><code class="docutils literal notranslate"><span class="pre">Polynomials.repeat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.polynomial.Polynomials.stack"><code class="docutils literal notranslate"><span class="pre">Polynomials.stack()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.basis">Basis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.lin_linspace"><code class="docutils literal notranslate"><span class="pre">lin_linspace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.quad_linspace"><code class="docutils literal notranslate"><span class="pre">quad_linspace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.tri_linspace"><code class="docutils literal notranslate"><span class="pre">tri_linspace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.hex_linspace"><code class="docutils literal notranslate"><span class="pre">hex_linspace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.tet_linspace"><code class="docutils literal notranslate"><span class="pre">tet_linspace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.pyr_linspace"><code class="docutils literal notranslate"><span class="pre">pyr_linspace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.pri_linspace"><code class="docutils literal notranslate"><span class="pre">pri_linspace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.lin_basis"><code class="docutils literal notranslate"><span class="pre">lin_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.tri_basis"><code class="docutils literal notranslate"><span class="pre">tri_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.quad_basis"><code class="docutils literal notranslate"><span class="pre">quad_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.tet_basis"><code class="docutils literal notranslate"><span class="pre">tet_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.hex_basis"><code class="docutils literal notranslate"><span class="pre">hex_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.pyr_basis"><code class="docutils literal notranslate"><span class="pre">pyr_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.pri_basis"><code class="docutils literal notranslate"><span class="pre">pri_basis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.accumulate_range"><code class="docutils literal notranslate"><span class="pre">accumulate_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.index_reverse_mapping"><code class="docutils literal notranslate"><span class="pre">index_reverse_mapping()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.facet_basis_index_2d"><code class="docutils literal notranslate"><span class="pre">facet_basis_index_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.tet_facet_basis_index"><code class="docutils literal notranslate"><span class="pre">tet_facet_basis_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.hex_facet_basis_index"><code class="docutils literal notranslate"><span class="pre">hex_facet_basis_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.mix_facet_basis_index"><code class="docutils literal notranslate"><span class="pre">mix_facet_basis_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.basis.edge_index"><code class="docutils literal notranslate"><span class="pre">edge_index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.quadrature">Quadrature</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.lin_quadrature"><code class="docutils literal notranslate"><span class="pre">lin_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.tri_quadrature"><code class="docutils literal notranslate"><span class="pre">tri_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.tet_quadrature"><code class="docutils literal notranslate"><span class="pre">tet_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.quad_quadrature"><code class="docutils literal notranslate"><span class="pre">quad_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.hex_quadrature"><code class="docutils literal notranslate"><span class="pre">hex_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.pyr_quadrature"><code class="docutils literal notranslate"><span class="pre">pyr_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.pri_quadrature"><code class="docutils literal notranslate"><span class="pre">pri_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.facet_quadrature_2d"><code class="docutils literal notranslate"><span class="pre">facet_quadrature_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.tet_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">tet_facet_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.hex_facet_quadrature"><code class="docutils literal notranslate"><span class="pre">hex_facet_quadrature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.quadrature.mix_facet_quadrature_3d"><code class="docutils literal notranslate"><span class="pre">mix_facet_quadrature_3d()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/element.html#module-tensormesh.element.normal">Normal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.normal.outwards_normal_2d"><code class="docutils literal notranslate"><span class="pre">outwards_normal_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/element.html#tensormesh.element.normal.outwards_normal_3d"><code class="docutils literal notranslate"><span class="pre">outwards_normal_3d()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/assemble.html">tensormesh.assemble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#element-assembler">Element Assembler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler"><code class="docutils literal notranslate"><span class="pre">ElementAssembler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.quadrature_weights"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.quadrature_weights</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.quadrature_points"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.quadrature_points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.shape_val"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.shape_val</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.projector"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.projector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.elements"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.edges"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.edges</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.n_points"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.n_points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.dimension"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.dimension</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.element_types"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.element_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id0"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.edges</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.__init__"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id1"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.projector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.transformation"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id2"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id3"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.dimension</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id4"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.element_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id5"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.n_points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.device"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.dtype"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.type"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.forward"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.from_assembler"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.from_assembler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.element_assembler.ElementAssembler.from_mesh"><code class="docutils literal notranslate"><span class="pre">ElementAssembler.from_mesh()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#facet-assembler">Facet Assembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#node-assembler">Node Assembler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler"><code class="docutils literal notranslate"><span class="pre">NodeAssembler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.quadrature_weights"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.quadrature_weights</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.quadrature_points"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.quadrature_points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.shape_val"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.shape_val</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.projector"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.projector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.elements"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.n_points"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.n_points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.dimension"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.dimension</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.element_types"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.element_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.__init__"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id6"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.projector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.transformation"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id7"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.elements</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id8"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.dimension</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id9"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.element_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#id10"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.n_points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.device"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.dtype"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.type"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.forward"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.from_assembler"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.from_assembler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.from_elements"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.from_elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.node_assembler.NodeAssembler.from_mesh"><code class="docutils literal notranslate"><span class="pre">NodeAssembler.from_mesh()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/assemble.html#built-in-assemblers">Built-in Assemblers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler"><code class="docutils literal notranslate"><span class="pre">LaplaceElementAssembler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.builtin.LaplaceElementAssembler.forward"><code class="docutils literal notranslate"><span class="pre">LaplaceElementAssembler.forward()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler"><code class="docutils literal notranslate"><span class="pre">MassElementAssembler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/assemble.html#tensormesh.assemble.builtin.MassElementAssembler.forward"><code class="docutils literal notranslate"><span class="pre">MassElementAssembler.forward()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/sparse.html">tensormesh.sparse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/sparse.html#sparsematirx">SparseMatirx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix"><code class="docutils literal notranslate"><span class="pre">SparseMatrix</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.edata"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.edata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.row"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.row</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.col"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.col</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.shape"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.hash_layout"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.hash_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#id0"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.edata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#id1"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.row</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#id2"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.col</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.__init__"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#id3"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.layout_hash"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.layout_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.edges"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.edges</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.elementwise_operation"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.elementwise_operation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.solve"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.solve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.requires_grad_"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.requires_grad_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.transpose"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.transpose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.sqrt"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.sqrt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.reciprocal"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.reciprocal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.degree"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.degree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.sum"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.sum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.clone"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.clone()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.T"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.T</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.requires_grad"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.requires_grad</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.dtype"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.device"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.grad"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.grad</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.grad_fn"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.grad_fn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.nnz"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.nnz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.layout_mask"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.layout_mask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.type"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.detach"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.detach()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.to_scipy_coo"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.to_scipy_coo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.to_sparse_coo"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.to_sparse_coo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.to_dense"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.to_dense()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.has_same_layout"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.has_same_layout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.from_scipy_coo"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.from_scipy_coo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.from_sparse_coo"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.from_sparse_coo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.from_block_coo"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.from_block_coo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.from_dense"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.from_dense()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.random"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.random_layout"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.random_layout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.random_from_layout"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.random_from_layout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.eye"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.eye()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.full"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.full()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.combine_vector"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.combine_vector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.combine_matrix"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.combine_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/sparse.html#tensormesh.sparse.SparseMatrix.combine"><code class="docutils literal notranslate"><span class="pre">SparseMatrix.combine()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/operator.html">tensormesh.operator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/operator.html#condenser">Condenser</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser"><code class="docutils literal notranslate"><span class="pre">Condenser</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.dirichlet_mask"><code class="docutils literal notranslate"><span class="pre">Condenser.dirichlet_mask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.dirichlet_value"><code class="docutils literal notranslate"><span class="pre">Condenser.dirichlet_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.__init__"><code class="docutils literal notranslate"><span class="pre">Condenser.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#id0"><code class="docutils literal notranslate"><span class="pre">Condenser.dirichlet_mask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#id1"><code class="docutils literal notranslate"><span class="pre">Condenser.dirichlet_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.inner_row"><code class="docutils literal notranslate"><span class="pre">Condenser.inner_row</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.inner_col"><code class="docutils literal notranslate"><span class="pre">Condenser.inner_col</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.ou2in_row"><code class="docutils literal notranslate"><span class="pre">Condenser.ou2in_row</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.ou2in_col"><code class="docutils literal notranslate"><span class="pre">Condenser.ou2in_col</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.is_inner_edge"><code class="docutils literal notranslate"><span class="pre">Condenser.is_inner_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.is_ou2in_edge"><code class="docutils literal notranslate"><span class="pre">Condenser.is_ou2in_edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.layout_hash"><code class="docutils literal notranslate"><span class="pre">Condenser.layout_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.K_ou2in"><code class="docutils literal notranslate"><span class="pre">Condenser.K_ou2in</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.condense_rhs"><code class="docutils literal notranslate"><span class="pre">Condenser.condense_rhs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/operator.html#tensormesh.operator.Condenser.recover"><code class="docutils literal notranslate"><span class="pre">Condenser.recover()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/ode.html">tensormesh.ode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ode.html#runge-kutta-methods">Runge-Kutta methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ode.html#built-in-methods">Built-in Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ExplicitRungeKutta"><code class="docutils literal notranslate"><span class="pre">ExplicitRungeKutta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ExplicitRungeKutta.__init__"><code class="docutils literal notranslate"><span class="pre">ExplicitRungeKutta.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ExplicitRungeKutta.forward"><code class="docutils literal notranslate"><span class="pre">ExplicitRungeKutta.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ExplicitRungeKutta.step"><code class="docutils literal notranslate"><span class="pre">ExplicitRungeKutta.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.__init__"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.forward_M"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta.forward_M()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.forward_A"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta.forward_A()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.forward_B"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta.forward_B()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.pre_solve_lhs"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta.pre_solve_lhs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.pre_solve_rhs"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta.pre_solve_rhs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.post_solve"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta.post_solve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.ImplicitLinearRungeKutta.step"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearRungeKutta.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.builtin.ExplicitEuler"><code class="docutils literal notranslate"><span class="pre">ExplicitEuler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.builtin.ExplicitEuler.__init__"><code class="docutils literal notranslate"><span class="pre">ExplicitEuler.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.builtin.ImplicitLinearEuler"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearEuler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.builtin.ImplicitLinearEuler.__init__"><code class="docutils literal notranslate"><span class="pre">ImplicitLinearEuler.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.builtin.MidPointLinearEuler"><code class="docutils literal notranslate"><span class="pre">MidPointLinearEuler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ode.html#tensormesh.ode.builtin.MidPointLinearEuler.__init__"><code class="docutils literal notranslate"><span class="pre">MidPointLinearEuler.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/functional.html">tensormesh.functional</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.ops">ops</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.ops.sym"><code class="docutils literal notranslate"><span class="pre">sym()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.ops.skew"><code class="docutils literal notranslate"><span class="pre">skew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.ops.sqrt"><code class="docutils literal notranslate"><span class="pre">sqrt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.ops.divide"><code class="docutils literal notranslate"><span class="pre">divide()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.elasticity">elasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.strain"><code class="docutils literal notranslate"><span class="pre">strain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.isotropic_stress"><code class="docutils literal notranslate"><span class="pre">isotropic_stress()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.deviatoric_stress"><code class="docutils literal notranslate"><span class="pre">deviatoric_stress()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.deviatoric_stress_norm"><code class="docutils literal notranslate"><span class="pre">deviatoric_stress_norm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.voigt_shape_grad"><code class="docutils literal notranslate"><span class="pre">voigt_shape_grad()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.voigt_stiffness"><code class="docutils literal notranslate"><span class="pre">voigt_stiffness()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.voigt_shape_val"><code class="docutils literal notranslate"><span class="pre">voigt_shape_val()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.voigt_C"><code class="docutils literal notranslate"><span class="pre">voigt_C()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.voigt_B"><code class="docutils literal notranslate"><span class="pre">voigt_B()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.elasticity.voigt_N"><code class="docutils literal notranslate"><span class="pre">voigt_N()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/functional.html#module-tensormesh.functional.plastic">plastic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/functional.html#tensormesh.functional.plastic.update_plastic_stress"><code class="docutils literal notranslate"><span class="pre">update_plastic_stress()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/nn.html">NN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/nn.html#bufferutils">BufferUtils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict"><code class="docutils literal notranslate"><span class="pre">BufferDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.__init__"><code class="docutils literal notranslate"><span class="pre">BufferDict.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.as_parameter"><code class="docutils literal notranslate"><span class="pre">BufferDict.as_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.as_buffer"><code class="docutils literal notranslate"><span class="pre">BufferDict.as_buffer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.keys"><code class="docutils literal notranslate"><span class="pre">BufferDict.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.items"><code class="docutils literal notranslate"><span class="pre">BufferDict.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.values"><code class="docutils literal notranslate"><span class="pre">BufferDict.values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.is_floating_point"><code class="docutils literal notranslate"><span class="pre">BufferDict.is_floating_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.is_complex"><code class="docutils literal notranslate"><span class="pre">BufferDict.is_complex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.dtype"><code class="docutils literal notranslate"><span class="pre">BufferDict.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.device"><code class="docutils literal notranslate"><span class="pre">BufferDict.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.to_dict"><code class="docutils literal notranslate"><span class="pre">BufferDict.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferDict.clone"><code class="docutils literal notranslate"><span class="pre">BufferDict.clone()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList"><code class="docutils literal notranslate"><span class="pre">BufferList</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.__init__"><code class="docutils literal notranslate"><span class="pre">BufferList.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.as_parameter"><code class="docutils literal notranslate"><span class="pre">BufferList.as_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.as_buffer"><code class="docutils literal notranslate"><span class="pre">BufferList.as_buffer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.append"><code class="docutils literal notranslate"><span class="pre">BufferList.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.insert"><code class="docutils literal notranslate"><span class="pre">BufferList.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.pop"><code class="docutils literal notranslate"><span class="pre">BufferList.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.item"><code class="docutils literal notranslate"><span class="pre">BufferList.item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.is_floating_point"><code class="docutils literal notranslate"><span class="pre">BufferList.is_floating_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.is_complex"><code class="docutils literal notranslate"><span class="pre">BufferList.is_complex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.dtype"><code class="docutils literal notranslate"><span class="pre">BufferList.dtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.device"><code class="docutils literal notranslate"><span class="pre">BufferList.device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.to_list"><code class="docutils literal notranslate"><span class="pre">BufferList.to_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/nn.html#tensormesh.nn.BufferList.clone"><code class="docutils literal notranslate"><span class="pre">BufferList.clone()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/visualization.html">visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/visualization.html#module-tensormesh.visualization.draw_graph">Draw Facet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_graph.draw_graph"><code class="docutils literal notranslate"><span class="pre">draw_graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_mesh.draw_mesh"><code class="docutils literal notranslate"><span class="pre">draw_mesh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_facet.draw_facet_2d"><code class="docutils literal notranslate"><span class="pre">draw_facet_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_facet.draw_face"><code class="docutils literal notranslate"><span class="pre">draw_face()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_element_value.draw_element_value_2d_tri"><code class="docutils literal notranslate"><span class="pre">draw_element_value_2d_tri()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_element_value.draw_element_value_2d"><code class="docutils literal notranslate"><span class="pre">draw_element_value_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_element_value.update_element_value_2d_tri"><code class="docutils literal notranslate"><span class="pre">update_element_value_2d_tri()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_element_value.update_element_value_2d"><code class="docutils literal notranslate"><span class="pre">update_element_value_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_element_value.draw_element_value_3d"><code class="docutils literal notranslate"><span class="pre">draw_element_value_3d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_element_value.update_element_value_3d"><code class="docutils literal notranslate"><span class="pre">update_element_value_3d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_element_value.draw_element_value"><code class="docutils literal notranslate"><span class="pre">draw_element_value()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_element_value.update_element_value"><code class="docutils literal notranslate"><span class="pre">update_element_value()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value_2d_tri_gouraud"><code class="docutils literal notranslate"><span class="pre">draw_point_value_2d_tri_gouraud()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value_2d_tri_gouraud"><code class="docutils literal notranslate"><span class="pre">update_point_value_2d_tri_gouraud()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value_2d_interpolation"><code class="docutils literal notranslate"><span class="pre">draw_point_value_2d_interpolation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value_2d_interpolation"><code class="docutils literal notranslate"><span class="pre">update_point_value_2d_interpolation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value_2d"><code class="docutils literal notranslate"><span class="pre">draw_point_value_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value_2d"><code class="docutils literal notranslate"><span class="pre">update_point_value_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value_3d_interpolation"><code class="docutils literal notranslate"><span class="pre">draw_point_value_3d_interpolation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value_3d_interpolation"><code class="docutils literal notranslate"><span class="pre">update_point_value_3d_interpolation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.draw_point_value"><code class="docutils literal notranslate"><span class="pre">draw_point_value()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.draw_point_value.update_point_value"><code class="docutils literal notranslate"><span class="pre">update_point_value()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter"><code class="docutils literal notranslate"><span class="pre">StreamPlotter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.__init__"><code class="docutils literal notranslate"><span class="pre">StreamPlotter.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.grab_frame"><code class="docutils literal notranslate"><span class="pre">StreamPlotter.grab_frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.update"><code class="docutils literal notranslate"><span class="pre">StreamPlotter.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.stream_plotter.StreamPlotter.draw_mesh_2d"><code class="docutils literal notranslate"><span class="pre">StreamPlotter.draw_mesh_2d()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.stream_plotter.draw_mesh_2d_static"><code class="docutils literal notranslate"><span class="pre">draw_mesh_2d_static()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/visualization.html#tensormesh.visualization.stream_plotter.draw_mesh_2d_stream"><code class="docutils literal notranslate"><span class="pre">draw_mesh_2d_stream()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/profile.html">Profile</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/profile.html#cpuprofiler">CPUProfiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler"><code class="docutils literal notranslate"><span class="pre">CPUProfiler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.pid"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.pid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.results"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.times"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.times</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.scopes"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.scopes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.__init__"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.max"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.max()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.min"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.min()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.mean"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.mean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.std"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.std()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.plot"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CPUProfiler.scope"><code class="docutils literal notranslate"><span class="pre">CPUProfiler.scope()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/profile.html#cudaprofiler">CUDAProfiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CUDAProfiler"><code class="docutils literal notranslate"><span class="pre">CUDAProfiler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CUDAProfiler.__init__"><code class="docutils literal notranslate"><span class="pre">CUDAProfiler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CUDAProfiler.max"><code class="docutils literal notranslate"><span class="pre">CUDAProfiler.max()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CUDAProfiler.min"><code class="docutils literal notranslate"><span class="pre">CUDAProfiler.min()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CUDAProfiler.mean"><code class="docutils literal notranslate"><span class="pre">CUDAProfiler.mean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CUDAProfiler.std"><code class="docutils literal notranslate"><span class="pre">CUDAProfiler.std()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CUDAProfiler.plot"><code class="docutils literal notranslate"><span class="pre">CUDAProfiler.plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.CUDAProfiler.scope"><code class="docutils literal notranslate"><span class="pre">CUDAProfiler.scope()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/profile.html#timeprofiler">TimeProfiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.TimeProfiler"><code class="docutils literal notranslate"><span class="pre">TimeProfiler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.TimeProfiler.time"><code class="docutils literal notranslate"><span class="pre">TimeProfiler.time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.TimeProfiler.start"><code class="docutils literal notranslate"><span class="pre">TimeProfiler.start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.TimeProfiler.scopes"><code class="docutils literal notranslate"><span class="pre">TimeProfiler.scopes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.TimeProfiler.only_cpu"><code class="docutils literal notranslate"><span class="pre">TimeProfiler.only_cpu</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.TimeProfiler.__init__"><code class="docutils literal notranslate"><span class="pre">TimeProfiler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.TimeProfiler.scope"><code class="docutils literal notranslate"><span class="pre">TimeProfiler.scope()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/profile.html#tensormesh.profile.TimeProfiler.plot"><code class="docutils literal notranslate"><span class="pre">TimeProfiler.plot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tensormesh</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Adjacency</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/adjacency.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="adjacency">
+<h1>Adjacency<a class="headerlink" href="#adjacency" title="Link to this heading"></a></h1>
+<section id="d-node-adjacency">
+<h2>2D Node Adjacency<a class="headerlink" href="#d-node-adjacency" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensormesh</span> <span class="kn">import</span> <span class="n">mesh</span><span class="p">,</span><span class="n">MeshGen</span>
+<span class="kn">import</span> <span class="nn">tensormesh</span> <span class="k">as</span> <span class="nn">tm</span>
+<span class="kn">import</span> <span class="nn">tensormesh.visualization</span> <span class="k">as</span> <span class="nn">V</span>
+
+<span class="n">GRAPH_ALPHA</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">GRAPH_COLOR</span> <span class="o">=</span> <span class="s2">&quot;lightblue&quot;</span>
+<span class="n">GRAPH_LINEWIDTH</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">MESH_COLOR</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+<span class="n">MESH_LINEWIDTH</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">mesh_gen</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">MeshGen</span><span class="p">(</span><span class="n">element_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chara_length</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mesh_gen</span><span class="o">.</span><span class="n">add_rectangle</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">element</span><span class="o">=</span><span class="s2">&quot;tri&quot;</span><span class="p">)</span>
+<span class="n">mesh_gen</span><span class="o">.</span><span class="n">add_rectangle</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">element</span><span class="o">=</span><span class="s2">&quot;quad&quot;</span><span class="p">)</span>
+<span class="n">mesh_gen</span><span class="o">.</span><span class="n">remove_circle</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">mesh</span><span class="p">:</span><span class="n">tm</span><span class="o">.</span><span class="n">Mesh</span> <span class="o">=</span> <span class="n">mesh_gen</span><span class="o">.</span><span class="n">gen</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">node_adjacency</span><span class="p">(),</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span>
+                  <span class="n">color</span><span class="o">=</span><span class="n">GRAPH_COLOR</span><span class="p">,</span>
+                  <span class="n">linewidth</span><span class="o">=</span><span class="n">GRAPH_LINEWIDTH</span><span class="p">,</span>
+                  <span class="n">alpha</span><span class="o">=</span><span class="n">GRAPH_ALPHA</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">MESH_COLOR</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">MESH_LINEWIDTH</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/node_adj_2d.png"><img alt="../_images/node_adj_2d.png" class="align-center" src="../_images/node_adj_2d.png" style="width: 100%;" />
+</a>
+</section>
+<section id="d-element-adjacency">
+<h2>2D Element Adjacency<a class="headerlink" href="#d-element-adjacency" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensormesh</span> <span class="kn">import</span> <span class="n">mesh</span><span class="p">,</span><span class="n">MeshGen</span>
+<span class="kn">import</span> <span class="nn">tensormesh</span> <span class="k">as</span> <span class="nn">tm</span>
+<span class="kn">import</span> <span class="nn">tensormesh.visualization</span> <span class="k">as</span> <span class="nn">V</span>
+
+<span class="n">GRAPH_ALPHA</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">GRAPH_COLOR</span> <span class="o">=</span> <span class="s2">&quot;lightblue&quot;</span>
+<span class="n">GRAPH_LINEWIDTH</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">MESH_COLOR</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+<span class="n">MESH_LINEWIDTH</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">mesh_gen</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">MeshGen</span><span class="p">(</span><span class="n">element_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chara_length</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mesh_gen</span><span class="o">.</span><span class="n">add_rectangle</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">element</span><span class="o">=</span><span class="s2">&quot;tri&quot;</span><span class="p">)</span>
+<span class="n">mesh_gen</span><span class="o">.</span><span class="n">add_rectangle</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">element</span><span class="o">=</span><span class="s2">&quot;quad&quot;</span><span class="p">)</span>
+<span class="n">mesh_gen</span><span class="o">.</span><span class="n">remove_circle</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">mesh</span><span class="p">:</span><span class="n">tm</span><span class="o">.</span><span class="n">Mesh</span> <span class="o">=</span> <span class="n">mesh_gen</span><span class="o">.</span><span class="n">gen</span><span class="p">()</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">key</span> <span class="p">,</span> <span class="n">elements</span> <span class="ow">in</span> <span class="n">mesh</span><span class="o">.</span><span class="n">elements</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">elements</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">element_adjacency</span><span class="p">(),</span> <span class="n">points</span><span class="p">,</span>
+                  <span class="n">color</span><span class="o">=</span><span class="n">GRAPH_COLOR</span><span class="p">,</span>
+                  <span class="n">linewidth</span><span class="o">=</span><span class="n">GRAPH_LINEWIDTH</span><span class="p">,</span>
+                  <span class="n">alpha</span><span class="o">=</span><span class="n">GRAPH_ALPHA</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">MESH_COLOR</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">MESH_LINEWIDTH</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/ele_adj_2d.png"><img alt="../_images/ele_adj_2d.png" class="align-center" src="../_images/ele_adj_2d.png" style="width: 100%;" />
+</a>
+</section>
+<section id="id1">
+<h2>3D Node Adjacency<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensormesh</span> <span class="kn">import</span> <span class="n">mesh</span><span class="p">,</span><span class="n">MeshGen</span>
+<span class="kn">import</span> <span class="nn">tensormesh</span> <span class="k">as</span> <span class="nn">tm</span>
+<span class="kn">import</span> <span class="nn">tensormesh.visualization</span> <span class="k">as</span> <span class="nn">V</span>
+
+<span class="n">GRAPH_ALPHA</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">GRAPH_COLOR</span> <span class="o">=</span> <span class="s2">&quot;lightblue&quot;</span>
+<span class="n">GRAPH_LINEWIDTH</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">MESH_COLOR</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+<span class="n">MESH_LINEWIDTH</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">mesh_gen</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">MeshGen</span><span class="p">(</span><span class="n">element_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chara_length</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mesh_gen</span><span class="o">.</span><span class="n">add_cube</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">element</span><span class="o">=</span><span class="s2">&quot;tet&quot;</span><span class="p">)</span>
+<span class="c1"># mesh_gen.remove_sphere(0.5,0.5,0.5,0.1)</span>
+<span class="n">mesh</span><span class="p">:</span><span class="n">tm</span><span class="o">.</span><span class="n">Mesh</span> <span class="o">=</span> <span class="n">mesh_gen</span><span class="o">.</span><span class="n">gen</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">node_adjacency</span><span class="p">(),</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span>
+                  <span class="n">color</span><span class="o">=</span><span class="n">GRAPH_COLOR</span><span class="p">,</span>
+                  <span class="n">linewidth</span><span class="o">=</span><span class="n">GRAPH_LINEWIDTH</span><span class="p">,</span>
+                  <span class="n">alpha</span><span class="o">=</span><span class="n">GRAPH_ALPHA</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">MESH_COLOR</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">MESH_LINEWIDTH</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="text-align: center;">
+    <iframe src="../_static/plot_mesh/node_adj_3d.html" width="600px" height="500px"></iframe>
+</div></section>
+<section id="id2">
+<h2>3D Element Adjacency<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensormesh</span> <span class="kn">import</span> <span class="n">mesh</span><span class="p">,</span><span class="n">MeshGen</span>
+<span class="kn">import</span> <span class="nn">tensormesh</span> <span class="k">as</span> <span class="nn">tm</span>
+<span class="kn">import</span> <span class="nn">tensormesh.visualization</span> <span class="k">as</span> <span class="nn">V</span>
+
+<span class="n">GRAPH_ALPHA</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">GRAPH_COLOR</span> <span class="o">=</span> <span class="s2">&quot;lightblue&quot;</span>
+<span class="n">GRAPH_LINEWIDTH</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">MESH_COLOR</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span>
+<span class="n">MESH_LINEWIDTH</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">mesh_gen</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">MeshGen</span><span class="p">(</span><span class="n">element_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chara_length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mesh_gen</span><span class="o">.</span><span class="n">add_cube</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">element</span><span class="o">=</span><span class="s2">&quot;tet&quot;</span><span class="p">)</span>
+<span class="c1"># mesh_gen.remove_sphere(0.5,0.5,0.5,0.1)</span>
+<span class="n">mesh</span><span class="p">:</span><span class="n">tm</span><span class="o">.</span><span class="n">Mesh</span> <span class="o">=</span> <span class="n">mesh_gen</span><span class="o">.</span><span class="n">gen</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">element_adjacency</span><span class="p">(),</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">mesh</span><span class="o">.</span><span class="n">elements</span><span class="p">()]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+                  <span class="n">color</span><span class="o">=</span><span class="n">GRAPH_COLOR</span><span class="p">,</span>
+                  <span class="n">linewidth</span><span class="o">=</span><span class="n">GRAPH_LINEWIDTH</span><span class="p">,</span>
+                  <span class="n">alpha</span><span class="o">=</span><span class="n">GRAPH_ALPHA</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">MESH_COLOR</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">MESH_LINEWIDTH</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="text-align: center;">
+    <iframe src="../_static/plot_mesh/ele_adj_3d.html" width="600px" height="500px"></iframe>
+</div></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mesh_gen.html" class="btn btn-neutral float-left" title="Mesh Generation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="basis.html" class="btn btn-neutral float-right" title="Basis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, walkerchi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
