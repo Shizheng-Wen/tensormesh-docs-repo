@@ -34,7 +34,7 @@ extensions = [
 ]
 
 
-html_theme = 'tensormesh_sphinx_theme'
+html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'navigation_depth': 4,  # Increase navigation depth
     'collapse_navigation': False,  # Keep the navigation expanded
